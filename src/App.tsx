@@ -1,25 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { ConfigProvider } from 'antd';
+import { RouterProvider } from 'react-router-dom';
+import routes from './routes/routes';
 
+
+export const COLOR = {
+  50: "#234FE3",
+  100: "#1366D9",
+  150: "#1C1C1C"
+
+}
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: COLOR["50"],
+          colorTextSecondary: COLOR["100"],
+          colorText:COLOR["150"],
+          fontFamily: "'Inter', sans-serif",
+        },
+        components:{
+          Button:{
+            colorLink: COLOR["100"],
+            paddingInline: 20
+          },
+          Input:{
+            borderRadius: 4
+          }
+        }
+      }}
+    >
+      <RouterProvider router={routes}/>
+    </ConfigProvider>
   );
 }
 
