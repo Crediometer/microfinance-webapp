@@ -24,7 +24,7 @@ import {
   Typography,
 } from 'antd';
 import { ReactNode, useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+//import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
@@ -32,13 +32,13 @@ import {
   SwitchTransition,
   TransitionGroup,
 } from 'react-transition-group';
-import { NProgress } from '../../components';
-import { PATH_LANDING } from '../../constants';
-import { RootState } from '../../redux/store.ts';
-import { toggleTheme } from '../../redux/theme/themeSlice.ts';
-import FooterNav from './FooterNav.tsx';
-import HeaderNav from './HeaderNav.tsx';
-import SideNav from './SideBar.tsx';
+// import { NProgress } from '../../components';
+//import { PATH_LANDING } from '../../constants';
+//import { RootState } from '../../redux/store.ts';
+// import { toggleTheme } from '../../redux/theme/themeSlice.ts';
+import FooterNav from './FooterNav';
+import HeaderNav from './HeaderNav';
+import SideNav from './SideBar';
 import { FiBell } from 'react-icons/fi';
 const { Content } = Layout;
 
@@ -58,8 +58,8 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
   const navigate = useNavigate();
   const nodeRef = useRef(null);
   const floatBtnRef = useRef(null);
-  const dispatch = useDispatch();
-  const { mytheme } = useSelector((state: RootState) => state.theme);
+  //const dispatch = useDispatch();
+  //const { mytheme } = useSelector((state: RootState) => state.theme);
   const items: MenuProps['items'] = [
     {
       key: 'user-profile-link',
@@ -90,9 +90,9 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
           content: 'signing you out',
         });
 
-        setTimeout(() => {
-          navigate(PATH_LANDING.root);
-        }, 1000);
+        // setTimeout(() => {
+        //   navigate(PATH_LANDING.root);
+        // }, 1000);
       },
     },
   ];
@@ -113,7 +113,7 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
 
   return (
     <>
-      <NProgress isAnimating={isLoading} key={location.key} />
+      {/* <NProgress isAnimating={isLoading} key={location.key} /> */}
       <Layout
         style={{
           minHeight: '100vh',

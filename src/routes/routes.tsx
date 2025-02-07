@@ -2,6 +2,8 @@ import { createBrowserRouter, useLocation } from 'react-router-dom';
 import React, { ReactNode, useEffect } from 'react';
 import SignIn from '../pages/Auth/SignIn';
 import ResetPassword from '../pages/Auth/Reset';
+import { DashboardLayout } from '../components/Dashboard/DashboardLayout';
+import Dashboard from '../pages/Dashboard/Dashboard';
 // import {
 //   AccountDeactivePage,
 //   BiddingDashboardPage,
@@ -91,74 +93,74 @@ const router = createBrowserRouter([
       },
     ],
   },
-  // {
-  //   path: '/dashboards',
-  //   element: <PageWrapper children={<DashboardLayout />} />,
-  //   //errorElement: <ErrorPage />,
-  //   children: [
-  //     {
-  //       index: true,
-  //       path: 'default',
-  //       element: <DefaultDashboardPage />,
-  //     },
-  //     {
-  //       path: 'attendance',
-  //       element: <AttendanceDashboardPage />,
-  //     },
-  //     {
-  //       path: 'commission',
-  //       element: <CommissionBreakdown />,
-  //     },
-  //     {
-  //       path: 'customer',
-  //       element: <CustomerManagementDashboard customers={[]} role={'PM'} />,
-  //     }, 
-  //     {
-  //       path: 'management',
-  //       element: <ManagementDashboard />,
-  //     },
-  //     {
-  //       path: 'transaction',
-  //       element: <TransactionPage />,
-  //     },
-  //     {
-  //       path: 'contribution',
-  //       element: <CollaborationPage />,
-  //     },
-  //     {
-  //       path: 'target',
-  //       element: <TargetModal />,
-  //     },
-  //     {
-  //       path: 'dinepoint',
-  //       element: <DinepointDashboardPage />,
-  //     },
-  //     {
-  //       path: 'ecommerce',
-  //       element: <EcommerceDashboardPage />,
-  //     },
-  //     {
-  //       path: 'school',
-  //       element: <SchoolDashboardPage />,
-  //     },
-  //     {
-  //       path: 'social',
-  //       element: <SocialDashboardPage />,
-  //     },
-  //     {
-  //       path: 'bidding',
-  //       element: <BiddingDashboardPage />,
-  //     },
-  //     {
-  //       path: 'learning',
-  //       element: <LearningDashboardPage />,
-  //     },
-  //     {
-  //       path: 'logistics',
-  //       element: <LogisticsDashboardPage />,
-  //     },
-  //   ],
-  // },
+  {
+    path: '/dashboard',
+    element: <PageWrapper children={<DashboardLayout />} />,
+    //errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+        path: 'default',
+        element: <Dashboard/>,
+      },
+      // {
+      //   path: 'attendance',
+      //   element: <AttendanceDashboardPage />,
+      // },
+      // {
+      //   path: 'commission',
+      //   element: <CommissionBreakdown />,
+      // },
+      // {
+      //   path: 'customer',
+      //   element: <CustomerManagementDashboard customers={[]} role={'PM'} />,
+      // }, 
+      // {
+      //   path: 'management',
+      //   element: <ManagementDashboard />,
+      // },
+      // {
+      //   path: 'transaction',
+      //   element: <TransactionPage />,
+      // },
+      // {
+      //   path: 'contribution',
+      //   element: <CollaborationPage />,
+      // },
+      // {
+      //   path: 'target',
+      //   element: <TargetModal />,
+      // },
+      // {
+      //   path: 'dinepoint',
+      //   element: <DinepointDashboardPage />,
+      // },
+      // {
+      //   path: 'ecommerce',
+      //   element: <EcommerceDashboardPage />,
+      // },
+      // {
+      //   path: 'school',
+      //   element: <SchoolDashboardPage />,
+      // },
+      // {
+      //   path: 'social',
+      //   element: <SocialDashboardPage />,
+      // },
+      // {
+      //   path: 'bidding',
+      //   element: <BiddingDashboardPage />,
+      // },
+      // {
+      //   path: 'learning',
+      //   element: <LearningDashboardPage />,
+      // },
+      // {
+      //   path: 'logistics',
+      //   element: <LogisticsDashboardPage />,
+      // },
+    ],
+  },
   // {
   //   path: '/sitemap',
   //   element: <PageWrapper children={<DashboardLayout />} />,
