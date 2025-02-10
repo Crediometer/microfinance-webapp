@@ -83,6 +83,7 @@ const SignIn = () => {
                                 />
                             </Col>
                             {/* <Form.Item label={null}> */}
+                            <Link to="/dashboard/default">
                             <Button
                                 style={{
                                     padding: '20px'
@@ -91,7 +92,9 @@ const SignIn = () => {
                                 block
                             >
                                 Log In
+
                             </Button>
+                            </Link>
                             <Flex
                                 justify="right"
                                 style={{

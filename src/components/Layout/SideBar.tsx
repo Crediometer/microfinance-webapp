@@ -3,16 +3,18 @@ import {
   FolderOpenOutlined,
   LineOutlined,
   PieChartOutlined,
+  RightOutlined,
   ShoppingCartOutlined,
   UsergroupAddOutlined,
   UserOutlined,
   WifiOutlined
 } from '@ant-design/icons';
-import { ConfigProvider, Layout, Menu, MenuProps, SiderProps, Typography } from 'antd';
+import { Col, ConfigProvider, Divider, Flex, Image, Layout, Menu, MenuProps, SiderProps, Typography } from 'antd';
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { COLOR } from "../../App"
-import logo from '../../assets/logo.png'
+import logo from '../../assets/logo2.png'
+import profile from '../../assets/profile.png'
 // import {
 //   PATH_AUTH,
 //   PATH_DASHBOARD,
@@ -44,74 +46,63 @@ const getItem = (
 const items: MenuProps['items'] = [
 
   getItem(
-  <Typography.Text>All</Typography.Text>, 'default', <PieChartOutlined />),
+  "Dashboard", 'default', <PieChartOutlined />),
   getItem(
-    <Typography.Text>Customer</Typography.Text>,
+    "Customer",
     'customer',
     <ShoppingCartOutlined />
   ),
-  getItem(<Typography.Text>Management</Typography.Text>,
-    'management',
+  getItem("Account",
+    'account',
     <UsergroupAddOutlined />),
-  getItem(<Typography.Text>Transaction</Typography.Text>,
-    'transaction',
+  getItem("Disbursement",
+    'disbursement',
     <UsergroupAddOutlined />),
-  getItem(<Typography.Text >Contribution</Typography.Text>,
-    'contribution',
+  getItem("All Transactions",
+    'transactions',
     <UsergroupAddOutlined />),
   getItem(
-    <Typography.Text>Dinepoint</Typography.Text>,
-    'dinepoint',
+    "Reports",
+    'report',
     <ShoppingCartOutlined />
   ),
   getItem(
-    <Typography.Text >Reader</Typography.Text>,
-    'reader',
+   "Tasks",
+    'task',
     <WifiOutlined />
   ),
-  // getItem(
-  //   <Typography.Text to={PATH_DASHBOARD.ecommerce}>ATM Card</Typography.Text>,
-  //   'card',
-  //   <CreditCardOutlined />
-  // ),
   getItem(
-    <Typography.Text>School</Typography.Text>,
-    'school',
+    "Mobile Channel",
+    'mobile',
     <FolderOpenOutlined />
   ),
   getItem(
-
-    <Typography.Text >
-      Savings
-    </Typography.Text>,
-    'savings',
+    "Branches",
+    'branches',
     <DollarOutlined />
   ),
-  getItem(<Typography.Text >Corporative</Typography.Text>,
-    'corporative',
+  getItem("Accounting",
+    'accounting',
     <UsergroupAddOutlined />),
 
-
-  getItem('Downlines', 'authentication', <LineOutlined />, [
-
-
     getItem(
-      <Typography.Text >Level Two</Typography.Text>,
-      'auth-verify',
+      "Management",
+      'management',
       null
     ),
     getItem(
-      <Typography.Text >Level Three</Typography.Text>,
-      'auth-password-reset',
+      "Overview",
+      'Overview',
       null
     ),
-  ]),
+  //   getItem('Downlines', 'authentication', <LineOutlined />, [
+  // ]),
 
-  getItem(
-    <Typography.Text>User profile</Typography.Text>,
-    'details',
-    <UserOutlined />
-  ),
+  // getItem(
+  //   <Typography.Text>User profile</Typography.Text>,
+  //   'details',
+  //   <UserOutlined />
+  // ),
 
 ];
 
@@ -155,28 +146,79 @@ const SideNav = ({ ...others }: SideNavProps) => {
         imgSize={{ h: 28, w: 28 }}
         style={{ padding: '1rem 0' }}
       /> */}
+      <Flex
+      justify='center'
+      >
+        <Image
+        width={130}
+        src={logo}
+        />
+      </Flex>
       <ConfigProvider
         theme={{
           components: {
             Menu: {
-              itemBg: 'none',
-              itemSelectedBg: COLOR['100'],
-              itemHoverBg: COLOR['50'],
+              itemBg: COLOR["200"],
+              itemSelectedBg: COLOR['250'],
+              itemHoverBg: COLOR['250'],
               itemSelectedColor: COLOR['150'],
+              colorText:COLOR['250'],
             },
           },
         }}
       >
         <Menu
-          mode="inline"
+          mode='inline'
           items={items}
           onClick={onClick}
           openKeys={openKeys}
           onOpenChange={onOpenChange}
           selectedKeys={[current]}
-          style={{ border: 'none' }}
+          style={{ border: 'none', marginTop:"47px" }}
         />
       </ConfigProvider>
+      <Divider 
+        style={{
+          borderColor:"#E2E8F0"
+        }}
+      />
+      <Flex align='center' justify='space-between'>
+        <Col>
+          <Flex align='center' gap={8}>
+            <Image
+                width={40}
+                height={40}
+                src={profile}
+                style={{
+                  borderRadius: "50%",
+                  backgroundColor:"#FFB31F"
+                }}
+            >
+            </Image>
+            <Col>
+              <Typography.Text 
+              style={{
+                fontSize:"10px",
+                color: COLOR['300'],
+                margin: "0px",
+                padding:"0px"
+              }}
+              >Welcome back 👋</Typography.Text>
+              <Typography.Title level={5} style={
+                {
+                  fontSize:"12px",
+                  color: COLOR['250'],
+                      margin: "0px",
+                padding:"0px"
+                }
+              }>Johnathan</Typography.Title>
+            </Col>
+          </Flex>
+        </Col>
+        <Col>
+          <RightOutlined/>
+        </Col>
+      </Flex>
     </Sider>
   );
 };

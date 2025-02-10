@@ -90,7 +90,7 @@ const ResetPassword = () => {
                                 type="primary" 
                                 block
                             >
-                                Log In
+                                Reset
                             </Button>
                             <Flex
                                 justify="right"

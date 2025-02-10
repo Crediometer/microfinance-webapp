@@ -8,8 +8,11 @@ import routes from './routes/routes';
 export const COLOR = {
   50: "#234FE3",
   100: "#1366D9",
-  150: "#1C1C1C"
-
+  150: "#1C1C1C",
+  200: "#01218F",
+  250: "#ffffff",
+  300: "#64748B",
+  350: "#231F20",
 }
 function App() {
   return (

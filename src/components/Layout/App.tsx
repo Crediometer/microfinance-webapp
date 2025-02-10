@@ -10,14 +10,17 @@ import {
 } from '@ant-design/icons';
 import {
   Button,
+  Card,
   Col,
   Dropdown,
   Flex,
   FloatButton,
+  Image,
   Input,
   Layout,
   MenuProps,
   message,
+  Select,
   Switch,
   theme,
   Tooltip,
@@ -39,7 +42,10 @@ import {
 import FooterNav from './FooterNav';
 import HeaderNav from './HeaderNav';
 import SideNav from './SideBar';
+import avatar from "../../assets/avatar.png"
 import { FiBell } from 'react-icons/fi';
+import { FaBell } from "react-icons/fa6";
+import { COLOR } from '../../App';
 const { Content } = Layout;
 
 type AppLayoutProps = {
@@ -131,9 +137,12 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
             left: 0,
             top: 0,
             bottom: 0,
-            background: 'none',
+            background: COLOR["200"],
             border: 'none',
             transition: 'all .2s',
+            padding:"2rem 1rem",
+            height: "100vh",
+            width: "250px"
           }}
         />
         <Layout
@@ -146,22 +155,21 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
           <HeaderNav
             style={{
               marginLeft: collapsed ? 0 : '200px',
-              padding: '0 2rem 0 0',
-              background: navFill ? 'rgba(255, 255, 255, .5)' : 'none',
+              padding: '1.8rem 0.8rem',
+              background: "#ffffff",
               backdropFilter: navFill ? 'blur(8px)' : 'none',
               boxShadow: navFill ? '0 0 8px 2px rgba(0, 0, 0, 0.05)' : 'none',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              position: 'sticky',
-              top: 0,
+              position: 'sticky',   
               zIndex: 1,
               gap: 8,
               transition: 'all .25s',
             }}
           >
-            <Flex align="center">
-              <Tooltip title={`${collapsed ? 'Expand' : 'Collapse'} Sidebar`}>
+            <Flex align="center" gap={28}>
+              {/* <Tooltip title={`${collapsed ? 'Expand' : 'Collapse'} Sidebar`}>
                 <Button
                   type="text"
                   icon={
@@ -174,26 +182,49 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
                     height: 64,
                   }}
                 />
-              </Tooltip>
-              <Input.Search
-                placeholder="search"
-                style={{
-                  width: isMobile ? '100%' : '400px',
-                  marginLeft: isMobile ? 0 : '.5rem',
-                }}
-                size="middle"
+              </Tooltip> */}
+              <Typography.Title  level={2} color={`${COLOR['350']}`}>Main Dashboard</Typography.Title>
+              <Select
+                size='large'
+                style={{ width: 200 }}
+                showSearch
+                placeholder="All Branches "
+                filterOption={(input, option) =>
+                  (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                }
+                options={[
+                  { value: '1', label: 'Akure Branch' },
+                  { value: '2', label: 'Ondo Branch' },
+                  { value: '3', label: 'Lagos Branch' },
+                ]}
               />
             </Flex>
             <Flex align="center" gap="20px">
-              <FiBell style={{color:"#b11226", fontSize:"1.3rem"}}/>
-              <Flex vertical>
+              <Col
+                style={{
+                  padding: "1rem",
+                  border:"1px solid #E7EAE9",
+                  borderRadius: "8px"
+                }}  
+              >
+                <FaBell style={{color:COLOR["50"], fontSize:"1.3rem"}}/>
+              </Col>
+              {/* <Flex vertical> */}
                 <Typography.Text>
-                  Welcome John Doe
+                  Administrator
                 </Typography.Text>
-                <Typography.Text>
-                  Product Mobilizer
-                </Typography.Text>
-              </Flex>
+              {/* </Flex> */}
+              <Image
+                width={40}
+                height={40}
+                src={avatar}
+                style={{
+                  borderRadius:"50%",
+                  padding: "0px",
+                  margin: "0px"
+                }}
+              >
+              </Image>
              
               {/* <Tooltip title="Theme">
                 <Switch
@@ -205,15 +236,6 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
                 />
               </Tooltip> */}
               <Dropdown menu={{ items }} trigger={['click']}>
-                <Flex>
-                  <img
-                    src="/me.jpg"
-                    alt="user profile photo"
-                    height={36}
-                    width={36}
-                    style={{ borderRadius, objectFit: 'cover' }}
-                  />
-                </Flex>
               </Dropdown>
             </Flex>
           </HeaderNav>
