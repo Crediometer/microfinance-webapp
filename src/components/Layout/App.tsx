@@ -275,14 +275,7 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
             <div ref={floatBtnRef}>
               <FloatButton.BackTop />
             </div>
-          </Content>
-          <FooterNav
-            style={{
-              textAlign: 'center',
-              marginLeft: collapsed ? 0 : '200px',
-              background: 'none',
-            }}
-          />
+          </Content>  
         </Layout>
       </Layout>
     </>

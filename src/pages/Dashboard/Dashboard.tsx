@@ -12,36 +12,56 @@ import customer2 from "../../assets/customer.png";
 import customer3 from "../../assets/Customer3.png";
 import customer4 from "../../assets/customer4.png";
 import customer5 from "../../assets/customer6.png";
+import { PieChart } from "../../components/Card/dashboard/default/WeeklyActivityCard/PieChart";
 
 const ACTIVITY_DATA = [
     {
-      day: 'Monday',
-      value: 10,
+      day: 'Jan',
+      value: 50000,
     },
     {
-      day: 'Tuesday',
-      value: 22,
+      day: 'Feb',
+      value: 22000,
     },
     {
-      day: 'Wednesday',
-      value: 25,
+      day: 'Mar',
+      value: 60000,
     },
     {
-      day: 'Thursday',
-      value: 26,
+      day: 'Apr',
+      value: 45000,
     },
     {
-      day: 'Friday',
-      value: 15,
+      day: 'May',
+      value: 35000,
     },
     {
-      day: 'Saturday',
-      value: 12,
+      day: 'Jun',
+      value: 18000,
     },
     {
-      day: 'Sunday',
-      value: 3,
+      day: 'Jul',
+      value: 30000,
     },
+  ];
+
+  const PIE_DATA = [
+    {
+      label: 'N0 - N100,000',
+      value: 52.1,
+    },
+    {
+      label: 'N100,000 - N300,000',
+      value: 22.8,
+    },
+    {
+      label: 'N300,000 - N500,000',
+      value: 13.9,
+    },
+    {
+      label: 'N500,000 - N1,000,000',
+      value: 11.2,
+    }
   ];
 const Dashboard = () => {
     const stylesContext = useStylesContext();
@@ -191,7 +211,7 @@ const Dashboard = () => {
                     marginTop:"28px"
                 }} justify="space-between" gap={14}>
                     <Col xs={24} lg={12}>
-                    <WeeklyActivityCard data={ACTIVITY_DATA} />
+                        <PieChart data={PIE_DATA} />
                     </Col>
                     <Col xs={24} lg={12}>
                         <Card
