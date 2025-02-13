@@ -5,6 +5,7 @@ import ResetPassword from '../pages/Auth/Reset';
 import { DashboardLayout } from '../components/Dashboard/DashboardLayout';
 import Dashboard from '../pages/Dashboard/Dashboard';
 import Teller from '../pages/Dashboard/Teller/Teller';
+import SearchTeller from '../pages/Dashboard/Teller/SearchTeller';
 // import {
 //   AccountDeactivePage,
 //   BiddingDashboardPage,
@@ -108,6 +109,11 @@ const router = createBrowserRouter([
         index: true,
         path: 'teller',
         element: <Teller/>,
+      },
+      {
+        index: true,
+        path: 'teller/search',
+        element: <SearchTeller/>,
       },
       // {
       //   path: 'attendance',

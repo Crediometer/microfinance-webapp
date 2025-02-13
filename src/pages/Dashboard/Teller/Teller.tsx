@@ -219,7 +219,7 @@ const Teller = () => {
                                 ></Input>
                             </Col>
                             <Col>
-                                <Typography.Text
+                                <Typography.Text    
                                     style={{
                                         fontSize: "16px",
                                         fontWeight: 400,
