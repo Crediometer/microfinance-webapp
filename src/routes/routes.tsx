@@ -4,6 +4,7 @@ import SignIn from '../pages/Auth/SignIn';
 import ResetPassword from '../pages/Auth/Reset';
 import { DashboardLayout } from '../components/Dashboard/DashboardLayout';
 import Dashboard from '../pages/Dashboard/Dashboard';
+import Teller from '../pages/Dashboard/Teller/Teller';
 // import {
 //   AccountDeactivePage,
 //   BiddingDashboardPage,
@@ -102,6 +103,11 @@ const router = createBrowserRouter([
         index: true,
         path: 'default',
         element: <Dashboard/>,
+      },
+      {
+        index: true,
+        path: 'teller',
+        element: <Teller/>,
       },
       // {
       //   path: 'attendance',

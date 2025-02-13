@@ -183,7 +183,10 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
                   }}
                 />
               </Tooltip> */}
-              <Typography.Title  level={2} color={`${COLOR['350']}`}>Main Dashboard</Typography.Title>
+              <Typography.Text style={{
+                fontSize: 24,
+                fontWeight:"600",
+              }} color={`${COLOR['350']}`}>Main Dashboard</Typography.Text>
               <Select
                 size='large'
                 style={{ width: 200 }}
