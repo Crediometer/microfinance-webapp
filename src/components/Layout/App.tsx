@@ -142,7 +142,7 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
             transition: 'all .2s',
             padding:"2rem 1rem",
             height: "100vh",
-            width: "250px"
+            width: "380px"
           }}
         />
         <Layout

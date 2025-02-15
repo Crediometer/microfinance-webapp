@@ -6,6 +6,7 @@ import { DashboardLayout } from '../components/Dashboard/DashboardLayout';
 import Dashboard from '../pages/Dashboard/Dashboard';
 import Teller from '../pages/Dashboard/Teller/Teller';
 import SearchTeller from '../pages/Dashboard/Teller/SearchTeller';
+import TellerInfo from '../pages/Dashboard/Teller/TellerData';
 // import {
 //   AccountDeactivePage,
 //   BiddingDashboardPage,
@@ -106,14 +107,17 @@ const router = createBrowserRouter([
         element: <Dashboard/>,
       },
       {
-        index: true,
         path: 'teller',
         element: <Teller/>,
       },
       {
-        index: true,
         path: 'teller/search',
         element: <SearchTeller/>,
+      },
+      {
+        index: true,
+        path: 'teller/data',
+        element: <TellerInfo/>,
       },
       // {
       //   path: 'attendance',

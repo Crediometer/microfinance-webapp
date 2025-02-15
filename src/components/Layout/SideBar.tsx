@@ -45,8 +45,24 @@ const getItem = (
 
 const items: MenuProps['items'] = [
 
-  getItem(
-  "Dashboard", 'default', <PieChartOutlined />),
+  getItem("Dashboard", 'default', <PieChartOutlined />,[
+    getItem(
+      <Link to="/dashboard/teller">Teller</Link>,
+      'auth-verify',
+      null
+    ),
+
+    getItem(
+      <Link to="/dashboard/teller/search">Teller Serch</Link>,
+      'auth-verify',
+      null
+    ),
+    getItem(
+      <Link to="/dashboard/teller/data">Teller Data</Link>,
+      'auth-verify',
+      null
+    ),
+  ]),
   getItem(
     "Customer",
     'customer',

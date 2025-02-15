@@ -6,9 +6,9 @@ const { Search } = Input;
 const SearchTeller = () => {
     return ( 
         <>
-            <Col style={{
-                padding: 40
-            }}>
+                <Col style={{
+                    padding: 40
+                }}>
                 <Col 
                     style={{
                         padding: 40
