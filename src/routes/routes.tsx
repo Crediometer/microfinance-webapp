@@ -1,5 +1,5 @@
 import { createBrowserRouter, useLocation } from 'react-router-dom';
-import React, { ReactNode, useEffect } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import SignIn from '../pages/Auth/SignIn';
 import ResetPassword from '../pages/Auth/Reset';
 import { DashboardLayout } from '../components/Dashboard/DashboardLayout';
@@ -55,6 +55,7 @@ import TellerInfo from '../pages/Dashboard/Teller/TellerData';
 // import { CollaborationPage } from '../pages/dashboards/Collaboration.tsx';
 
 // Custom scroll restoration function
+
 export const ScrollToTop: React.FC = () => {
   const { pathname } = useLocation();
 
@@ -98,7 +99,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/dashboard',
-    element: <PageWrapper children={<DashboardLayout />} />,
+    element: <PageWrapper children={<DashboardLayout/>} />,
     //errorElement: <ErrorPage />,
     children: [
       {
@@ -115,7 +116,7 @@ const router = createBrowserRouter([
         element: <SearchTeller/>,
       },
       {
-        index: true,
+
         path: 'teller/data',
         element: <TellerInfo/>,
       },

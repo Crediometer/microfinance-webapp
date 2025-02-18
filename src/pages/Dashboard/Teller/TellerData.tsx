@@ -130,7 +130,7 @@ const TellerInfo = () => {
                                         fontSize: "16px",
                                         fontWeight: 400,
                                     }}
-                                >Account Number</Typography.Text>
+                                > Loan Account Number</Typography.Text>
                                 <Input style={{
                                     marginTop: 8
                                 }} placeholder="978476455423"></Input>
@@ -141,7 +141,7 @@ const TellerInfo = () => {
                                         fontSize: "16px",
                                         fontWeight: 400,
                                     }}
-                                >Branch</Typography.Text>
+                                >Loan Product</Typography.Text>
                                 <Input style={{
                                     marginTop: 8
                                 }} placeholder="Lekki"></Input>
@@ -152,7 +152,7 @@ const TellerInfo = () => {
                                         fontSize: "16px",
                                         fontWeight: 400,
                                     }}
-                                >State</Typography.Text>
+                                >Amount Borrowed</Typography.Text>
                                 <Input style={{
                                     marginTop: 8
                                 }} placeholder="Ondo"></Input>
@@ -163,7 +163,7 @@ const TellerInfo = () => {
                                         fontSize: "16px",
                                         fontWeight: 400,
                                     }}
-                                >Date Opened</Typography.Text>
+                                >Outstanding Balance</Typography.Text>
                                 <Input style={{
                                     marginTop: 8
                                 }} placeholder="01-12-2025"></Input>
@@ -176,7 +176,7 @@ const TellerInfo = () => {
                                         fontSize: "16px",
                                         fontWeight: 400,
                                     }}
-                                >Currency</Typography.Text>
+                                >Interest Rate</Typography.Text>
                                 <Input style={{
                                     marginTop: 8
                                 }} placeholder="NGN"></Input>
@@ -187,7 +187,7 @@ const TellerInfo = () => {
                                         fontSize: "16px",
                                         fontWeight: 400,
                                     }}
-                                >Ledger Balance</Typography.Text>
+                                >Loan Status</Typography.Text>
                                 <Input style={{
                                     marginTop: 8
                                 }} placeholder="0"></Input>
@@ -198,7 +198,7 @@ const TellerInfo = () => {
                                         fontSize: "16px",
                                         fontWeight: 400,
                                     }}
-                                >Available Balance  </Typography.Text>
+                                >Loan Due Date </Typography.Text>
                                 <Input style={{
                                     marginTop: 8
                                 }} placeholder="Ondo"></Input>
@@ -209,7 +209,7 @@ const TellerInfo = () => {
                                         fontSize: "16px",
                                         fontWeight: 400,
                                     }}
-                                >Uncleared Cheque</Typography.Text>
+                                >Repayment Schedule</Typography.Text>
                                 <Input style={{
                                     marginTop: 8
                                 }} placeholder="01-12-2025"></Input>

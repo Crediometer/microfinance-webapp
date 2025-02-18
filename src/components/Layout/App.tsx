@@ -30,6 +30,7 @@ import { ReactNode, useEffect, useRef, useState } from 'react';
 //import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { IoChevronDown, IoSettings } from "react-icons/io5";
 import {
   CSSTransition,
   SwitchTransition,
@@ -46,16 +47,19 @@ import avatar from "../../assets/avatar.png"
 import { FiBell } from 'react-icons/fi';
 import { FaBell } from "react-icons/fa6";
 import { COLOR } from '../../App';
+import { useAccountType } from '../../context/AccountTypeContext';
 const { Content } = Layout;
 
 type AppLayoutProps = {
   children: ReactNode;
+  // setAccountType: any;
 };
 
-export const AppLayout = ({ children }: AppLayoutProps) => {
+export const AppLayout = ({ children}: AppLayoutProps) => {
   const {
     token: { borderRadius },
   } = theme.useToken();
+  const { accountType, setAccountType } = useAccountType();
   const isMobile = useMediaQuery({ maxWidth: 769 });
   const [collapsed, setCollapsed] = useState(true);
   const [navFill, setNavFill] = useState(false);
@@ -185,9 +189,25 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
                 fontSize: 24,
                 fontWeight:"600",
               }} color={`${COLOR['350']}`}>{headerTitle}</Typography.Text>
+              {headerTitle === "Teller Dashboard" && (
+                <Select
+                size='small'
+                style={{ width: 150 }}
+                showSearch
+                placeholder="Account Type"
+                onChange={(value) => setAccountType(value)}
+                filterOption={(input, option) =>
+                  (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                }
+                options={[  
+                  { value: 'Deposit', label: 'Deposit Account' },
+                  { value: 'Loan', label: 'Loan Account' },
+                ]}
+              />
+              )}
               <Select
-                size='large'
-                style={{ width: 200 }}
+                size='small'
+                style={{ width: 150 }}
                 showSearch
                 placeholder="All Branches "
                 filterOption={(input, option) =>
@@ -232,7 +252,8 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
                 }}
               >
               </img>
-             
+              <IoSettings style={{color: "#737373", fontSize:"1.5rem"}}/>
+              <IoChevronDown style={{color: "#000000", fontSize:"1.5rem"}}/>
               {/* <Tooltip title="Theme">
                 <Switch
                   className=" hidden sm:inline py-1"

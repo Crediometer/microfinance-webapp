@@ -3,6 +3,7 @@ import './App.css';
 import { ConfigProvider } from 'antd';
 import { RouterProvider } from 'react-router-dom';
 import routes from './routes/routes';
+import { AccountTypeProvider } from './context/AccountTypeContext';
 
 
 export const COLOR = {
@@ -34,8 +35,10 @@ function App() {
         //   }
         // }
       }}
-    >
-      <RouterProvider router={routes}/>
+    > 
+      <AccountTypeProvider>
+        <RouterProvider router={routes}/>
+      </AccountTypeProvider>
     </ConfigProvider>
   );
 }

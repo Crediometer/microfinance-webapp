@@ -164,7 +164,7 @@ const SideNav = ({ ...others }: SideNavProps) => {
   }, [pathname]);
 
   return (
-    <Sider ref={nodeRef} width="220px"  style={siderStyle} breakpoint="lg" collapsedWidth="0" {...others}>
+    <Sider ref={nodeRef} width="220px" className='sidebar'  style={siderStyle} breakpoint="lg" collapsedWidth="0" {...others}>
       {/* <Logo
         color="blue"
         asLink
@@ -244,7 +244,7 @@ const SideNav = ({ ...others }: SideNavProps) => {
           </Flex>
         </Col>
         <Col>
-          <RightOutlined/>
+          <RightOutlined style={{color:'white'}}/>
         </Col>
       </Flex>
     </Sider>
