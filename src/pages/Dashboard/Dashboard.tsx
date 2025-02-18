@@ -5,14 +5,18 @@ import StatCard from "../../components/Card/StatCard";
 import { WeeklyActivityCard } from "../../components/Card/dashboard";
 import { COLOR } from "../../App";
 import { RiHandCoinFill } from "react-icons/ri";
-import { FaRegUser, FaWifi } from "react-icons/fa6";
+import { FaBell, FaRegUser, FaWifi } from "react-icons/fa6";
 import { LuArrowLeftRight } from "react-icons/lu";
 import customer from "../../assets/customer2.png";
 import customer2 from "../../assets/customer.png";
 import customer3 from "../../assets/Customer3.png";
 import customer4 from "../../assets/customer4.png";
+import avatar from "../../assets/avatar.png"
 import customer5 from "../../assets/customer6.png";
 import { PieChart } from "../../components/Card/dashboard/default/WeeklyActivityCard/PieChart";
+import HeaderNav from "../../components/Layout/HeaderNav";
+import { useEffect, useState } from "react";
+import { useMediaQuery } from "react-responsive";
 
 const ACTIVITY_DATA = [
     {
@@ -64,7 +68,24 @@ const ACTIVITY_DATA = [
     }
   ];
 const Dashboard = () => {
+    const isMobile = useMediaQuery({ maxWidth: 769 });
     const stylesContext = useStylesContext();
+    const [collapsed, setCollapsed] = useState(true);
+    const [navFill, setNavFill] = useState(false);
+    
+      useEffect(() => {
+        setCollapsed(isMobile);
+      }, [isMobile]);
+    
+      useEffect(() => {
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 5) {
+            setNavFill(true);
+          } else {
+            setNavFill(false);
+          }
+        });
+      }, []);
     return ( 
         <div>
           <Flex

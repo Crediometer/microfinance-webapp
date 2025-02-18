@@ -24,15 +24,15 @@ function App() {
           colorText:COLOR["150"],
           fontFamily: "'Inter', sans-serif",
         },
-        components:{
-          Button:{
-            colorLink: COLOR["100"],
-            paddingInline: 20
-          },
-          Input:{
-            borderRadius: 4
-          }
-        }
+        // components:{
+        //   Button:{
+        //     colorLink: COLOR["100"],
+        //     paddingInline: 20
+        //   },
+        //   Input:{
+        //     borderRadius: 4
+        //   }
+        // }
       }}
     >
       <RouterProvider router={routes}/>

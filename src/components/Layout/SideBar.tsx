@@ -46,22 +46,29 @@ const getItem = (
 const items: MenuProps['items'] = [
 
   getItem("Dashboard", 'default', <PieChartOutlined />,[
+
+    getItem(
+      <Link to="/dashboard/default">Home</Link>,
+      'auth-verify',
+      null
+    ),
+
     getItem(
       <Link to="/dashboard/teller">Teller</Link>,
       'auth-verify',
       null
     ),
 
-    getItem(
-      <Link to="/dashboard/teller/search">Teller Serch</Link>,
-      'auth-verify',
-      null
-    ),
-    getItem(
-      <Link to="/dashboard/teller/data">Teller Data</Link>,
-      'auth-verify',
-      null
-    ),
+    // getItem(
+    //   <Link to="/dashboard/teller/search">Teller Serch</Link>,
+    //   'auth-verify',
+    //   null
+    // ),
+    // getItem(
+    //   <Link to="/dashboard/teller/data">Teller Data</Link>,
+    //   'auth-verify',
+    //   null
+    // ),
   ]),
   getItem(
     "Customer",
@@ -121,7 +128,12 @@ const items: MenuProps['items'] = [
   // ),
 
 ];
-
+const siderStyle: React.CSSProperties = {
+  textAlign: 'center',
+  lineHeight: '120px',
+  color: '#fff',
+  backgroundColor: '#1677ff',
+};
 const rootSubmenuKeys = ['dashboards', 'corporate', 'user-profile'];
 
 type SideNavProps = SiderProps;
@@ -152,7 +164,7 @@ const SideNav = ({ ...others }: SideNavProps) => {
   }, [pathname]);
 
   return (
-    <Sider ref={nodeRef} breakpoint="lg" collapsedWidth="0" {...others}>
+    <Sider ref={nodeRef} width="220px"  style={siderStyle} breakpoint="lg" collapsedWidth="0" {...others}>
       {/* <Logo
         color="blue"
         asLink

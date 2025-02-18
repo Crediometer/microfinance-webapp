@@ -103,6 +103,8 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
     },
   ];
 
+  // Determine the header title based on the route
+  const headerTitle = location.pathname.includes("/dashboard/teller") ? "Teller Dashboard" : "Main Dashboard";
   useEffect(() => {
     setCollapsed(isMobile);
   }, [isMobile]);
@@ -142,19 +144,15 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
             transition: 'all .2s',
             padding:"2rem 1rem",
             height: "100vh",
-            width: "380px"
+            // width: "250px"
           }}
         />
         <Layout
-          style={
-            {
-              // background: 'none',
-            }
-          }
+         
         >
           <HeaderNav
             style={{
-              marginLeft: collapsed ? 0 : '200px',
+              marginLeft: collapsed ? 0 : '220px',
               padding: '1.8rem 0.8rem',
               background: "#ffffff",
               backdropFilter: navFill ? 'blur(8px)' : 'none',
@@ -186,7 +184,7 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
               <Typography.Text style={{
                 fontSize: 24,
                 fontWeight:"600",
-              }} color={`${COLOR['350']}`}>Main Dashboard</Typography.Text>
+              }} color={`${COLOR['350']}`}>{headerTitle}</Typography.Text>
               <Select
                 size='large'
                 style={{ width: 200 }}
@@ -201,23 +199,29 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
                   { value: '3', label: 'Lagos Branch' },
                 ]}
               />
+              
             </Flex>
             <Flex align="center" gap="20px">
-              <Col
+              <div
                 style={{
-                  padding: "1rem",
+                  width: "32.6px",
+                  height: "32px",
+                  display:"flex",
+                  alignItems:"center",
+                  justifyContent:"center",       
+                  padding: 0,
                   border:"1px solid #E7EAE9",
                   borderRadius: "8px"
                 }}  
               >
-                <FaBell style={{color:COLOR["50"], fontSize:"1.3rem"}}/>
-              </Col>
+                <FaBell style={{color: COLOR[50], fontSize:"1.2rem"}}/> 
+              </div>
               {/* <Flex vertical> */}
                 <Typography.Text>
                   Administrator
                 </Typography.Text>
               {/* </Flex> */}
-              <Image
+              <img
                 width={40}
                 height={40}
                 src={avatar}
@@ -227,7 +231,7 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
                   margin: "0px"
                 }}
               >
-              </Image>
+              </img>
              
               {/* <Tooltip title="Theme">
                 <Switch
@@ -238,13 +242,13 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
                   onClick={() => dispatch(toggleTheme())}
                 />
               </Tooltip> */}
-              <Dropdown menu={{ items }} trigger={['click']}>
-              </Dropdown>
+              {/* <Dropdown menu={{ items }} trigger={['click']}>
+              </Dropdown> */}
             </Flex>
           </HeaderNav>
           <Content
             style={{
-              margin: `0 0 0 ${collapsed ? 0 : '200px'}`,
+              margin: `0 0 0 ${collapsed ? 0 : '220px'}`,
               // background: '#ebedf0',
               borderRadius: collapsed ? 0 : borderRadius,
               transition: 'all .25s',
