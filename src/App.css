@@ -183,6 +183,22 @@ body{
   width: 0px;
 }
 
+.custom-select .ant-select-selector, .custom-picker{
+  border: 1px solid #CED3DD !important;
+  background-color: transparent !important;
+  font-size: 14px;
+  color: #394E75;
+  font-weight: 500;
+}
+.custom-select .ant-select-selector .ant-select-prefix, .custom-select .ant-select-selector .ant-select-selection-placeholder{
+  font-size: 14px;
+  color: #394E75;
+  font-weight: 500;
+}
+.custom-select .ant-select-selector .ant-select-prefix{
+  margin-top: 5px;
+  margin-right: 8px;
+}
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
   .overflow-scroll {

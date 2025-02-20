@@ -71,7 +71,7 @@ const items: MenuProps['items'] = [
     // ),
   ]),
   getItem(
-    "Customer",
+    <Link to="/dashboard/customer">Customer</Link>,
     'customer',
     <ShoppingCartOutlined />
   ),

@@ -7,6 +7,7 @@ import Dashboard from '../pages/Dashboard/Dashboard';
 import Teller from '../pages/Dashboard/Teller/Teller';
 import SearchTeller from '../pages/Dashboard/Teller/SearchTeller';
 import TellerInfo from '../pages/Dashboard/Teller/TellerData';
+import CustomerPage from '../pages/Customer/Customer';
 // import {
 //   AccountDeactivePage,
 //   BiddingDashboardPage,
@@ -119,6 +120,10 @@ const router = createBrowserRouter([
 
         path: 'teller/data',
         element: <TellerInfo/>,
+      },
+      {
+        path: 'customer',
+        element: <CustomerPage/>,
       },
       // {
       //   path: 'attendance',
