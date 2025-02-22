@@ -1,9 +1,11 @@
-import { Flex, Input, Select, DatePicker, Button, Tag, Space,Table, Col} from "antd";
+import { Flex, Input, Select, DatePicker, Button, Tag, Space,Table, Col, Typography} from "antd";
 import { CiSearch } from "react-icons/ci";
 import { COLOR } from "../../App";
 import { LuSlidersVertical } from "react-icons/lu";
 import { MdTouchApp } from "react-icons/md";
+import PlainTable from "../../components/Table/PlainTable";
 import type { TableProps } from 'antd';
+
 
 const { RangePicker } = DatePicker;
 
@@ -52,12 +54,24 @@ const columns: TableProps<DataType>['columns'] = [
           {status.map((tag) => {
             let color
             if (tag === 'active') {
-              color = 'volcano';
+              color = '#058B42';
+            }else if(tag === "inactive"){
+                color = "#B11226"
+            }else if(tag === "Pending Approval"){
+                color =  '#CD9B35'
+            }else{
+                color = "#000000"
             }
             return (
-              <Tag color={color} key={tag}>
-                {tag.toUpperCase()}
-              </Tag>
+                <Typography.Text
+                    color={color}
+                    style={{
+                        fontSize: "15px",
+                        fontWeight: "600",
+                        color: color,
+                        textTransform: "capitalize"
+                    }}
+                >{tag}</Typography.Text>
             );
           })}
         </>
@@ -74,7 +88,7 @@ const columns: TableProps<DataType>['columns'] = [
             fontWeight:"500",
             color:"#9BA6BC"
         }}>
-            Action <MdTouchApp />
+            Action <MdTouchApp color="#000000" />
         </Button>
       ),
     },
@@ -105,7 +119,7 @@ const columns: TableProps<DataType>['columns'] = [
         date: "6 April, 2023",
         branch:"Lekki",
         accountType:"Savings",
-        status: ['pending']
+        status: ['Pending Approval']
       },
       {
         key: '4',
@@ -241,7 +255,7 @@ const CustomerPage = () => {
                     marginTop: "28px"
                 }}
             >
-                <Table<DataType> columns={columns} dataSource={data} />
+                <PlainTable<DataType> dataType="Customer" columns={columns} data={data}/>
             </Col>   
         </>
     );

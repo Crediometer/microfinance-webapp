@@ -75,9 +75,34 @@ const items: MenuProps['items'] = [
     'customer',
     <ShoppingCartOutlined />
   ),
-  getItem("Account",
-    'account',
-    <UsergroupAddOutlined />),
+  getItem("Account", 'account', <UsergroupAddOutlined />,[
+
+    getItem(
+      <Link to="/dashboard/account">Deposit Account</Link>,
+      'auth-verify',
+      null
+    ),
+    getItem(
+      <Link to="/dashboard/teller">loan Account</Link>,
+      'auth-verify',
+      null
+    ),
+    getItem(
+      <Link to="/dashboard/teller">Branch Vault</Link>,
+      'auth-verify',
+      null
+    ),
+    getItem(
+      <Link to="/dashboard/teller">Branch Vault</Link>,
+      'auth-verify',
+      null
+    ),
+    getItem(
+      <Link to="/dashboard/teller">Till Management</Link>,
+      'auth-verify',
+      null
+    ),
+  ]),
   getItem("Disbursement",
     'disbursement',
     <UsergroupAddOutlined />),
