@@ -5,6 +5,7 @@ import { LuSlidersVertical } from "react-icons/lu";
 import { MdTouchApp } from "react-icons/md";
 import PlainTable from "../../components/Table/PlainTable";
 import type { TableProps } from 'antd';
+import Filter from "../../components/Filter/Filter";
 
 
 const { RangePicker } = DatePicker;
@@ -46,15 +47,15 @@ const columns: TableProps<DataType>['columns'] = [
         key: 'accountType',
     },
     {
-      title: 'Status',
-      key: 'status',
-      dataIndex: 'status',
-      render: (_, { status }) => (
+    title: 'Status',
+    key: 'status',
+    dataIndex: 'status',
+    render: (_, { status }) => (
         <>
-          {status.map((tag) => {
+        {status.map((tag) => {
             let color
             if (tag === 'active') {
-              color = '#058B42';
+            color = '#058B42';
             }else if(tag === "inactive"){
                 color = "#B11226"
             }else if(tag === "Pending Approval"){
@@ -73,14 +74,14 @@ const columns: TableProps<DataType>['columns'] = [
                     }}
                 >{tag}</Typography.Text>
             );
-          })}
+        })}
         </>
-      ),
+    ),
     },
     {
-      title: 'Action',
-      key: 'action',
-      render: (_, record) => (
+    title: 'Action',
+    key: 'action',
+    render: (_, record) => (
         <Button style={{
             backgroundColor: 'transparent',
             border:"1px solid #C4C4C4",
@@ -90,88 +91,108 @@ const columns: TableProps<DataType>['columns'] = [
         }}>
             Action <MdTouchApp color="#000000" />
         </Button>
-      ),
+    ),
     },
-  ];
-  const data: DataType[] = [
-    {
-      key: '1',
-      id:"#5089",
-      customer: 'John Brown',
-      date: "6 April, 2023",
-      branch:"Lekki",
-      accountType:"Savings",
-      status: ['active']
+];
+const data: DataType[] = [
+{
+    key: '1',
+    id:"#5089",
+    customer: 'John Brown',
+    date: "6 April, 2023",
+    branch:"Lekki",
+    accountType:"Savings",
+    status: ['active']
+},
+{
+    key: '2',
+    id:"#5089",
+    customer: 'John Brown',
+    date: "6 April, 2023",
+    branch:"Lekki",
+    accountType:"Savings",
+    status: ['inactive']
     },
     {
-        key: '2',
-        id:"#5089",
-        customer: 'John Brown',
-        date: "6 April, 2023",
-        branch:"Lekki",
-        accountType:"Savings",
-        status: ['inactive']
-      },
-      {
-        key: '3',
-        id:"#5089",
-        customer: 'John Brown',
-        date: "6 April, 2023",
-        branch:"Lekki",
-        accountType:"Savings",
-        status: ['Pending Approval']
-      },
-      {
-        key: '4',
-        id:"#5089",
-        customer: 'John Brown',
-        date: "6 April, 2023",
-        branch:"Lekki",
-        accountType:"Savings",
-        status: ['blacklisted']
-      },
-      {
-        key: '5',
-        id:"#5089",
-        customer: 'John Brown',
-        date: "6 April, 2023",
-        branch:"Lekki",
-        accountType:"Savings",
-        status: ['active']
-      },
-      {
-        key: '6',
-        id:"#5089",
-        customer: 'John Brown',
-        date: "6 April, 2023",
-        branch:"Lekki",
-        accountType:"Savings",
-        status: ['active']
-      },
-      {
-        key: '7',
-        id:"#5089",
-        customer: 'John Brown',
-        date: "6 April, 2023",
-        branch:"Lekki",
-        accountType:"Savings",
-        status: ['active']
-      },
-      {
-        key: '8',
-        id:"#5089",
-        customer: 'John Brown',
-        date: "6 April, 2023",
-        branch:"Lekki",
-        accountType:"Savings",
-        status: ['active']
-      },
-  ];
+    key: '3',
+    id:"#5089",
+    customer: 'John Brown',
+    date: "6 April, 2023",
+    branch:"Lekki",
+    accountType:"Savings",
+    status: ['Pending Approval']
+    },
+    {
+    key: '4',
+    id:"#5089",
+    customer: 'John Brown',
+    date: "6 April, 2023",
+    branch:"Lekki",
+    accountType:"Savings",
+    status: ['blacklisted']
+    },
+    {
+    key: '5',
+    id:"#5089",
+    customer: 'John Brown',
+    date: "6 April, 2023",
+    branch:"Lekki",
+    accountType:"Savings",
+    status: ['active']
+    },
+    {
+    key: '6',
+    id:"#5089",
+    customer: 'John Brown',
+    date: "6 April, 2023",
+    branch:"Lekki",
+    accountType:"Savings",
+    status: ['active']
+    },
+    {
+    key: '7',
+    id:"#5089",
+    customer: 'John Brown',
+    date: "6 April, 2023",
+    branch:"Lekki",
+    accountType:"Savings",
+    status: ['active']
+    },
+    {
+    key: '8',
+    id:"#5089",
+    customer: 'John Brown',
+    date: "6 April, 2023",
+    branch:"Lekki",
+    accountType:"Savings",
+    status: ['active']
+    },
+];
   
+const options = [
+    {
+        value: '1',
+        label: 'All Customer',
+    },
+    {
+        value: '2',
+        label: 'Inactive Customer',
+    },
+    {
+        value: '3',
+        label: 'Registered Customer',
+    },
+    {
+        value: '4',
+        label: 'Active Customer',
+    },
+    ]
+
 const CustomerPage = () => {
     return (
         <>
-            <Flex align="center" justify="space-between" style={{width:"100%"}}>
+            <Filter options={options} selectplaceholder="All Customer" name="Create New Customer" button="customer"/>
+            {/* <Flex align="center" justify="space-between" style={{width:"100%"}}>
                 <Flex align="center" gap={4} style={{width:"70%"}}>
                     <Input 
                         style={{
@@ -198,24 +219,7 @@ const CustomerPage = () => {
                         filterSort={(optionA, optionB) =>
                         (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
                         }
-                        options={[
-                        {
-                            value: '1',
-                            label: 'All Customer',
-                        },
-                        {
-                            value: '2',
-                            label: 'Inactive Customer',
-                        },
-                        {
-                            value: '3',
-                            label: 'Registered Customer',
-                        },
-                        {
-                            value: '4',
-                            label: 'Active Customer',
-                        },
-                        ]}
+                        options={options}
                     />
                     <RangePicker
                     className="custom-picker"
@@ -249,7 +253,7 @@ const CustomerPage = () => {
                     + Create New Customer
                     </Button>
                 </Flex>
-            </Flex>
+            </Flex> */}
             <Col
                 style={{
                     marginTop: "28px"

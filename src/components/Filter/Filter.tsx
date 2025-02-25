@@ -5,7 +5,7 @@ import { LuSlidersVertical } from "react-icons/lu";
 
 const { RangePicker } = DatePicker;
 
-const Filter = ({ options, selectplaceholder, name }:any) => {
+const Filter = ({ options, selectplaceholder, name, button, modal, setModal }:any) => {
     return ( 
         <Flex align="center" justify="space-between" style={{width:"100%"}}>
             <Flex align="center" gap={4} style={{width:"70%"}}>
@@ -57,16 +57,33 @@ const Filter = ({ options, selectplaceholder, name }:any) => {
                 </div>
             </Flex>
             <Flex>
-                <Button 
-                    type="primary"  
-                    size="large"
-                    style={{
-                        fontSize: "13.14px",
-                        fontWeight: "700"
-                    }}
-                >
-                + {name}
-                </Button>
+                {(button === "deposit") && (
+                    <Button 
+                        type="primary"  
+                        size="large"
+                        style={{
+                            fontSize: "13.14px",
+                            fontWeight: "700"
+                        }}
+                        onClick={()=>{
+                            setModal(true)
+                        }}
+                    >
+                    + {name}
+                    </Button>
+                )}
+                {(button === "customer") && (
+                    <Button 
+                        type="primary"  
+                        size="large"
+                        style={{
+                            fontSize: "13.14px",
+                            fontWeight: "700"
+                        }}
+                    >
+                    + {name}
+                    </Button>
+                )}
             </Flex>
         </Flex>
     );

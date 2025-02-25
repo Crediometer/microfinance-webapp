@@ -108,7 +108,17 @@ export const AppLayout = ({ children}: AppLayoutProps) => {
   ];
 
   // Determine the header title based on the route
-  const headerTitle = location.pathname.includes("/dashboard/teller") ? "Teller Dashboard" : "Main Dashboard";
+  let headerTitle 
+
+  if(location.pathname.includes("/dashboard/teller")){
+    headerTitle = "Teller Dashboard"
+  }else if(location.pathname.includes("/dashboard/account")){
+    headerTitle = "Account Management"
+  }else if(location.pathname.includes("/dashboard/customer")) {
+    headerTitle = "Customer Management"
+  } else{
+    headerTitle = "Main Dashboard"
+  }
   useEffect(() => {
     setCollapsed(isMobile);
   }, [isMobile]);

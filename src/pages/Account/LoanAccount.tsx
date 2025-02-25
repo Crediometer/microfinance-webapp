@@ -3,6 +3,8 @@ import Filter from "../../components/Filter/Filter";
 import NestedTable from "../../components/Table/NestedTable";
 import { useState } from "react";
 import DepositModal from "../../components/Modal/DepositModal";
+import LoanModal from "../../components/Modal/LoanModal";
+import LoanNestedTable from "../../components/Table/LoanNestedTable";
 
 
 const options = [
@@ -24,7 +26,7 @@ const options = [
     },
     ]
 
-const DepositAccount = () => {
+const LoanAccount = () => {
     const [depositModal, setDepositModal] = useState(false)
     return ( 
         <>
@@ -34,10 +36,10 @@ const DepositAccount = () => {
                     marginTop: "28px"
                 }}
             >
-                <NestedTable/>
+                <LoanNestedTable/>
             </Col>
             {depositModal && (
-                <DepositModal
+                <LoanModal
                     depositModal = {depositModal}
                     setDepositModal ={setDepositModal}
                 />
@@ -46,4 +48,4 @@ const DepositAccount = () => {
     );
 }
  
-export default DepositAccount;
+export default LoanAccount;

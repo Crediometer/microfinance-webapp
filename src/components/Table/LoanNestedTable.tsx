@@ -12,6 +12,8 @@ import DepositViewModal from '../Modal/DepositViewModal';
 import DepositEditModal from '../Modal/DepositEditModal';
 import ConfirmModal from '../Modal/ConfirmModal';
 import { COLOR } from '../../App';
+import LoanViewModal from '../Modal/LoanViewModal';
+import LoanEditModal from '../Modal/LoanEditModal';
 
 const StyledTable = styled(Table<DataType   >)`
   .ant-table {
@@ -166,7 +168,7 @@ const expandedRowRender = () => (
   />
 );
 
-const NestedTable = () => {
+const LoanNestedTable = () => {
   const [viewModal, setViewModal] = useState(false)
   const [editModal, setEditModal] = useState(false)
   const [confirmModal, setConfirmModal] = useState(false)
@@ -294,10 +296,10 @@ const NestedTable = () => {
       />
 
       {viewModal && (
-        <DepositViewModal viewModal={viewModal} setViewModal={setViewModal}/>
+        <LoanViewModal viewModal={viewModal} setViewModal={setViewModal}/>
       )}
       {editModal && (
-        <DepositEditModal editModal={editModal} setEditModal={setEditModal}/>
+        <LoanEditModal editModal={editModal} setEditModal={setEditModal}/>
       )}
       {acceptModal && (
         <ConfirmModal 
@@ -339,4 +341,4 @@ const NestedTable = () => {
   )
 };
 
-export default NestedTable;
+export default LoanNestedTable;

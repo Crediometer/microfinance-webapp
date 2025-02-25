@@ -79,17 +79,12 @@ const items: MenuProps['items'] = [
 
     getItem(
       <Link to="/dashboard/account">Deposit Account</Link>,
-      'auth-verify',
+      'deposit',
       null
     ),
     getItem(
-      <Link to="/dashboard/teller">loan Account</Link>,
-      'auth-verify',
-      null
-    ),
-    getItem(
-      <Link to="/dashboard/teller">Branch Vault</Link>,
-      'auth-verify',
+      <Link to="/dashboard/account/loan">loan Account</Link>,
+      'loan',
       null
     ),
     getItem(

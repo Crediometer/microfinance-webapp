@@ -1,0 +1,265 @@
+import { Button, Card, Col, Flex, Input, Modal, Select, Typography } from "antd";
+import { COLOR } from "../../App";
+import styled from 'styled-components';
+import { useState } from "react";
+import ConfirmModal from "./ConfirmModal";
+import { FiEdit } from "react-icons/fi";
+import { FaCircleCheck } from "react-icons/fa6";
+
+const StyledModal = styled(Modal)`
+    .ant-modal-content {
+        background-color: #F5F5FA !important;  /* Change background */
+        border-radius: 8px; /* Optional: Adjust border radius */
+        padding: 24px; /* Optional: Adjust padding */
+    }
+
+    .ant-modal-header {
+        background-color: transparent !important; /* Remove header background */
+        border-bottom: none !important;
+    }
+
+    .ant-modal-footer {
+        display: none; 
+    }
+`;
+
+const DepositEditModal = ({editModal, setEditModal}: any) => {
+    const [confirmModal, setConfirmModal]=useState(false)
+    return (
+        <>
+          <StyledModal
+                width={850}
+                footer=""
+                centered
+                open={editModal}
+                onOk={() => setEditModal(false)}
+                onCancel={() => setEditModal(false)}
+                style={{
+                    // maxWidth: "90vw",
+                    backgroundColor: "#F5F5FA",
+                    borderRadius: "4px",
+                }}
+            >
+                <Typography.Title style={{
+                    textAlign: "center",
+                    color:"#070707E5",
+                    fontSize:"20px"
+                }}>Modify Profile</Typography.Title>
+                <form>
+                    <Flex gap={6}>
+                        <Card
+                            style={{
+                                width:"50%"
+                            }}
+                        >
+                            <Col
+                                style={{
+                                    marginBottom:"24px"
+                                }}
+                            >
+                                <Typography.Text>ID</Typography.Text><br></br>
+                                <Input
+                                    style={{
+                                        width:"100%",
+                                        marginTop:"10px",
+                                    }} 
+                                    placeholder="#51083"
+                                />
+                            </Col>
+                            <Col
+                                style={{
+                                    marginBottom:"24px"
+                                }}
+                            >
+                                <Typography.Text>Customer  Name</Typography.Text><br></br>
+                                <Input
+                                    style={{
+                                        width:"100%",
+                                        marginTop:"10px",
+                                    }} 
+                                    placeholder="Temitayo Testing"
+                                />
+                            </Col>
+                            <Col
+                                style={{
+                                    marginBottom:"24px"
+                                }}
+                            >
+                                <Typography.Text>Account Number</Typography.Text><br></br>
+                                <Input
+                                    style={{
+                                        width:"100%",
+                                        marginTop:"10px",
+                                    }} 
+                                    placeholder="03764563773"
+                                />
+                            </Col>
+                            <Col
+                                style={{
+                                    marginBottom:"24px"
+                                }}
+                            >
+                                <Typography.Text>Branch</Typography.Text><br></br>
+                                <Input
+                                    style={{
+                                        width:"100%",
+                                        marginTop:"10px",
+                                    }} 
+                                    placeholder="Lekki"
+                                />
+                            </Col>
+                            <Col
+                                style={{
+                                    marginBottom:"24px"
+                                }}
+                            >
+                                <Typography.Text>Account Type</Typography.Text><br></br>
+                                <Input
+                                    style={{
+                                        width:"100%",
+                                        marginTop:"10px",
+                                    }} 
+                                    placeholder="Saving"
+                                />
+                            </Col>
+                        </Card>
+                        <Card
+                        style={{
+                            width:"50%"
+                        }}
+                        >
+                            <Col
+                                style={{
+                                    marginBottom:"24px"
+                                }}
+                            >
+                                <Typography.Text>Status</Typography.Text><br></br>
+                                <Input
+                                    style={{
+                                        width:"100%",
+                                        marginTop:"10px",
+                                    }} 
+                                    placeholder="Active"
+                                />
+                            </Col>
+                            <Col
+                                style={{
+                                    marginBottom:"24px"
+                                }}
+                            >
+                                <Typography.Text>Date Created</Typography.Text><br></br>
+                                <Input
+                                    style={{
+                                        width:"100%",
+                                        marginTop:"10px",
+                                    }} 
+                                    placeholder="18/04/2024"
+                                />
+                            </Col>
+                            <Col
+                                style={{
+                                    marginBottom:"24px"
+                                }}
+                            >
+                                <Typography.Text>Currency</Typography.Text><br></br>
+                                <Input
+                                    style={{
+                                        width:"100%",
+                                        marginTop:"10px",
+                                    }} 
+                                    placeholder="NGN"
+                                />
+                            </Col>
+                            <Col
+                                style={{
+                                    marginBottom:"24px"
+                                }}
+                            >
+                                <Typography.Text>Deposit Balance</Typography.Text><br></br>
+                                <Input
+                                    style={{
+                                        width:"100%",
+                                        marginTop:"10px",
+                                    }} 
+                                    placeholder="NGN67,000"
+                                />
+                            </Col>
+                            <Col
+                                style={{
+                                    marginBottom:"24px"
+                                }}
+                            >
+                                <Typography.Text>Available Balance</Typography.Text><br></br>
+                                <Input
+                                    style={{
+                                        width:"100%",
+                                        marginTop:"10px",
+                                    }} 
+                                    placeholder="NGN200,000"
+                                />
+                            </Col>
+                        </Card>
+                    </Flex>
+                    <Flex
+                        style={{
+                            width:"100%",
+                            marginTop:"35px"
+                        }}
+                        align="center"
+                        gap="24px"
+                    >
+                        <Button
+                            style={{
+                                width:"50%",
+                                height:"43px",  
+                                padding:"1rem",
+                                border:"1px solid #234FE3",
+                                backgroundColor:"transparent",
+                                color:"#234FE3",
+                                fontSize:"16px",
+                                fontFamily:"500"
+                            }}
+                        >
+                            Cancle
+                        </Button>
+                        <Button
+                        style={{
+                            width:"50%",
+                            height:"43px",
+                            backgroundColor: COLOR["50"],
+                            padding:"1rem",
+                            color:"white",
+                            fontSize:"16px",
+                            fontFamily:"500"
+                        }}
+                        onClick={()=>{setConfirmModal(true);}}
+                        
+                        >
+                            modify
+                        </Button>
+                    </Flex>
+                </form>
+            </StyledModal>
+            {confirmModal && (
+                <ConfirmModal 
+                    confirmModal={confirmModal} 
+                    setConfirmModal={setConfirmModal} 
+                    icon={
+                       <FaCircleCheck
+                            style={{
+                                color: COLOR["50"],
+                                fontSize: "8rem"
+                            }}
+                        /> 
+                    }
+                    type="modify"
+                    text="Are you sure you want to Modify this customer details "
+                    label="Yes Modify"
+                />
+            )}     
+        </> 
+
+    );
+}
+ 
+export default DepositEditModal;
