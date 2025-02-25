@@ -10,6 +10,7 @@ import TellerInfo from '../pages/Dashboard/Teller/TellerData';
 import CustomerPage from '../pages/Customer/Customer';
 import DepositAccount from '../pages/Account/DepositAccount';
 import LoanAccount from '../pages/Account/LoanAccount';
+import VaultAccount from '../pages/Account/VaultAccount';
 // import {
 //   AccountDeactivePage,
 //   BiddingDashboardPage,
@@ -134,6 +135,14 @@ const router = createBrowserRouter([
       {
         path: 'account/loan',
         element: <LoanAccount/>,
+      },
+      {
+        path: 'account/vault',
+        element: <VaultAccount/>,
+      },
+      {
+        path: 'account/till',
+        element: <VaultAccount/>,
       },
       // {
       //   path: 'attendance',

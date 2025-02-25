@@ -88,13 +88,13 @@ const items: MenuProps['items'] = [
       null
     ),
     getItem(
-      <Link to="/dashboard/teller">Branch Vault</Link>,
-      'auth-verify',
+      <Link to="/dashboard/account/vault">Branch Vault</Link>,
+      'vault',
       null
     ),
     getItem(
-      <Link to="/dashboard/teller">Till Management</Link>,
-      'auth-verify',
+      <Link to="/dashboard/account/till">Till Management</Link>,
+      'till',
       null
     ),
   ]),
