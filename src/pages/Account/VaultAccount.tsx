@@ -8,11 +8,15 @@ import LoanNestedTable from "../../components/Table/LoanNestedTable";
 import PlainTable from "../../components/Table/PlainTable";
 import VaultFilter from "../../components/Filter/VaultFilter";
 import type { TableProps, MenuProps  } from 'antd';
-import { FaCheck, FaRegEye } from "react-icons/fa6";
+import { FaCheck, FaRegEye, FaTrash } from "react-icons/fa6";
 import { CiEdit } from "react-icons/ci";
 import { FaTimesCircle } from "react-icons/fa";
 import { MdTouchApp } from "react-icons/md";
 import CountUp from "react-countup";
+import VaultModal from "../../components/Modal/VaultModal";
+import DeleteModal from "../../components/Modal/DeleteModal";
+import TransferModal from "../../components/Modal/TransferModal";
+import CreateVaultModal from "../../components/Modal/CreateVaultModal";
 
 interface DataType {
   key: React.Key;
@@ -24,116 +28,7 @@ interface DataType {
   status: string[];
   openDate: string;
 }
-const items: MenuProps['items'] = [
 
-    {
-      key: '1',
-      label: 'View',
-      icon: <FaRegEye />,
-    //   onClick: ()=>{setViewModal(true)}
-      //extra: '⌘P',
-    },
-    {
-      key: '2',
-      label: 'Edit',
-      icon: <CiEdit />,
-    //   onClick: ()=>{setEditModal(true)}
-      //extra: '⌘B',
-    },
-    {
-      key: '3',
-      label: 'Accept',
-      icon: <FaCheck />,
-    //   onClick: ()=>{setAcceptModal(true)}
-      // extra: '⌘S',
-    },
-    {
-      key: '4',
-      label: 'Reject',
-      icon: <FaTimesCircle/>,
-    //   onClick: ()=>{setRejectModal(true)}
-      // extra: '⌘S',
-    },
-];
-const columns: TableProps<DataType>['columns'] = [
-    {
-        title: 'ID',
-        dataIndex: 'id',
-        key: 'id',
-    },
-    {
-        title: 'Current Balance',
-        dataIndex: 'current',
-        key: 'current',
-    },
-    {
-        title: 'Currency',
-        dataIndex: 'currency',
-        key: 'currency',
-    },
-    {
-        title: 'Branch',
-        dataIndex: 'branch',
-        key: 'branch',
-    },
-    {
-        title: 'Account Type',
-        dataIndex: 'accountType',
-        key: 'accountType',
-    },
-    {
-      title: 'Status',
-      key: 'status',
-      dataIndex: 'status',
-      render: (_, { status }) => (
-        <>
-          {status.map((tag) => {
-            let color
-            if (tag === '1') {
-              color = '#058B42';
-            }else{
-                color = "#B11226"
-            }
-            return (
-                <Typography.Text
-                    color={color}
-                    style={{
-                        fontSize: "15px",
-                        fontWeight: "600",
-                        color: color,
-                        textTransform: "capitalize"
-                    }}
-                >{tag === "1" ? "Open":"Close"}</Typography.Text>
-            );
-          })}
-        </>
-      ),
-    },
-    {
-        title: 'Opened Date',
-        dataIndex: 'openDate',
-        key: 'openDate',
-    },
-    {
-      title: 'Action',
-      key: 'action',
-      render: (_, record) => (
-        <Dropdown menu={{ items }}>
-          <Button style={{
-              backgroundColor: 'transparent',
-              border:"1px solid #C4C4C4",
-              fontSize: "13px",
-              fontWeight:"500",
-              color:"#9BA6BC"
-            }}
-            onClick={(e) => e.preventDefault()}
-          >
-              Action <MdTouchApp color="#000000" />
-          </Button>
-        </Dropdown>
-      ),
-    },
-];
 const data: DataType[] = [
     {
         key: '1',
@@ -261,6 +156,118 @@ const branchoptions = [
 
 const VaultAccount = () => {
     const [depositModal, setDepositModal] = useState(false)
+    const [fundModal, setFundModal] = useState(false)
+    const [deleteModal, setDeleteModal] = useState(false)
+    const [transferModal, setTransferModal] = useState(false)
+    const items: MenuProps['items'] = [
+        {
+        key: '1',
+        label: 'Delete',
+        icon: <FaTrash />,
+          onClick: ()=>{setDeleteModal(true)}
+        //extra: '⌘P',
+        },
+        {
+        key: '2',
+        label: 'Fund Vault',
+        icon: <CiEdit />,
+        onClick: ()=>{setFundModal(true)}
+        //extra: '⌘B',
+        },
+        {
+        key: '3',
+        label: 'Transfer',
+        icon: <FaCheck />,
+        onClick: ()=>{setTransferModal(true)}
+        // extra: '⌘S',
+        },
+        {
+        key: '4',
+        label: 'Change Account',
+        icon: <FaTimesCircle/>,
+        //   onClick: ()=>{setRejectModal(true)}
+        // extra: '⌘S',
+        },
+    ];
+    const columns: TableProps<DataType>['columns'] = [
+        {
+            title: 'ID',
+            dataIndex: 'id',
+            key: 'id',
+        },
+        {
+            title: 'Current Balance',
+            dataIndex: 'current',
+            key: 'current',
+        },
+        {
+            title: 'Currency',
+            dataIndex: 'currency',
+            key: 'currency',
+        },
+        {
+            title: 'Branch',
+            dataIndex: 'branch',
+            key: 'branch',
+        },
+        {
+            title: 'Account Type',
+            dataIndex: 'accountType',
+            key: 'accountType',
+        },
+        {
+        title: 'Status',
+        key: 'status',
+        dataIndex: 'status',
+        render: (_, { status }) => (
+            <>
+            {status.map((tag) => {
+                let color
+                if (tag === '1') {
+                color = '#058B42';
+                }else{
+                    color = "#B11226"
+                }
+                return (
+                    <Typography.Text
+                        color={color}
+                        style={{
+                            fontSize: "15px",
+                            fontWeight: "600",
+                            color: color,
+                            textTransform: "capitalize"
+                        }}
+                    >{tag === "1" ? "Open":"Close"}</Typography.Text>
+                );
+            })}
+            </>
+        ),
+        },
+        {
+            title: 'Opened Date',
+            dataIndex: 'openDate',
+            key: 'openDate',
+        },
+        {
+        title: 'Action',
+        key: 'action',
+        render: (_, record) => (
+            <Dropdown menu={{ items }}>
+            <Button style={{
+                backgroundColor: 'transparent',
+                border:"1px solid #C4C4C4",
+                fontSize: "13px",
+                fontWeight:"500",
+                color:"#9BA6BC"
+                }}
+                onClick={(e) => e.preventDefault()}
+            >
+                Action <MdTouchApp color="#000000" />
+            </Button>
+            </Dropdown>
+        ),
+        },
+    ];
     return ( 
         <>
             <Flex
@@ -367,12 +374,30 @@ const VaultAccount = () => {
             >
                 <PlainTable<DataType> dataType="Customer" columns={columns} data={data} />
             </Col>
-            {/* {depositModal && (
-                <LoanModal
-                    depositModal = {depositModal}
-                    setDepositModal ={setDepositModal}
+            {depositModal && (
+                <CreateVaultModal
+                    createModal = {depositModal}
+                    setCreateModal ={setDepositModal}
                 />
-            )} */}
+            )}
+            {fundModal && (
+                <VaultModal
+                    depositModal = {fundModal}
+                    setDepositModal ={setFundModal}
+                />
+            )}
+            {deleteModal && (
+                <DeleteModal
+                    deleteModal = {deleteModal}
+                    setDeleteModal ={setDeleteModal}
+                />
+            )}
+             {transferModal && (
+                <TransferModal
+                    transferModal = {transferModal}
+                    setTransferModal ={setTransferModal}
+                />
+            )}
         </>
     );
 }
