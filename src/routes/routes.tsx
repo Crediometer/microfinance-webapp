@@ -11,6 +11,7 @@ import CustomerPage from '../pages/Customer/Customer';
 import DepositAccount from '../pages/Account/DepositAccount';
 import LoanAccount from '../pages/Account/LoanAccount';
 import VaultAccount from '../pages/Account/VaultAccount';
+import TillManagement from '../pages/Account/TillManagement';
 // import {
 //   AccountDeactivePage,
 //   BiddingDashboardPage,
@@ -142,7 +143,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'account/till',
-        element: <VaultAccount/>,
+        element: <TillManagement/>,
       },
       // {
       //   path: 'attendance',
