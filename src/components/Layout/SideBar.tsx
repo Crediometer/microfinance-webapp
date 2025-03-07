@@ -46,29 +46,16 @@ const getItem = (
 const items: MenuProps['items'] = [
 
   getItem("Dashboard", 'default', <PieChartOutlined />,[
-
     getItem(
       <Link to="/dashboard/default">Home</Link>,
       'auth-verify',
       null
     ),
-
     getItem(
       <Link to="/dashboard/teller">Teller</Link>,
       'auth-verify',
       null
     ),
-
-    // getItem(
-    //   <Link to="/dashboard/teller/search">Teller Serch</Link>,
-    //   'auth-verify',
-    //   null
-    // ),
-    // getItem(
-    //   <Link to="/dashboard/teller/data">Teller Data</Link>,
-    //   'auth-verify',
-    //   null
-    // ),
   ]),
   getItem(
     <Link to="/dashboard/customer">Customer</Link>,
@@ -76,7 +63,6 @@ const items: MenuProps['items'] = [
     <ShoppingCartOutlined />
   ),
   getItem("Account", 'account', <UsergroupAddOutlined />,[
-
     getItem(
       <Link to="/dashboard/account">Deposit Account</Link>,
       'deposit',
@@ -98,9 +84,33 @@ const items: MenuProps['items'] = [
       null
     ),
   ]),
-  getItem("Disbursement",
-    'disbursement',
-    <UsergroupAddOutlined />),
+  getItem("Disbursement",'disbursement',<UsergroupAddOutlined />,[
+    getItem(
+      <Link to="/dashboard/disbursement">All Disbursements</Link>,
+      'disbursement',
+      null
+    ),
+    getItem(
+      <Link to="/dashboard/disbursement/batches">All Batches</Link>,
+      'batches',
+      null
+    ),
+    getItem(
+      <Link to="/dashboard/disbursement/source">Source Account</Link>,
+      'account',
+      null
+    ),
+    getItem(
+      <Link to="/dashboard/disbursement/partial">Partial Applications</Link>,
+      'applications',
+      null
+    ),
+    getItem(
+      <Link to="/dashboard/disbursement/pending">Pending Approval</Link>,
+      'approval',
+      null
+    ),
+  ]),
   getItem("All Transactions",
     'transactions',
     <UsergroupAddOutlined />),

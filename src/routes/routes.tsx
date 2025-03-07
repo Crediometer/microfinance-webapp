@@ -12,6 +12,11 @@ import DepositAccount from '../pages/Account/DepositAccount';
 import LoanAccount from '../pages/Account/LoanAccount';
 import VaultAccount from '../pages/Account/VaultAccount';
 import TillManagement from '../pages/Account/TillManagement';
+import Disbursement from '../pages/Disbursement/Disbursement';
+import Batches from '../pages/Disbursement/Batches';
+import Partial from '../pages/Disbursement/Partial';
+import Pending from '../pages/Disbursement/Pending';
+import Source from '../pages/Disbursement/Source';
 // import {
 //   AccountDeactivePage,
 //   BiddingDashboardPage,
@@ -145,6 +150,27 @@ const router = createBrowserRouter([
         path: 'account/till',
         element: <TillManagement/>,
       },
+      {
+        path: 'disbursement',
+        element: <Disbursement/>,
+      },
+      {
+        path: 'disbursement/batches',
+        element: <Batches/>,
+      },
+      {
+        path: 'disbursement/partial',
+        element: <Partial/>,
+      },
+      {
+        path: 'disbursement/pending',
+        element: <Pending/>,
+      },
+      {
+        path: 'disbursement/source',
+        element: <Source/>,
+      },
+      
       // {
       //   path: 'attendance',
       //   element: <AttendanceDashboardPage />,

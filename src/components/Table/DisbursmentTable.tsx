@@ -13,7 +13,7 @@ import DepositEditModal from '../Modal/DepositEditModal';
 import ConfirmModal from '../Modal/ConfirmModal';
 import { COLOR } from '../../App';
 
-const StyledTable = styled(Table<DataType   >)`
+const StyledTable = styled(Table)`
   .ant-table {
     border: 1px solid #e0e0e0;
     border-radius: 16px;
@@ -69,7 +69,7 @@ const StyledTable = styled(Table<DataType   >)`
   }
 `;
 
-const StyledExpandableTable = styled(Table<ExpandedDataType>)`
+const StyledExpandableTable = styled(Table)`
   .ant-table-expanded-row > td {
     background-color: #fef4c5 !important; /* Light yellow background */
     border: none;
@@ -114,59 +114,74 @@ const StyledExpandableTable = styled(Table<ExpandedDataType>)`
   }
 `;
 
-interface ExpandedDataType {
-  key: React.Key;
-  dateCreated: string;
-  currency: string;
-  depositBalance: string;
-  availableBalance: string;
+// interface ExpandedDataType {
+//   key: React.Key;
+//   recipientName: string;
+//   amount: string;
+//   initiatedBy: string;
+//   approvedBy: string;
+//   sessionId: string;
+// }
+
+// interface DataType {
+//   key: React.Key;
+//   transactionRef: string,
+//   requestDate: string;
+//   sourceAccount: string;
+//   senderName: string;
+//   destinationAccount: string;
+//   destinationBank: string;
+// }
+
+// const expandDataSource = Array.from({ length: 1 }).map<ExpandedDataType>((_, i) => ({
+//   key: i.toString(),
+//   recipientName: '6 April, 2023',
+//   amount: 'NGN',
+//   initiatedBy: 'NGN 20,000',
+//   approvedBy:"NGN 600,000",
+//   sessionId: "8990995"
+// }));
+
+// const dataSource = Array.from({ length: 3 }).map<DataType>((_, i) => ({
+//   key: i.toString(),
+//   transactionRef:"#5089",
+//   requestDate:"6 April, 2023",
+//   sourceAccount: 'John Brown',
+//   senderName: "0098989098",
+//   destinationAccount:"Lekki",
+//   destinationBank:"Savings"
+// }));
+
+// const expandColumns: TableColumnsType<ExpandedDataType> = [
+//   { title: 'Recipient Name', dataIndex: 'recipientName', key: 'recipientName' },
+//   { title: 'Amount', dataIndex: 'amount', key: 'amount' },
+//   { title: 'Initiated By', dataIndex: 'initiatedBy', key: 'initiatedBy' },
+//   { title: 'Approved By', dataIndex: 'approvedBy', key: 'approvedBy' },
+//   { title: 'Session Id', dataIndex: 'sessionId', key: 'sessionId' },
+// ];
+
+
+/** Props Interface */
+interface TableProps<T> {
+  columns: any[];
+  dataSource: T[];
+  expandableColumns?: any[];
 }
 
-interface DataType {
-  key: React.Key;
-  id: string,
-  customer: string;
-  accountNumber: string;
-  branch: string;
-  accountType: string;
-  status: string[];
-}
 
-const expandDataSource = Array.from({ length: 1 }).map<ExpandedDataType>((_, i) => ({
-  key: i.toString(),
-  dateCreated: '6 April, 2023',
-  currency: 'NGN',
-  depositBalance: 'NGN 20,000',
-  availableBalance:"NGN 600,000"
-}));
+// const expandedRowRender = () => (
+//   <StyledExpandableTable
+//     columns={expandColumns}
+//     dataSource={expandDataSource}
+//     pagination={false}
+//   />
+// );
 
-const dataSource = Array.from({ length: 3 }).map<DataType>((_, i) => ({
-  key: i.toString(),
-  id:"#5089",
-  customer: 'John Brown',
-  accountNumber: "0098989098",
-  branch:"Lekki",
-  accountType:"Savings",
-  status: ['active']
-}));
-
-const expandColumns: TableColumnsType<ExpandedDataType> = [
-  { title: 'DATE CREATED', dataIndex: 'dateCreated', key: 'dateCreated' },
-  { title: 'CURRENCY', dataIndex: 'currency', key: 'currency' },
-  { title: 'Deposit Balance', dataIndex: 'depositBalance', key: 'depositBalance' },
-  { title: 'Available Balance', dataIndex: 'availableBalance', key: 'availableBalance' },
-];
-
-
-const expandedRowRender = () => (
-  <StyledExpandableTable
-    columns={expandColumns}
-    dataSource={expandDataSource}
-    pagination={false}
-  />
-);
-
-const NestedTable = () => {
+const DisbursmentTable = <T extends { key: string; expandableData?: any[] }>({
+  columns,
+  dataSource,
+  expandableColumns,
+}: TableProps<T>)=> {
   const [viewModal, setViewModal] = useState(false)
   const [editModal, setEditModal] = useState(false)
   const [confirmModal, setConfirmModal] = useState(false)
@@ -204,93 +219,60 @@ const NestedTable = () => {
     },
   ];
 
-  const columns: TableColumnsType<DataType> = [
-    {
-        title: 'ID',
-        dataIndex: 'id',
-        key: 'id',
-    },
-    {
-        title: 'Customer',
-        dataIndex: 'customer',
-        key: 'customer',
-    },
-    {
-        title: 'Account Number',
-        dataIndex: 'accountNumber',
-        key: 'accountNumber',
-    },
-    {
-        title: 'Branch',
-        dataIndex: 'branch',
-        key: 'branch',
-    },
-    {
-        title: 'Account Type',
-        dataIndex: 'accountType',
-        key: 'accountType',
-    },
-    {
-      title: 'Status',
-      key: 'status',
-      dataIndex: 'status',
-      render: (_, { status }) => (
-        <>
-          {status.map((tag) => {
-            let color
-            if (tag === 'active') {
-              color = '#058B42';
-            }else if(tag === "inactive"){
-                color = "#B11226"
-            }else if(tag === "Pending Approval"){
-                color =  '#CD9B35'
-            }else{
-                color = "#000000"
-            }
-            return (
-                <Typography.Text
-                    color={color}
-                    style={{
-                        fontSize: "15px",
-                        fontWeight: "600",
-                        color: color,
-                        textTransform: "capitalize"
-                    }}
-                >{tag}</Typography.Text>
-            );
-          })}
-        </>
-      ),
-    },
-    {
-      title: 'Action',
-      key: 'action',
-      render: (_, record) => (
-        <Dropdown menu={{ items }}>
-          <Button style={{
-              backgroundColor: 'transparent',
-              border:"1px solid #C4C4C4",
-              fontSize: "13px",
-              fontWeight:"500",
-              color:"#9BA6BC"
-            }}
-            onClick={(e) => e.preventDefault()}
-          >
-              Action <MdTouchApp color="#000000" />
-          </Button>
-        </Dropdown>
-      ),
-    },
-];
+//   const columns: TableColumnsType<DataType> = [
+//     {
+//         title: 'Transaction Ref',
+//         dataIndex: 'transactionRef',
+//         key: 'transactionRef',
+//     },
+//     {
+//         title: 'Request Date',
+//         dataIndex: 'requestDate',
+//         key: 'requestDate',
+//     },
+//     {
+//         title: 'Source Account',
+//         dataIndex: 'sourceAccount',
+//         key: 'sourceAccount',
+//     },
+//     {
+//         title: 'Sender Name',
+//         dataIndex: 'senderName',
+//         key: 'senderName',
+//     },
+//     {
+//         title: 'Destination Account',
+//         dataIndex: 'destinationAccount',
+//         key: 'destinationAccount',
+//     },
+//     {
+//         title: 'Destination Bank',
+//         dataIndex: 'destinationBank',
+//         key: 'destinationBank',
+//     },
+// ];
 
   return(
     <>
       <StyledTable
         columns={columns}
-        expandable={{ 
-          expandedRowRender,   
-      }}
         dataSource={dataSource}
+        expandable={
+          expandableColumns
+            ? {
+                expandedRowRender: (record:any) =>
+                  record.expandableData ? (
+                    <StyledExpandableTable
+                      columns={expandableColumns}
+                      dataSource={record.expandableData}
+                      pagination={false}
+                    />
+                  ) : null,
+                rowExpandable: (record:any) => !!record.expandableData,
+              }
+            : undefined
+        }
+        rowKey={(record: any) => record.key}
       />
 
       {viewModal && (
@@ -339,4 +321,4 @@ const NestedTable = () => {
   )
 };
 
-export default NestedTable;
+export default DisbursmentTable;

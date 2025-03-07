@@ -21,6 +21,7 @@ import OpenTillModal from "../../components/Modal/OpenTillModal";
 import CloseTillModal from "../../components/Modal/CloseTillModal";
 import RemoveCashModal from "../../components/Modal/RemoveCashModal";
 import AddCashModal from "../../components/Modal/AddCashModal";
+import TillViewModal from "../../components/Modal/TillViewModal";
 
 interface DataType {
   key: React.Key;
@@ -165,6 +166,7 @@ const TillManagement = () => {
     const [addModal, setAddModal] = useState(false)
     const [deleteModal, setDeleteModal] = useState(false)
     const [transferModal, setTransferModal] = useState(false)
+    const [viewModal, setViewModal] = useState(false)
     const items: MenuProps['items'] = [
         {
             key: '1',
@@ -201,7 +203,7 @@ const TillManagement = () => {
             key: '6',
             label: 'View Till Details ',
             // icon: <FaTimesCircle/>,
-            //   onClick: ()=>{setRejectModal(true)}
+            onClick: ()=>{setViewModal(true)}
         },
     ];
     const columns: TableProps<DataType>['columns'] = [
@@ -413,10 +415,16 @@ const TillManagement = () => {
                     setCreateModal ={setAddModal}
                 />
             )}
-             {transferModal && (
+            {transferModal && (
                 <TransferModal
                     transferModal = {transferModal}
                     setTransferModal ={setTransferModal}
+                />
+            )}
+             {viewModal && (
+                <TillViewModal
+                    viewModal = {viewModal}
+                    setViewModal ={setViewModal}
                 />
             )}
         </>
