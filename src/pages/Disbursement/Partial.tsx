@@ -4,6 +4,7 @@ import DisbursementFilter from "../../components/Filter/DisbursementFilter";
 import DisbursmentTable from "../../components/Table/DisbursmentTable";
 import { useState } from "react";
 import { MdTouchApp } from "react-icons/md";
+import EditDisbursementModal from "../../components/Modal/EditDisbursementModal";
 
 const options = [
     {
@@ -23,41 +24,7 @@ const options = [
         label: 'Active Customer',
     },
 ]
- const items: MenuProps['items'] = [
-    {
-      key: '1',
-      label: 'Edit Pending Request',
-      //extra: '⌘P',
-    }
-  ];
-
-const columns = [
-    { title: "Batch Description", dataIndex: "batchDescription", key: "batchDescription" },
-    { title: "Batch Reference", dataIndex: "batchReference", key: "batchReference" },
-    { title: "Total Amount", dataIndex: "totalAmount", key: "totalAmount" },
-    { title: "Date Initiated", dataIndex: "dateInitiated", key: "dateInitiated" },
-    { title: "Batch Status", dataIndex: "batchStatus", key: "batchStatus" },
-    { title: "Initiated By", dataIndex: "initiatedBy", key: "initiatedBy" },
-    {
-        title: '',
-        key: 'action',
-        render: (_: any) => (
-          <Dropdown menu={{ items }}>
-            <Button style={{
-                backgroundColor: 'transparent',
-                border:"1px solid #C4C4C4",
-                fontSize: "13px",
-                fontWeight:"500",
-                color:"#9BA6BC"
-              }}
-              onClick={(e) => e.preventDefault()}
-            >
-                Action <MdTouchApp color="#000000" />
-            </Button>
-          </Dropdown>
-        ),
-      },
-];
+ 
   
 // const expandableColumns = [
 //     { title: "Recipient Name", dataIndex: "recipientName", key: "recipientName" },
@@ -98,6 +65,42 @@ const dataSource = [
 ];
 const Partial = () => {
     const [depositModal, setDepositModal] = useState(false)
+    const items: MenuProps['items'] = [
+      {
+        key: '1',
+        label: 'Edit Pending Request',
+        //extra: '⌘P',
+        onClick: ()=>{setDepositModal(true)}
+      }
+    ];
+  
+    const columns = [
+        { title: "Batch Description", dataIndex: "batchDescription", key: "batchDescription" },
+        { title: "Batch Reference", dataIndex: "batchReference", key: "batchReference" },
+        { title: "Total Amount", dataIndex: "totalAmount", key: "totalAmount" },
+        { title: "Date Initiated", dataIndex: "dateInitiated", key: "dateInitiated" },
+        { title: "Batch Status", dataIndex: "batchStatus", key: "batchStatus" },
+        { title: "Initiated By", dataIndex: "initiatedBy", key: "initiatedBy" },
+        {
+            title: '',
+            key: 'action',
+            render: (_: any) => (
+              <Dropdown menu={{ items }}>
+                <Button style={{
+                    backgroundColor: 'transparent',
+                    border:"1px solid #C4C4C4",
+                    fontSize: "13px",
+                    fontWeight:"500",
+                    color:"#9BA6BC"
+                  }}
+                  onClick={(e) => e.preventDefault()}
+                >
+                    Action <MdTouchApp color="#000000" />
+                </Button>
+              </Dropdown>
+            ),
+          },
+    ];
     return ( 
         <>
             <DisbursementFilter options={options} selectplaceholder="Account State" name="New Disbursement" button="deposit" modal={depositModal} setModal={setDepositModal}/>
@@ -112,6 +115,12 @@ const Partial = () => {
                 // expandableColumns={expandableColumns}
                 />
             </Col>
+            {depositModal && (
+              <EditDisbursementModal
+                depositModal={depositModal}
+                setDepositModal={setDepositModal}
+              />
+            )}
         </>
     );
 }

@@ -111,9 +111,48 @@ const items: MenuProps['items'] = [
       null
     ),
   ]),
-  getItem("All Transactions",
-    'transactions',
-    <UsergroupAddOutlined />),
+  getItem( "All Transaction", 'transactions', <UsergroupAddOutlined />, [
+    getItem(
+      <Link to="/dashboard/transaction">All</Link>,
+      'disbursement',
+      null
+    ),
+    getItem(
+      <Link to="/dashboard/transaction/loan">Loan</Link>,
+      'batches',
+      null
+    ),
+    getItem(
+      <Link to="/dashboard/transaction/deposit">Deposit</Link>,
+      'account',
+      null
+    ),
+    getItem(
+      <Link to="/dashboard/transaction/teller">Teller</Link>,
+      'applications',
+      null
+    ),
+    getItem(
+      <Link to="/dashboard/transaction/ledger">General Ledger</Link>,
+      'approval',
+      null
+    ),
+    getItem(
+      <Link to="/dashboard/transaction/pending">Pending</Link>,
+      'approval',
+      null
+    ),
+    getItem(
+      <Link to="/dashboard/transaction/cheque">Cheque</Link>,
+      'approval',
+      null
+    ),
+    getItem(
+      <Link to="/dashboard/transaction/uncleared">Uncleared Cheque</Link>,
+      'approval',
+      null
+    ),
+  ]),
   getItem(
     "Reports",
     'report',

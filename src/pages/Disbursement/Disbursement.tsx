@@ -3,6 +3,7 @@ import Filter from "../../components/Filter/Filter";
 import DisbursementFilter from "../../components/Filter/DisbursementFilter";
 import { Col } from "antd";
 import DisbursmentTable from "../../components/Table/DisbursmentTable";
+import DisbursementModal from "../../components/Modal/DisbursementModal";
 const options = [
     {
         value: '1',
@@ -95,6 +96,12 @@ const Disbursement = () => {
                  expandableColumns={expandableColumns}
                 />
             </Col>
+            {depositModal && (
+              <DisbursementModal
+                  depositModal={depositModal}
+                  setDepositModal={setDepositModal}
+              />
+            )}
         </>
     );
 }

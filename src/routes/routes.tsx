@@ -17,6 +17,12 @@ import Batches from '../pages/Disbursement/Batches';
 import Partial from '../pages/Disbursement/Partial';
 import Pending from '../pages/Disbursement/Pending';
 import Source from '../pages/Disbursement/Source';
+import Transaction from '../pages/Transaction/Transaction';
+import LoanTransaction from '../pages/Transaction/LoanTransaction';
+import DepositTransaction from '../pages/Transaction/DepositTransaction';
+import TellerTransaction from '../pages/Transaction/TellerTransaction';
+import PendingTransaction from '../pages/Transaction/PendingTransaction';
+import LedgerTransaction from '../pages/Transaction/LedgerTransaction';
 // import {
 //   AccountDeactivePage,
 //   BiddingDashboardPage,
@@ -170,8 +176,30 @@ const router = createBrowserRouter([
         path: 'disbursement/source',
         element: <Source/>,
       },
-      
-      // {
+      {
+        path: 'transaction',
+        element: <Transaction/>,
+      },
+      {
+        path: 'transaction/loan',
+        element: <LoanTransaction/>,
+      },
+      {
+        path: 'transaction/deposit',
+        element: <DepositTransaction/>,
+      },
+      {
+        path: 'transaction/teller',
+        element: <TellerTransaction/>,
+      }, 
+      {
+        path: 'transaction/pending',
+        element: <PendingTransaction/>,
+      }, 
+      {
+        path: 'transaction/ledger',
+        element: <LedgerTransaction/>,
+      }, 
       //   path: 'attendance',
       //   element: <AttendanceDashboardPage />,
       // },
