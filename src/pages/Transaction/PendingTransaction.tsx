@@ -4,6 +4,10 @@ import { Button, Col, Dropdown, MenuProps, TableProps } from "antd";
 import DisbursmentTable from "../../components/Table/DisbursmentTable";
 import { MdTouchApp } from "react-icons/md";
 import PlainTable from "../../components/Table/PlainTable";
+import TransactionViewModal from "../../components/Modal/TransactionViewModaL";
+import { FaCircleCheck } from "react-icons/fa6";
+import { COLOR } from "../../App";
+import ConfirmModal from "../../components/Modal/ConfirmModal";
 
 interface DataType {
     key: string;
@@ -167,12 +171,14 @@ const dataSource = [
   ];
 const PendingTransaction = () => {
     const [depositModal, setDepositModal] = useState(false);
+    const [pendingModal, setPendingModal] = useState(false);
+    const [approveModal, setApproveModal] = useState(false);
       const items: MenuProps['items'] = [
             {
                 key: '1',
                 label: 'Approve',
                 // icon: <FaTrash />,
-                //onClick: ()=>{setCloseModal(true)}
+                onClick: ()=>{setPendingModal(true)}
                 //extra: '⌘P',
             },
         ];
@@ -237,6 +243,32 @@ const PendingTransaction = () => {
             >
                 <PlainTable<DataType> dataType="Customer" columns={columns} data={data} />
             </Col>
+            {pendingModal && (
+                <TransactionViewModal
+                    viewModal={pendingModal}
+                    setViewModal={setPendingModal}
+                    approveModal={approveModal}
+                    setApproveModal={setApproveModal}
+                />
+            )}
+            {approveModal && (
+                <ConfirmModal
+                    setConfirmModal={setApproveModal}
+                    confirmModal={approveModal}
+                    icon={
+                        <FaCircleCheck
+                            style={{
+                                color: COLOR["50"],
+                                fontSize: "8rem"
+                            }}
+                        />
+                    }
+                    text="Approve User"
+                    content="Are you sure you want to approve this user"
+                    label="Yes Approve"
+                    type="accept"
+                />
+            )}
         </>
     );
 }

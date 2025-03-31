@@ -23,6 +23,8 @@ import DepositTransaction from '../pages/Transaction/DepositTransaction';
 import TellerTransaction from '../pages/Transaction/TellerTransaction';
 import PendingTransaction from '../pages/Transaction/PendingTransaction';
 import LedgerTransaction from '../pages/Transaction/LedgerTransaction';
+import ChequeTransaction from '../pages/Transaction/ChequeTransaction';
+import UnClearedChequeTransaction from '../pages/Transaction/UnClearedChequeTransaction copy';
 // import {
 //   AccountDeactivePage,
 //   BiddingDashboardPage,
@@ -199,6 +201,14 @@ const router = createBrowserRouter([
       {
         path: 'transaction/ledger',
         element: <LedgerTransaction/>,
+      }, 
+      {
+        path: 'transaction/cheque',
+        element: <ChequeTransaction/>,
+      }, 
+      {
+        path: 'transaction/uncleared',
+        element: <UnClearedChequeTransaction/>,
       }, 
       //   path: 'attendance',
       //   element: <AttendanceDashboardPage />,
