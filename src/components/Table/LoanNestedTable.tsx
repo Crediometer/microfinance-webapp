@@ -4,7 +4,7 @@ import type { TableColumnsType, MenuProps } from 'antd';
 import { Badge, Button, Dropdown, Space, Table, Typography} from 'antd';
 import { SettingOutlined } from '@ant-design/icons';
 import { MdTouchApp } from 'react-icons/md';
-import { FaTimesCircle } from "react-icons/fa";
+import { FaTimes, FaTimesCircle } from "react-icons/fa";
 import { FaCheck, FaCircleCheck, FaRegEye } from "react-icons/fa6";
 import styled from 'styled-components';
 import { CiEdit } from 'react-icons/ci';
@@ -306,10 +306,9 @@ const LoanNestedTable = () => {
             confirmModal={acceptModal} 
             setConfirmModal={setAcceptModal} 
             icon={
-              <FaCircleCheck
+              <FaCheck
                     style={{
-                        color: COLOR["50"],
-                        fontSize: "8rem"
+                        fontSize: "3rem"
                     }}
                 /> 
             }
@@ -324,10 +323,9 @@ const LoanNestedTable = () => {
             confirmModal={rejectModal} 
             setConfirmModal={setRejectModal} 
             icon={
-              <FaTimesCircle
-                    style={{
-                        color: "#E30E29",
-                        fontSize: "8rem"
+              <FaTimes
+                    style={{  
+                        fontSize: "3rem"
                     }}
                 /> 
             }

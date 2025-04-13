@@ -27,7 +27,20 @@ const ConfirmModal = ({
                 <Flex style={{
                     width: "100%",
                 }} align="center" justify="center">
-                    {icon}  
+                    <Col
+                        style={{
+                            backgroundColor:COLOR["50"],
+                            color:"white",
+                            width:"100px",
+                            height:"100px",
+                            borderRadius:"50%",
+                            display:"flex",
+                            alignItems:"center",
+                            justifyContent:"center",
+                        }}
+                    >
+                        {icon}  
+                    </Col>
                 </Flex>
                 <Typography.Title level={4}
                     style={{

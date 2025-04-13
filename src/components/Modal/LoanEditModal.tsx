@@ -5,6 +5,7 @@ import { useState } from "react";
 import ConfirmModal from "./ConfirmModal";
 import { FiEdit } from "react-icons/fi";
 import { FaCircleCheck } from "react-icons/fa6";
+import { FaCheck } from "react-icons/fa";
 
 const StyledModal = styled(Modal)`
     .ant-modal-content {
@@ -246,10 +247,9 @@ const LoanEditModal = ({editModal, setEditModal}: any) => {
                     confirmModal={confirmModal} 
                     setConfirmModal={setConfirmModal} 
                     icon={
-                       <FaCircleCheck
+                        <FaCheck
                             style={{
-                                color: COLOR["50"],
-                                fontSize: "8rem"
+                                fontSize: "3rem"
                             }}
                         /> 
                     }

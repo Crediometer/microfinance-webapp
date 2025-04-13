@@ -24,7 +24,7 @@ const StyledModal = styled(Modal)`
 `;
 
 
-const DisbursementModal = ({depositModal, setDepositModal}: any) => {
+const CreateMandateModal = ({depositModal, setDepositModal}: any) => {
     const [confirmModal, setConfirmModal]=useState(false)
     return ( 
         <>
@@ -44,7 +44,7 @@ const DisbursementModal = ({depositModal, setDepositModal}: any) => {
                     textAlign: "center",
                     color:"#070707E5",
                     fontSize:"20px"
-                }}>New Disbursement</Typography.Title>
+                }}>Create New</Typography.Title>
                 <Typography.Title style={{
                     textAlign: "center",
                     color:"#231F2099",
@@ -65,7 +65,7 @@ const DisbursementModal = ({depositModal, setDepositModal}: any) => {
                                     marginBottom:"24px"
                                 }}
                             >
-                                <Typography.Text>Transaction Source</Typography.Text><br></br>
+                                <Typography.Text>Mandate Type</Typography.Text><br></br>
                                 <Select
                                     style={{
                                         width:"100%",
@@ -97,27 +97,13 @@ const DisbursementModal = ({depositModal, setDepositModal}: any) => {
                                     marginBottom:"24px"
                                 }}
                             >
-                                <Typography.Text>Source Account</Typography.Text><br></br>
-                                <Select
+                                <Typography.Text>Payer Name</Typography.Text><br></br>
+                                <Input
                                     style={{
                                         width:"100%",
                                         marginTop:"10px",
-                                    }}
-                                    showSearch
-                                    placeholder="Source"
-                                    optionFilterProp="label"
-                                    // onChange={onChange}
-                                    // onSearch={onSearch}
-                                    options={[
-                                    {
-                                        value: 'personal',
-                                        label: 'Personal Loan',
-                                    },
-                                    {
-                                        value: 'cooperate',
-                                        label: 'Cooperate Loan',
-                                    },
-                                    ]}
+                                    }} 
+                                    placeholder="Enter"
                                 />
                             </Col>
                             <Col
@@ -125,31 +111,83 @@ const DisbursementModal = ({depositModal, setDepositModal}: any) => {
                                     marginBottom:"16px"
                                 }}
                             >
-                                <Typography.Text>Destination Bank</Typography.Text><br></br>
-                                <Select
+                                <Typography.Text>Product</Typography.Text><br></br>
+                                <Input
                                     style={{
                                         width:"100%",
                                         marginTop:"10px",
-                                    }}
-                                    showSearch
-                                    placeholder="NGN"
-                                    optionFilterProp="label"
-                                    // onChange={onChange}
-                                    // onSearch={onSearch}
-                                    options={[
-                                    {
-                                        value: 'ngn',
-                                        label: 'NGN',
-                                    },
-                                    {
-                                        value: 'usd',
-                                        label: 'USD',
-                                    },
-                                    {
-                                        value: 'gbp',
-                                        label: 'GBP',
-                                    },
-                                    ]}
+                                    }} 
+                                    placeholder="Enter"
+                                />
+                            </Col>
+                            <Col
+                                style={{
+                                    marginBottom:"16px"
+                                }}
+                            >
+                                <Typography.Text>Start Date</Typography.Text><br></br>
+                                <Input
+                                    style={{
+                                        width:"100%",
+                                        marginTop:"10px",
+                                    }} 
+                                    placeholder="Enter"
+                                />
+                            </Col>
+                            <Col
+                                style={{
+                                    marginBottom:"16px"
+                                }}
+                            >
+                                <Typography.Text>Start Date</Typography.Text><br></br>
+                                <Input
+                                    style={{
+                                        width:"100%",
+                                        marginTop:"10px",
+                                    }} 
+                                    placeholder="Enter"
+                                />
+                            </Col>
+                            <Col
+                                style={{
+                                    marginBottom:"16px"
+                                }}
+                            >
+                                <Typography.Text>Bank Name</Typography.Text><br></br>
+                                <Input
+                                    style={{
+                                        width:"100%",
+                                        marginTop:"10px",
+                                    }} 
+                                    placeholder="Enter"
+                                />
+                            </Col>
+                            <Col
+                                style={{
+                                    marginBottom:"16px"
+                                }}
+                            >
+                                <Typography.Text>Account Number</Typography.Text><br></br>
+                                <Input
+                                    style={{
+                                        width:"100%",
+                                        marginTop:"10px",
+                                    }} 
+                                    placeholder="Enter"
+                                />
+                            </Col>
+                            <Col
+                                style={{
+                                    marginBottom:"16px"
+                                }}
+                            >
+                                <Typography.Text>Narration</Typography.Text><br></br>
+                                <Input
+                                    style={{
+                                        width:"100%",
+                                        marginTop:"10px",
+                                    }} 
+                                    placeholder="Enter"
                                 />
                             </Col>
                         </Col>
@@ -163,7 +201,7 @@ const DisbursementModal = ({depositModal, setDepositModal}: any) => {
                                     marginBottom:"24px"
                                 }}
                             >
-                                <Typography.Text>Destination Account</Typography.Text><br></br>
+                                <Typography.Text>End Date</Typography.Text><br></br>
                                 <Input
                                     style={{
                                         width:"100%",
@@ -177,7 +215,7 @@ const DisbursementModal = ({depositModal, setDepositModal}: any) => {
                                     marginBottom:"24px"
                                 }}
                             >
-                                <Typography.Text>Amount (NGN)</Typography.Text><br></br>
+                                <Typography.Text>Phone Number</Typography.Text><br></br>
                                 <Input
                                     style={{
                                         width:"100%",
@@ -191,7 +229,63 @@ const DisbursementModal = ({depositModal, setDepositModal}: any) => {
                                     marginBottom:"24px"
                                 }}
                             >
-                                <Typography.Text>Narration</Typography.Text><br></br>
+                                <Typography.Text>Email</Typography.Text><br></br>
+                                <Input
+                                    style={{
+                                        width:"100%",
+                                        marginTop:"10px",
+                                    }} 
+                                    placeholder="NGN"
+                                />
+                            </Col>
+                            <Col
+                                style={{
+                                    marginBottom:"24px"
+                                }}
+                            >
+                                <Typography.Text>Payer Address</Typography.Text><br></br>
+                                <Input
+                                    style={{
+                                        width:"100%",
+                                        marginTop:"10px",
+                                    }} 
+                                    placeholder="NGN"
+                                />
+                            </Col>
+                            <Col
+                                style={{
+                                    marginBottom:"24px"
+                                }}
+                            >
+                                <Typography.Text>Debit Frequency </Typography.Text><br></br>
+                                <Input
+                                    style={{
+                                        width:"100%",
+                                        marginTop:"10px",
+                                    }} 
+                                    placeholder="NGN"
+                                />
+                            </Col>
+                            <Col
+                                style={{
+                                    marginBottom:"24px"
+                                }}
+                            >
+                                <Typography.Text>Account Name</Typography.Text><br></br>
+                                <Input
+                                    style={{
+                                        width:"100%",
+                                        marginTop:"10px",
+                                    }} 
+                                    placeholder="NGN"
+                                />
+                            </Col>
+                            <Col
+                                style={{
+                                    marginBottom:"24px"
+                                }}
+                            >
+                                <Typography.Text>Mandate Image</Typography.Text><br></br>
                                 <Input
                                     style={{
                                         width:"100%",
@@ -248,8 +342,8 @@ const DisbursementModal = ({depositModal, setDepositModal}: any) => {
                         /> 
                     }
                     type="create"
-                    text="New Disbursement"
-                    content="Are you sure you want to create this disbursement"
+                    text="Create User"
+                    content="Are you sure you want to create this user"
                     label="Yes Create"
                 />
             )}
@@ -257,4 +351,4 @@ const DisbursementModal = ({depositModal, setDepositModal}: any) => {
     );
 }
  
-export default DisbursementModal;
+export default CreateMandateModal;

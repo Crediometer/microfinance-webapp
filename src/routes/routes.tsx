@@ -25,6 +25,15 @@ import PendingTransaction from '../pages/Transaction/PendingTransaction';
 import LedgerTransaction from '../pages/Transaction/LedgerTransaction';
 import ChequeTransaction from '../pages/Transaction/ChequeTransaction';
 import UnClearedChequeTransaction from '../pages/Transaction/UnClearedChequeTransaction copy';
+import Task from '../pages/Tasks/Tasks';
+import Activities from '../pages/Tasks/Activities';
+import Branch from '../pages/Tasks/Branch';
+import User from '../pages/Tasks/User';
+import Platform from '../pages/Tasks/Platform';
+import Payroll from '../pages/Tasks/Payroll';
+import Mandates from '../pages/Tasks/Mandates';
+import Customer from '../pages/Report/Customer';
+import Portfolio from '../pages/Report/Loan/Portfolio';
 // import {
 //   AccountDeactivePage,
 //   BiddingDashboardPage,
@@ -207,9 +216,66 @@ const router = createBrowserRouter([
         element: <ChequeTransaction/>,
       }, 
       {
-        path: 'transaction/uncleared',
-        element: <UnClearedChequeTransaction/>,
+        path: 'task',
+        element: <Task/>,
       }, 
+      {
+        path: 'activities',
+        element: <Activities/>,
+      }, 
+      {
+        path: 'user',
+        element: <User/>,
+      }, 
+      {
+        path: 'branch',
+        element: <Branch/>,
+      }, 
+      {
+        path: 'platform',
+        element: <Platform/>,
+      }, 
+      {
+        path: 'payroll',
+        element: <Payroll/>,
+      }, 
+      {
+        path: 'mandate',
+        element: <Mandates/>,
+      }, 
+      {
+        path: 'loan/portfolio',
+        element: <Portfolio/>,
+      }, 
+      {
+        path: 'report/customer',
+        element: <Customer/>,
+      },
+      {
+        path: 'loan/due',
+        element: <Mandates/>,
+      }, 
+      {
+        path: 'loan/arrears',
+        element: <Mandates/>,
+      }, 
+      {
+        path: 'loan/disbursement',
+        element: <Mandates/>,
+      }, 
+      {
+        path: 'loan/closed',
+        element: <Mandates/>,
+      }, 
+      {
+        path: 'loan/account',
+        element: <Mandates/>,
+      }, 
+      {
+        path: 'loan/balance',
+        element: <Mandates/>,
+      }, 
+      
       //   path: 'attendance',
       //   element: <AttendanceDashboardPage />,
       // },

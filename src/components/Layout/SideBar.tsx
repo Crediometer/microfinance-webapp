@@ -15,6 +15,8 @@ import { Link, useLocation } from 'react-router-dom';
 import { COLOR } from "../../App"
 import logo from '../../assets/logo2.png'
 import profile from '../../assets/profile.png'
+import { FaCircleNodes } from 'react-icons/fa6';
+import { BsFillClipboard2DataFill } from 'react-icons/bs';
 // import {
 //   PATH_AUTH,
 //   PATH_DASHBOARD,
@@ -156,12 +158,117 @@ const items: MenuProps['items'] = [
   getItem(
     "Reports",
     'report',
-    <ShoppingCartOutlined />
+    <BsFillClipboard2DataFill />, [
+      getItem(
+        <Link to="/dashboard/report/customer">Customer</Link>,
+        'customer',
+        null
+      ),
+      getItem(
+        "Loans",
+        'loans',
+        null, [
+          getItem(
+            <Link to="/dashboard/loan/portfolio">Loan Portfolio Report</Link>,
+            'loan portfolio',
+            null
+          ),
+          getItem(
+            <Link to="/dashboard/loan/due">Loan Due Report</Link>,
+            'loan due',
+            null
+          ),
+          getItem(
+            <Link to="/dashboard/loan/arrears">Loan Arrears Report</Link>,
+            'loan arrears',
+            null
+          ),
+          getItem(
+            <Link to="/dashboard/loan/disbursement">Loan Disbursement Report</Link>,
+            'loan disbursement',
+            null
+          ),
+          getItem(
+            <Link to="/dashboard/loan/closed ">Closed Loan (Obligations Met) Report</Link>,
+            'closed loan',
+            null
+          ),
+          getItem(
+            <Link to="/dashboard/loan/account">Account Statement Report</Link>,
+            'account statement',
+            null
+          ),
+          getItem(
+            <Link to="/dashboard/loan/balance">Loan Balances Report</Link>,
+            'loan balances',
+            null
+          ),
+        ]
+      ),
+      getItem(
+        <Link to="/dashboard/user">User</Link>,
+        'user',
+        null
+      ),
+      getItem(
+        <Link to="/dashboard/branch">Branch</Link>,
+        'branch',
+        null
+      ),
+      getItem(
+        <Link to="/dashboard/platform">Platform</Link>,
+        'platform',
+        null,
+      ),
+    ]
   ),
   getItem(
    "Tasks",
     'task',
-    <WifiOutlined />
+    <FaCircleNodes />, [
+      getItem(
+        <Link to="/dashboard/task">Task</Link>,
+        'task',
+        null
+      ),
+      getItem(
+        <Link to="/dashboard/activities">Activities</Link>,
+        'activities',
+        null
+      ),
+      getItem(
+        <Link to="/dashboard/user">User</Link>,
+        'user',
+        null
+      ),
+      getItem(
+        <Link to="/dashboard/branch">Branch</Link>,
+        'branch',
+        null
+      ),
+      getItem(
+        "Platform",
+        'platform',
+        null,
+        [
+          getItem(
+            <Link to="/dashboard/platform">Customer Whitelist</Link>,
+            'Customer Whitelist',
+            null
+          ),
+          getItem(
+            <Link to="/dashboard/payroll">Payroll Information</Link>,
+            'Payroll Information',
+            null
+          ),
+          getItem(
+            <Link to="/dashboard/mandate ">Mandates & Mandates Schedule</Link>,
+            'Mandates & Mandates Schedule',
+            null
+          ),
+        ]
+      ),
+    ]
   ),
   getItem(
     "Mobile Channel",
