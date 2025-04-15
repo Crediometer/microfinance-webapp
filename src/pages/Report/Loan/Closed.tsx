@@ -115,7 +115,7 @@ const options = [
     },
 ]
 
-const Disbursement = () => {
+const ClosedLoan = () => {
     const [depositModal, setDepositModal] = useState(false);
     const [pendingModal, setPendingModal] = useState(false);
     const [approveModal, setApproveModal] = useState(false);
@@ -183,4 +183,4 @@ const Disbursement = () => {
     );
 }
  
-export default Disbursement;
+export default ClosedLoan;

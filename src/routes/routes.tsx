@@ -34,6 +34,22 @@ import Payroll from '../pages/Tasks/Payroll';
 import Mandates from '../pages/Tasks/Mandates';
 import Customer from '../pages/Report/Customer';
 import Portfolio from '../pages/Report/Loan/Portfolio';
+import Due from '../pages/Report/Loan/Due';
+import Arrears from '../pages/Report/Loan/Arrears';
+import DisbursementLoan from '../pages/Report/Loan/Disbursement';
+import ClosedLoan from '../pages/Report/Loan/Closed';
+import AccountLoan from '../pages/Report/Loan/Account';
+import Balance from '../pages/Report/Loan/Balance';
+import Schedule from '../pages/Report/Loan/Schedule';
+import Bvn from '../pages/Report/Mobile/Bvn';
+import Password from '../pages/Report/Mobile/Password';
+import Registration from '../pages/Report/Mobile/Register';
+import Airtime from '../pages/Report/Mobile/Airtime';
+import Data from '../pages/Report/Mobile/Data';
+import Bill from '../pages/Report/Mobile/Bill';
+import Transfer from '../pages/Report/Mobile/Transfer';
+import Accounting from '../pages/Accounting/Accounting';
+import { Management } from '../pages/Management/Management';
 // import {
 //   AccountDeactivePage,
 //   BiddingDashboardPage,
@@ -244,7 +260,11 @@ const router = createBrowserRouter([
         element: <Mandates/>,
       }, 
       {
-        path: 'loan/portfolio',
+        path: 'accounting',
+        element: <Accounting/>,
+      }, 
+      {
+        path: 'report/loan/portfolio',
         element: <Portfolio/>,
       }, 
       {
@@ -252,30 +272,65 @@ const router = createBrowserRouter([
         element: <Customer/>,
       },
       {
-        path: 'loan/due',
-        element: <Mandates/>,
+        path: 'report/loan/due',
+        element: <Due/>,
       }, 
       {
-        path: 'loan/arrears',
-        element: <Mandates/>,
+        path: 'report/loan/arrears',
+        element: <Arrears/>,
       }, 
       {
-        path: 'loan/disbursement',
-        element: <Mandates/>,
+        path: 'report/loan/disbursement',
+        element: <DisbursementLoan/>,
       }, 
       {
-        path: 'loan/closed',
-        element: <Mandates/>,
+        path: 'report/loan/closed',
+        element: <ClosedLoan/>,
       }, 
       {
-        path: 'loan/account',
-        element: <Mandates/>,
+        path: 'report/loan/account',
+        element: <AccountLoan/>,
       }, 
       {
-        path: 'loan/balance',
-        element: <Mandates/>,
+        path: 'report/loan/balance',
+        element: <Balance/>,
       }, 
-      
+      {
+        path: 'report/loan/schedules',
+        element: <Schedule/>,
+      }, 
+      {
+        path: 'report/mobile/bvn',
+        element: <Bvn/>,
+      }, 
+      {
+        path: 'report/mobile/register',
+        element: <Registration/>,
+      }, 
+      {
+        path: 'report/mobile/password',
+        element: <Password/>,
+      }, 
+      {
+        path: 'report/mobile/airtime',
+        element: <Airtime/>,
+      },
+      {
+        path: 'report/mobile/data',
+        element: <Data/>,
+      },
+      {
+        path: 'report/mobile/bill',
+        element: <Bill/>,
+      },
+      {
+        path: 'report/mobile/transfer',
+        element: <Transfer/>,
+      },
+      {
+        path: 'management',
+        element: <Management/>,
+      }, 
       //   path: 'attendance',
       //   element: <AttendanceDashboardPage />,
       // },

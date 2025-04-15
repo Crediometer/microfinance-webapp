@@ -7,7 +7,8 @@ const SuccessModal = ({
     setConfirmModal, 
     setDepositModal,
     title,
-    text
+    text,
+    button
 }: any) => {
     return ( 
         <Modal
@@ -88,7 +89,7 @@ const SuccessModal = ({
                     // setDepositModal(false)
                 }}
                 >
-                    Back to Account Management
+                    {button}
                 </Button>
             </Flex>
         </Modal>  

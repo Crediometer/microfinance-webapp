@@ -118,6 +118,24 @@ export const AppLayout = ({ children}: AppLayoutProps) => {
     headerTitle = "Customer Management"
   } else if(location.pathname.includes("/dashboard/disbursement")) {
     headerTitle = "Disbursements"
+  } else if(location.pathname.includes("/dashboard/task")) {
+    headerTitle = "Task"
+  } else if(location.pathname.includes("/dashboard/activities")) {
+    headerTitle = "Activity"
+  } else if(location.pathname.includes("/dashboard/branch")) {
+    headerTitle = "Branch"
+  } else if(location.pathname.includes("/dashboard/platform")) {
+    headerTitle = "Platform"
+  } else if(location.pathname.includes("/dashboard/user")) {
+    headerTitle = "User"
+  } else if(location.pathname.includes("/dashboard/mandate")) {
+    headerTitle = "Mandate"
+  } else if(location.pathname.includes("/dashboard/payroll")) {
+    headerTitle = "Platform"
+  } else if(location.pathname.includes("/dashboard/report")) {
+    headerTitle = "Report"
+  } else if(location.pathname.includes("/dashboard/accounting")) {
+    headerTitle = "Accounting"
   } else{
     headerTitle = "Main Dashboard"
   }

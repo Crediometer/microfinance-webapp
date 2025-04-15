@@ -115,7 +115,7 @@ const options = [
     },
 ]
 
-const Disbursement = () => {
+const AccountLoan = () => {
     const [depositModal, setDepositModal] = useState(false);
     const [pendingModal, setPendingModal] = useState(false);
     const [approveModal, setApproveModal] = useState(false);
@@ -147,8 +147,8 @@ const Disbursement = () => {
             },
             {
                 title: 'Amount',
-                dataIndex: 'Amount',
-                key: 'Amount',
+                dataIndex: 'amount',
+                key: 'amount',
             },
             {
                 title: 'Date',
@@ -184,4 +184,4 @@ const Disbursement = () => {
     );
 }
  
-export default Disbursement;
+export default AccountLoan;

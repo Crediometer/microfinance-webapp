@@ -109,6 +109,7 @@ const ConfirmModal = ({
                             setConfirmModal={setConfirmModal}
                             title="Approve Successful"
                             text="User have been approved"
+                            button="Back to Account Management"
                         />
                     )}
                    {type === "modify" && (
@@ -117,6 +118,7 @@ const ConfirmModal = ({
                             setSuccessModal={setSuccessModal}
                             setConfirmModal={setConfirmModal}
                             title="Account Modified Successfully "
+                            button="Back to Account Management"
                         />
                     )}
                     {type === "create" && (
@@ -126,6 +128,7 @@ const ConfirmModal = ({
                             setConfirmModal={setConfirmModal}
                             setDepositModal={setDepositModal}
                             title="Account Created Successful"
+                            button="Back to Account Management"
                         />
                     )}
                     {type === "reject" && (
@@ -135,6 +138,7 @@ const ConfirmModal = ({
                             setConfirmModal={setConfirmModal}
                             title="Reject Successful"
                             text="User have been Rejected"
+                            button="Back to Account Management"
                         />
                     )}
                 </>

@@ -15,10 +15,11 @@ interface DataType {
     key: string;
     loanId: string;
     customerName: string;
-    loanProduct: string;
-    disbursedAmount: string;
-    disbursementDate: string;
-    accountOfficer: string;
+    installmentNo: string;
+    dueDate: string;
+    amountDue: string;
+    paidAmount: string;
+    balance: string;
 }
 
 
@@ -27,73 +28,81 @@ const data: DataType[] = [
         key: '1',
         loanId: "22300915013",
         customerName: "Olademeji Bayo",
-        loanProduct: "loan",
-        disbursementDate: "09-11-2021",
-        disbursedAmount: "NGN 60,000",
-        accountOfficer: "Olademeji Bayo",
+        installmentNo: "Loan",
+        dueDate: "09-11-2021",
+        amountDue: "NGN 60,000",
+        paidAmount: "NGN 30,000",
+        balance: "NGN 30,000",
     },
     {
         key: '2',
         loanId: "22300915013",
         customerName: "Olademeji Bayo",
-        loanProduct: "loan",
-        disbursementDate: "09-11-2021",
-        disbursedAmount: "NGN 60,000",
-        accountOfficer: "Olademeji Bayo",
+        installmentNo: "Loan",
+        dueDate: "09-11-2021",
+        amountDue: "NGN 60,000",
+        paidAmount: "NGN 30,000",
+        balance: "NGN 30,000",
     },
     {
         key: '3',
         loanId: "22300915013",
         customerName: "Olademeji Bayo",
-        loanProduct: "loan",
-        disbursementDate: "09-11-2021",
-        disbursedAmount: "NGN 60,000",
-        accountOfficer: "Olademeji Bayo",
+        installmentNo: "Loan",
+        dueDate: "09-11-2021",
+        amountDue: "NGN 60,000",
+        paidAmount: "NGN 30,000",
+        balance: "NGN 30,000",
     },
     {
         key: '4',
         loanId: "22300915013",
         customerName: "Olademeji Bayo",
-        loanProduct: "loan",
-        disbursementDate: "09-11-2021",
-        disbursedAmount: "NGN 60,000",
-        accountOfficer: "Olademeji Bayo",
+        installmentNo: "Loan",
+        dueDate: "09-11-2021",
+        amountDue: "NGN 60,000",
+        paidAmount: "NGN 30,000",
+        balance: "NGN 30,000",
     },
     {
         key: '5',
         loanId: "22300915013",
         customerName: "Olademeji Bayo",
-        loanProduct: "loan",
-        disbursementDate: "09-11-2021",
-        disbursedAmount: "NGN 60,000",
-        accountOfficer: "Olademeji Bayo",
+        installmentNo: "Loan",
+        dueDate: "09-11-2021",
+        amountDue: "NGN 60,000",
+        paidAmount: "NGN 30,000",
+        balance: "NGN 30,000",
     },
     {
         key: '6',
         loanId: "22300915013",
         customerName: "Olademeji Bayo",
-        loanProduct: "loan",
-        disbursementDate: "09-11-2021",
-        disbursedAmount: "NGN 60,000",
-        accountOfficer: "Olademeji Bayo",
+        installmentNo: "Loan",
+        dueDate: "09-11-2021",
+        amountDue: "NGN 60,000",
+        paidAmount: "NGN 30,000",
+        balance: "NGN 30,000",
     },
     {
         key: '7',
         loanId: "22300915013",
         customerName: "Olademeji Bayo",
-        loanProduct: "loan",
-        disbursementDate: "09-11-2021",
-        disbursedAmount: "NGN 60,000",
-        accountOfficer: "Olademeji Bayo",
+        installmentNo: "Loan",
+        dueDate: "09-11-2021",
+        amountDue: "NGN 60,000",
+        paidAmount: "NGN 30,000",
+        balance: "NGN 30,000",
     },
     {
         key: '8',
         loanId: "22300915013",
         customerName: "Olademeji Bayo",
-        loanProduct: "loan",
-        disbursementDate: "09-11-2021",
-        disbursedAmount: "NGN 60,000",
-        accountOfficer: "Olademeji Bayo",
+        installmentNo: "Loan",
+        dueDate: "09-11-2021",
+        amountDue: "NGN 60,000",
+        paidAmount: "NGN 30,000",
+        balance: "NGN 30,000",
     },
     ];
 const options = [
@@ -115,7 +124,7 @@ const options = [
     },
 ]
 
-const DisbursementLoan = () => {
+const Schedule = () => {
     const [depositModal, setDepositModal] = useState(false);
     const [pendingModal, setPendingModal] = useState(false);
     const [approveModal, setApproveModal] = useState(false);
@@ -138,28 +147,32 @@ const DisbursementLoan = () => {
             {
                 title: 'Customer Name',
                 dataIndex: 'customerName',
-                key: 'customerName',
+                key: 'customerName',            },
+            {
+                title: 'Installment No',
+                dataIndex: 'installmentNo',
+                key: 'installmentNo',
             },
             {
-                title: 'Disbursed Amount',
-                dataIndex: 'disbursedAmount',
-                key: 'disbursedAmount',
+                title: 'Due Date',
+                dataIndex: 'dueDate',
+                key: 'dueDate',
             },
             {
-                title: 'Disbursement Date',
-                dataIndex: 'disbursementDate',
-                key: 'disbursementDate',
-            },
+                title: 'Amount Due',
+                dataIndex: 'amountDue',
+                key: 'amountDue',
+            },  
             {
-                title: 'Loan Product    ',
-                dataIndex: 'loanProduct',
-                key: 'loanProduct',
-            },
+                title: 'Paid Amount',
+                dataIndex: 'paidAmount',
+                key: 'paidAmount',
+            },  
             {
-                title: 'Account Officer',
-                dataIndex: 'accountOfficer',
-                key: 'accountOfficer',
-            },
+                title: 'Balance',
+                dataIndex: 'balance',
+                key: 'balance',
+            },     
         ];
     return ( 
         <>
@@ -183,4 +196,4 @@ const DisbursementLoan = () => {
     );
 }
  
-export default DisbursementLoan;
+export default Schedule;

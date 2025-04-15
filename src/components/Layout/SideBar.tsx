@@ -17,6 +17,7 @@ import logo from '../../assets/logo2.png'
 import profile from '../../assets/profile.png'
 import { FaCircleNodes } from 'react-icons/fa6';
 import { BsFillClipboard2DataFill } from 'react-icons/bs';
+import { PiChartPieSliceFill } from "react-icons/pi";
 // import {
 //   PATH_AUTH,
 //   PATH_DASHBOARD,
@@ -169,57 +170,98 @@ const items: MenuProps['items'] = [
         'loans',
         null, [
           getItem(
-            <Link to="/dashboard/loan/portfolio">Loan Portfolio Report</Link>,
+            <Link to="/dashboard/report/loan/portfolio">Loan Portfolio Report</Link>,
             'loan portfolio',
             null
           ),
           getItem(
-            <Link to="/dashboard/loan/due">Loan Due Report</Link>,
+            <Link to="/dashboard/report/loan/due">Loan Due Report</Link>,
             'loan due',
             null
           ),
           getItem(
-            <Link to="/dashboard/loan/arrears">Loan Arrears Report</Link>,
+            <Link to="/dashboard/report/loan/arrears">Loan Arrears Report</Link>,
             'loan arrears',
             null
           ),
           getItem(
-            <Link to="/dashboard/loan/disbursement">Loan Disbursement Report</Link>,
+            <Link to="/dashboard/report/loan/disbursement">Loan Disbursement Report</Link>,
             'loan disbursement',
             null
           ),
           getItem(
-            <Link to="/dashboard/loan/closed ">Closed Loan (Obligations Met) Report</Link>,
+            <Link to="/dashboard/report/loan/closed">Closed Loan (Obligations Met) Report</Link>,
             'closed loan',
             null
           ),
           getItem(
-            <Link to="/dashboard/loan/account">Account Statement Report</Link>,
+            <Link to="/dashboard/report/loan/account">Account Statement Report</Link>,
             'account statement',
             null
           ),
           getItem(
-            <Link to="/dashboard/loan/balance">Loan Balances Report</Link>,
+            <Link to="/dashboard/report/loan/balance">Loan Balances Report</Link>,
+            'loan balances',
+            null
+          ),
+          getItem(
+            <Link to="/dashboard/report/loan/balance">Loan Schedules Report</Link>,
             'loan balances',
             null
           ),
         ]
       ),
       getItem(
-        <Link to="/dashboard/user">User</Link>,
+        <Link to="/dashboard/user">Deposits</Link>,
         'user',
         null
       ),
       getItem(
-        <Link to="/dashboard/branch">Branch</Link>,
+        "Mobile Channel Reports",
         'branch',
-        null
+        null, [
+          getItem(
+            <Link to="/dashboard/report/mobile/bvn">BVN Linkage</Link>,
+            'BVN Linkage',
+            null
+          ),
+          getItem(
+            <Link to="/dashboard/report/mobile/register">Registration</Link>,
+            'Registration',
+            null
+          ),
+          getItem(
+            <Link to="/dashboard/report/mobile/password">Password Reset Record</Link>,
+            'Password Reset Record',
+            null
+          ),
+          getItem(
+            <Link to="/dashboard/report/mobile/airtime">Airtime</Link>,
+            'Airtime',
+            null
+          ),
+          getItem(
+            <Link to="/dashboard/report/mobile/data">Data</Link>,
+            'Data',
+            null
+          ),
+          getItem(
+            <Link to="/dashboard/report/mobile/bill">Bill Payment</Link>,
+            'Bill Payment',
+            null
+          ),
+          getItem(
+            <Link to="/dashboard/report/mobile/transfer">Transfer</Link>,
+            'Transfer',
+            null
+          ),
+        ]
       ),
-      getItem(
-        <Link to="/dashboard/platform">Platform</Link>,
-        'platform',
-        null,
-      ),
+      // getItem(
+      //   <Link to="/dashboard/platform">Platform</Link>,
+      //   'platform',
+      //   null,
+      // ),
     ]
   ),
   getItem(
@@ -262,7 +304,7 @@ const items: MenuProps['items'] = [
             null
           ),
           getItem(
-            <Link to="/dashboard/mandate ">Mandates & Mandates Schedule</Link>,
+            <Link to="/dashboard/mandate">Mandates & Mandates Schedule</Link>,
             'Mandates & Mandates Schedule',
             null
           ),
@@ -280,20 +322,21 @@ const items: MenuProps['items'] = [
     'branches',
     <DollarOutlined />
   ),
-  getItem("Accounting",
+  getItem(<Link to="/dashboard/accounting">Accounting</Link>,
     'accounting',
-    <UsergroupAddOutlined />),
+    <PiChartPieSliceFill />
+  ),
 
-    getItem(
-      "Management",
-      'management',
-      null
-    ),
-    getItem(
-      "Overview",
-      'Overview',
-      null
-    ),
+  getItem(
+    <Link to="/dashboard/management">Management</Link>,
+    'management',
+    null
+  ),
+  getItem(
+    "Overview",
+    'Overview',
+    null
+  ),
   //   getItem('Downlines', 'authentication', <LineOutlined />, [
   // ]),
 
@@ -335,8 +378,19 @@ const SideNav = ({ ...others }: SideNavProps) => {
 
   useEffect(() => {
     const paths = pathname.split('/');
-    setOpenKeys(paths);
-    setCurrent(paths[paths.length - 1]);
+    // For deeper paths, keep parent menus open
+    const parentKeys = [];
+    
+    // Build array of parent keys
+    for (let i = 1; i < paths.length; i++) {
+      const key = paths.slice(1, i + 1).join('/');
+      parentKeys.push(key);
+    }
+    
+    setOpenKeys(parentKeys);
+    
+    // Set current to the full path for better matching with menu items
+    setCurrent(pathname.substring(1)); // Remove leading slash
   }, [pathname]);
 
   return (
@@ -362,11 +416,29 @@ const SideNav = ({ ...others }: SideNavProps) => {
         theme={{
           components: {
             Menu: {
-              itemBg: COLOR["200"],
-              itemSelectedBg: COLOR['250'],
-              itemHoverBg: COLOR['250'],
-              itemSelectedColor: COLOR['150'],
-              colorText:COLOR['250'],
+               // Background colors
+              itemBg: COLOR["200"],             // Default menu background
+              subMenuItemBg: COLOR["200"],      // Submenu item background
+              itemSelectedBg: COLOR['250'],     // Selected item background
+              itemHoverBg: COLOR['250'],        // Hover background
+              
+              // Text colors
+              colorText: COLOR['250'],          // Default text color
+              itemSelectedColor: COLOR['50'],   // Selected item text color (blue)
+              itemHoverColor: COLOR['50'],      // Hover text color (blue)
+              
+              // Submenu text colors
+              subMenuItemSelectedColor: COLOR['50'], // Selected submenu item text color
+              horizontalItemSelectedColor: COLOR['50'], // Horizontal selected item text color
+              
+              // Parent item styles when submenu is active
+              itemActiveBg: COLOR['250'],       // Active parent background          
+              // Icon colors for better visibility
+              colorTextLightSolid: COLOR['50'], // Light text color for icons
+              
+              // Submenu arrow colors
+              horizontalItemHoverColor: COLOR['50'], // Horizontal item hover color
+              
             },
           },
         }}

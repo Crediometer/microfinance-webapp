@@ -16,9 +16,8 @@ interface DataType {
     loanId: string;
     customerName: string;
     loanProduct: string;
-    disbursedAmount: string;
-    disbursementDate: string;
-    accountOfficer: string;
+    outstandingBalance: string;
+    totalInterest: string;
 }
 
 
@@ -27,73 +26,65 @@ const data: DataType[] = [
         key: '1',
         loanId: "22300915013",
         customerName: "Olademeji Bayo",
-        loanProduct: "loan",
-        disbursementDate: "09-11-2021",
-        disbursedAmount: "NGN 60,000",
-        accountOfficer: "Olademeji Bayo",
+        loanProduct: "Loan",
+        outstandingBalance: "NGN 60,000",
+        totalInterest: "NGN 30,000",
     },
     {
         key: '2',
         loanId: "22300915013",
         customerName: "Olademeji Bayo",
-        loanProduct: "loan",
-        disbursementDate: "09-11-2021",
-        disbursedAmount: "NGN 60,000",
-        accountOfficer: "Olademeji Bayo",
+        loanProduct: "Loan",
+        outstandingBalance: "NGN 60,000",
+        totalInterest: "NGN 30,000",
     },
     {
         key: '3',
         loanId: "22300915013",
         customerName: "Olademeji Bayo",
-        loanProduct: "loan",
-        disbursementDate: "09-11-2021",
-        disbursedAmount: "NGN 60,000",
-        accountOfficer: "Olademeji Bayo",
+        loanProduct: "Loan",
+        outstandingBalance: "NGN 60,000",
+        totalInterest: "NGN 30,000",
     },
     {
         key: '4',
         loanId: "22300915013",
         customerName: "Olademeji Bayo",
-        loanProduct: "loan",
-        disbursementDate: "09-11-2021",
-        disbursedAmount: "NGN 60,000",
-        accountOfficer: "Olademeji Bayo",
+        loanProduct: "Loan",
+        outstandingBalance: "NGN 60,000",
+        totalInterest: "NGN 30,000",
     },
     {
         key: '5',
         loanId: "22300915013",
         customerName: "Olademeji Bayo",
-        loanProduct: "loan",
-        disbursementDate: "09-11-2021",
-        disbursedAmount: "NGN 60,000",
-        accountOfficer: "Olademeji Bayo",
+        loanProduct: "Loan",
+        outstandingBalance: "NGN 60,000",
+        totalInterest: "NGN 30,000",
     },
     {
         key: '6',
         loanId: "22300915013",
         customerName: "Olademeji Bayo",
-        loanProduct: "loan",
-        disbursementDate: "09-11-2021",
-        disbursedAmount: "NGN 60,000",
-        accountOfficer: "Olademeji Bayo",
+        loanProduct: "Loan",
+        outstandingBalance: "NGN 60,000",
+        totalInterest: "NGN 30,000",
     },
     {
         key: '7',
         loanId: "22300915013",
         customerName: "Olademeji Bayo",
-        loanProduct: "loan",
-        disbursementDate: "09-11-2021",
-        disbursedAmount: "NGN 60,000",
-        accountOfficer: "Olademeji Bayo",
+        loanProduct: "Loan",
+        outstandingBalance: "NGN 60,000",
+        totalInterest: "NGN 30,000",
     },
     {
         key: '8',
         loanId: "22300915013",
         customerName: "Olademeji Bayo",
-        loanProduct: "loan",
-        disbursementDate: "09-11-2021",
-        disbursedAmount: "NGN 60,000",
-        accountOfficer: "Olademeji Bayo",
+        loanProduct: "Loan",
+        outstandingBalance: "NGN 60,000",
+        totalInterest: "NGN 30,000",
     },
     ];
 const options = [
@@ -115,7 +106,7 @@ const options = [
     },
 ]
 
-const DisbursementLoan = () => {
+const Balance = () => {
     const [depositModal, setDepositModal] = useState(false);
     const [pendingModal, setPendingModal] = useState(false);
     const [approveModal, setApproveModal] = useState(false);
@@ -138,28 +129,22 @@ const DisbursementLoan = () => {
             {
                 title: 'Customer Name',
                 dataIndex: 'customerName',
-                key: 'customerName',
-            },
+                key: 'customerName',            },
             {
-                title: 'Disbursed Amount',
-                dataIndex: 'disbursedAmount',
-                key: 'disbursedAmount',
-            },
-            {
-                title: 'Disbursement Date',
-                dataIndex: 'disbursementDate',
-                key: 'disbursementDate',
-            },
-            {
-                title: 'Loan Product    ',
+                title: 'Loan Product',
                 dataIndex: 'loanProduct',
                 key: 'loanProduct',
             },
             {
-                title: 'Account Officer',
-                dataIndex: 'accountOfficer',
-                key: 'accountOfficer',
+                title: 'Outstanding Balance',
+                dataIndex: 'outstandingBalance',
+                key: 'outstandingBalance',
             },
+            {
+                title: 'Total Interest',
+                dataIndex: 'totalInterest',
+                key: 'totalInterest',
+            },     
         ];
     return ( 
         <>
@@ -183,4 +168,4 @@ const DisbursementLoan = () => {
     );
 }
  
-export default DisbursementLoan;
+export default Balance;
