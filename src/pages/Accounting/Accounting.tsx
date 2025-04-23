@@ -197,7 +197,7 @@ const Accounting = () => {
                     text="Delete Account"
                     content="Are you sure you want to delete this account"
                     label="Yes Delete"
-                    type="accept"
+                    type="delete"
                 />
             )}
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Col, Input, Row, Select, Upload, message } from "antd";
+import { Button, Card, Col, Input, Row, Select, Upload, message } from "antd";
 import { EditOutlined, UploadOutlined, DeleteOutlined } from "@ant-design/icons";
 
 export const Management = () => {
@@ -45,9 +45,9 @@ export const Management = () => {
     };
 
     return (
-        <div className="organization-info-container">
+        <Card className="organization-info-container" style={{ padding: '1.16rem 2.9rem', borderRadius: '16px' }}>
             <div className="header-section" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-                <h2 style={{ margin: 0 }}>Organization Information</h2>
+                <h2 style={{ margin: 0, fontSize:32, fontWeight: 500, color: "#45464E" }}>Organization Information</h2>
                 <Button type="primary" icon={<EditOutlined />}>
                     Edit Profile
                 </Button>
@@ -57,75 +57,83 @@ export const Management = () => {
                 <Col span={16}>
                     {/* Organization details form */}
                     <div className="form-section">
-                        <div className="form-group" style={{ marginBottom: '16px' }}>
-                            <label>Bank Name</label>
+                        <div className="form-group" style={{ marginBottom: '14px' }}>
+                            <label style={{fontSize:"18px", fontWeight: 400, color: "#0A0A0A" }}>Bank Name</label>
                             <Input 
                                 value={organizationData.bankName}
                                 onChange={(e) => handleInputChange('bankName', e.target.value)}
                                 className="form-control"
+                                style={{ marginTop: "10px", padding:"0.5rem 1rem", fontSize:"15px", fontWeight: 400, color: "#5E6366" }}
                             />
                         </div>
 
-                        <div className="form-group" style={{ marginBottom: '16px' }}>
-                            <label>Address</label>
+                        <div className="form-group" style={{ marginBottom: '14px' }}>
+                            <label style={{fontSize:"18px", fontWeight: 400, color: "#0A0A0A" }}>Address</label>
                             <Input 
                                 value={organizationData.address}
                                 onChange={(e) => handleInputChange('address', e.target.value)}
                                 className="form-control"
+                                style={{ marginTop: "10px", padding:"0.5rem 1rem", fontSize:"15px", fontWeight: 400, color: "#5E6366" }}
                             />
                         </div>
 
-                        <div className="form-group" style={{ marginBottom: '16px' }}>
-                            <label>Phone Number</label>
+                        <div className="form-group" style={{ marginBottom: '14px' }}>
+                            <label style={{fontSize:"18px", fontWeight: 400, color: "#0A0A0A" }}>Phone Number</label>
                             <Input 
                                 value={organizationData.phoneNumber}
                                 onChange={(e) => handleInputChange('phoneNumber', e.target.value)}
                                 className="form-control"
+                                style={{ marginTop: "10px", padding:"0.5rem 1rem", fontSize:"15px", fontWeight: 400, color: "#5E6366" }}
                             />
                         </div>
 
-                        <div className="form-group" style={{ marginBottom: '16px' }}>
-                            <label>Email Address</label>
+                        <div className="form-group" style={{ marginBottom: '14px' }}>
+                            <label style={{fontSize:"18px", fontWeight: 400, color: "#0A0A0A" }}>Email Address</label>
                             <Input 
                                 value={organizationData.emailAddress}
                                 onChange={(e) => handleInputChange('emailAddress', e.target.value)}
                                 className="form-control"
+                                style={{ marginTop: "10px", padding:"0.5rem 1rem", fontSize:"15px", fontWeight: 400, color: "#5E6366" }}
                             />
                         </div>
 
-                        <div className="form-group" style={{ marginBottom: '16px' }}>
-                            <label>Number of Branch</label>
+                        <div className="form-group" style={{ marginBottom: '14px' }}>
+                            <label style={{fontSize:"18px", fontWeight: 400, color: "#0A0A0A" }}>Number of Branch</label>
                             <Input 
                                 value={organizationData.numberOfBranch}
                                 onChange={(e) => handleInputChange('numberOfBranch', e.target.value)}
                                 className="form-control"
+                                style={{ marginTop: "10px", padding:"0.5rem 1rem", fontSize:"15px", fontWeight: 400, color: "#5E6366" }}
                             />
                         </div>
 
-                        <div className="form-group" style={{ marginBottom: '16px' }}>
-                            <label>Street Address</label>
+                        <div className="form-group" style={{ marginBottom: '14px' }}>
+                            <label style={{fontSize:"18px", fontWeight: 400, color: "#0A0A0A" }}>Street Address</label>
                             <Input 
                                 value={organizationData.streetAddress}
                                 onChange={(e) => handleInputChange('streetAddress', e.target.value)}
                                 className="form-control"
+                                style={{ marginTop: "14px", padding:"0.5rem 1rem", fontSize:"15px", fontWeight: 400, color: "#5E6366" }}
                             />
                         </div>
 
-                        <div className="form-group" style={{ marginBottom: '16px' }}>
-                            <label>City</label>
+                        <div className="form-group" style={{ marginBottom: '14px' }}>
+                            <label style={{fontSize:"18px", fontWeight: 400, color: "#0A0A0A" }}>City</label>
                             <Input 
                                 value={organizationData.city}
                                 onChange={(e) => handleInputChange('city', e.target.value)}
                                 className="form-control"
+                                style={{ marginTop: "10px", padding:"0.5rem 1rem", fontSize:"15px", fontWeight: 400, color: "#5E6366" }}
                             />
                         </div>
 
-                        <div className="form-group" style={{ marginBottom: '16px' }}>
-                            <label>State</label>
+                        <div className="form-group" style={{ marginBottom: '14px' }}>
+                            <label style={{fontSize:"18px", fontWeight: 400, color: "#0A0A0A" }}>State</label>
                             <Input 
                                 value={organizationData.state}
                                 onChange={(e) => handleInputChange('state', e.target.value)}
                                 className="form-control"
+                                style={{ marginTop: "10px", padding:"0.5rem 1rem", fontSize:"15px", fontWeight: 400, color: "#5E6366" }}
                             />
                         </div>
                     </div>
@@ -183,6 +191,6 @@ export const Management = () => {
                     </div>
                 </Col>
             </Row>
-        </div>
+        </Card>
     );
-};
+}; 

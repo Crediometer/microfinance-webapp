@@ -5,6 +5,7 @@ import { useState } from "react";
 import ConfirmModal from "./ConfirmModal";
 import { FaCheck, FaCircleCheck } from "react-icons/fa6";
 import { UploadOutlined } from '@ant-design/icons';
+import { HiOutlineCloudUpload } from "react-icons/hi";
 import { RcFile } from "antd/es/upload";
 const StyledModal = styled(Modal)`
     .ant-modal-content {
@@ -86,7 +87,7 @@ const AccountModal = ({depositModal, setDepositModal}: any) => {
                                 marginBottom:"24px"
                             }}
                         >
-                            <Typography.Text>Upload Document</Typography.Text><br></br>
+                            <Typography.Text>Upload DocumentK</Typography.Text><br></br>
                             <Upload.Dragger 
                                 {...uploadProps} 
                                 style={{ padding: '10px', borderStyle: 'dashed' }}
@@ -180,15 +181,16 @@ const AccountModal = ({depositModal, setDepositModal}: any) => {
                     setConfirmModal={setConfirmModal} 
                     setDepositModal={setDepositModal}
                     icon={
-                       <FaCheck 
+                       <HiOutlineCloudUpload 
                             style={{
                                 fontSize: "3rem"
                             }}
                         /> 
                     }
-                    type="create"
-                    text="Are you sure you want to create this account"
-                    label="Yes Create"
+                    type="upload"
+                    text="Upload Document"
+                    content="Are you sure you want to upload this document"
+                    label="Yes Upload"
                 />
             )}
         </>

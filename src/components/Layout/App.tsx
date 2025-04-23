@@ -136,6 +136,8 @@ export const AppLayout = ({ children}: AppLayoutProps) => {
     headerTitle = "Report"
   } else if(location.pathname.includes("/dashboard/accounting")) {
     headerTitle = "Accounting"
+  } else if(location.pathname.includes("/dashboard/management")) {
+    headerTitle = "Management"
   } else{
     headerTitle = "Main Dashboard"
   }

@@ -1,9 +1,17 @@
 import { Button, Col, Flex, Modal, Typography } from "antd";
+import { FaCheck, FaCircleCheck, FaTrash } from "react-icons/fa6";
 import { COLOR } from "../../App";
-import { TbBorderRadius } from "react-icons/tb";
-import { FaTrash } from "react-icons/fa6";
+import SuccessModal from "./SuccessModal";
+import { useState } from "react";
 
-const DeleteModal = ({deleteModal, setDeleteModal, type}: any) => {
+const DeleteModalComponent = ({
+    deleteModal, 
+    setDeleteModal, 
+    text, 
+    content,
+    type
+}: any) => {
+    const [successModal, setSuccessModal]=useState(false)
     return ( 
         <>
             <Modal
@@ -18,28 +26,40 @@ const DeleteModal = ({deleteModal, setDeleteModal, type}: any) => {
                 }} align="center" justify="center">
                     <Col
                         style={{
+                            backgroundColor:COLOR["50"],
+                            color:"white",
                             width:"100px",
                             height:"100px",
                             borderRadius:"50%",
-                            backgroundColor:"#F61818",
-                            display: "flex",
+                            display:"flex",
                             alignItems:"center",
-                            justifyContent:"center"
+                            justifyContent:"center",
                         }}
                     >
-                        <FaTrash color="white" style={{fontSize:"2.4rem"}}/>
-                    </Col> 
+                        <FaTrash color="white" style={{fontSize:"2.4rem"}}/> 
+                    </Col>
                 </Flex>
                 <Typography.Title level={4}
                     style={{
                         textAlign:"center",
-                        color:"#F61818",
+                        color:COLOR["50"],
                         marginTop:"35px"
                     }}
+                    color={COLOR["50"]}
                 >
-                   Are you sure you want to <br></br>delete this vault
+                   {text}
                 </Typography.Title>
-
+                <p
+                    style={{
+                        textAlign:"center",
+                        color:"#00000099",
+                        fontWeight: "500",
+                        fontSize:"20px",
+                    }}
+                    
+                >
+                   {content}
+                </      p>
                 <Flex
                     style={{
                         width:"100%",
@@ -71,14 +91,28 @@ const DeleteModal = ({deleteModal, setDeleteModal, type}: any) => {
                         fontSize:"16px",
                         fontFamily:"500"
                     }}
-                    // onClick={()=>{setSuccessModal(true)}}
+                    onClick={()=>{setSuccessModal(true)}}
                     >
                         Yes Delete
                     </Button>
                 </Flex>
             </Modal>
-        </>
+            {successModal && (
+                <> 
+                    {type === "role" && (
+                        <SuccessModal
+                            successModal={successModal}
+                            setSuccessModal={setSuccessModal}
+                            setConfirmModal={setDeleteModal}
+                            title="Role deleted Successfully"
+                            //text="User have been approved"
+                            button="Back to Role Managment"
+                        />
+                    )}
+                </>
+            )} 
+        </>   
     );
 }
  
-export default DeleteModal;
+export default DeleteModalComponent;

@@ -50,6 +50,10 @@ import Bill from '../pages/Report/Mobile/Bill';
 import Transfer from '../pages/Report/Mobile/Transfer';
 import Accounting from '../pages/Accounting/Accounting';
 import { Management } from '../pages/Management/Management';
+import BranchManagement from '../pages/Management/Branch';
+import ResetPasswordManagement from '../pages/Management/ResetPassword';
+import Role from '../pages/Management/Role';
+import Product from '../pages/Management/Product';
 // import {
 //   AccountDeactivePage,
 //   BiddingDashboardPage,
@@ -331,6 +335,22 @@ const router = createBrowserRouter([
         path: 'management',
         element: <Management/>,
       }, 
+      {
+        path: 'management/branch',
+        element: <BranchManagement/>,
+      }, 
+      {
+        path: 'management/reset',
+        element: <ResetPasswordManagement/>,
+      },
+      {
+        path: 'management/role',
+        element: <Role/>,
+      },
+      {
+        path: 'management/product',
+        element: <Product/>,
+      },
       //   path: 'attendance',
       //   element: <AttendanceDashboardPage />,
       // },

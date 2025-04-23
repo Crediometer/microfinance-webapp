@@ -141,6 +141,46 @@ const ConfirmModal = ({
                             button="Back to Account Management"
                         />
                     )}
+                    {type === "delete" && (
+                        <SuccessModal
+                            successModal={successModal}
+                            setSuccessModal={setSuccessModal}
+                            setConfirmModal={setConfirmModal}
+                            title="Account Deleted Successfully"
+                            //text="User have been approved"
+                            button="Back to Account"
+                        />
+                    )}
+                    {type === "upload" && (
+                        <SuccessModal
+                            successModal={successModal}
+                            setSuccessModal={setSuccessModal}
+                            setConfirmModal={setConfirmModal}
+                            setDepositModal={setDepositModal}
+                            title="Document Uploaded Successfully"
+                            button="Back to Account"
+                        />
+                    )}
+                    {type === "role" && (
+                        <SuccessModal
+                            successModal={successModal}
+                            setSuccessModal={setSuccessModal}
+                            setConfirmModal={setConfirmModal}
+                            setDepositModal={setDepositModal}
+                            title="Role Created Successfully"
+                            button="Back to Role Managment"
+                        />
+                    )}
+                    {type === "product" && (
+                        <SuccessModal
+                            successModal={successModal}
+                            setSuccessModal={setSuccessModal}
+                            setConfirmModal={setConfirmModal}
+                            setDepositModal={setDepositModal}
+                            title="Product Created Successfully"
+                            button="Back to Product"
+                        />
+                    )}
                 </>
             )} 
         </>   

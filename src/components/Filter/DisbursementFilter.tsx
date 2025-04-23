@@ -1,11 +1,35 @@
-import { Button, DatePicker, Flex, Input, Select } from "antd";
+import { Button, DatePicker, Dropdown, Flex, Input, Select, Space } from "antd";
 import { CiSearch } from "react-icons/ci";
 import { COLOR } from "../../App";
 import { LuSlidersVertical } from "react-icons/lu";
+import { DownOutlined } from "@ant-design/icons"
 
 const { RangePicker } = DatePicker;
 
-const DisbursementFilter = ({ options, selectplaceholder, name, button, modal, setModal }:any) => {
+const DisbursementFilter = ({ options, selectplaceholder, name, button, modal, setModal, modal2, setModal2 }:any) => {
+    const dropdownItems = [
+        {
+            key: '1',
+            label: 'Loan',
+            onClick: () => handleMenuClick('Loan')
+        },
+        {
+            key: '2',
+            label: 'Deposit',
+            onClick: () => handleMenuClick('Deposit')
+        },
+    ];
+
+    const handleMenuClick = (type: string) => {
+        console.log(`Selected: ${type}`);
+        // Add your logic here for handling the selected option
+        if (type === 'Deposit') {
+            setModal(true);
+        }
+        if (type === 'loan') {
+            setModal2(true);
+        }
+    };
     return ( 
         <Flex align="center" justify="space-between" style={{width:"100%"}}>
             <Flex align="center" gap={4} style={{width:"70%"}}>
@@ -84,6 +108,27 @@ const DisbursementFilter = ({ options, selectplaceholder, name, button, modal, s
                     + {name}
                     </Button>
                 )}
+                 {(button === "product") ? (
+                    <Dropdown
+                        menu={{ items: dropdownItems }}
+                        placement="bottomRight"
+                        trigger={['click']}
+                    >
+                        <Button 
+                            type="primary"  
+                            size="large"
+                            style={{
+                                fontSize: "13.14px",
+                                fontWeight: "700"
+                            }}
+                        >
+                            <Space>
+                                + {name}
+                                <DownOutlined />
+                            </Space>
+                        </Button>
+                    </Dropdown>
+                ) : null}
             </Flex>
         </Flex>
     );

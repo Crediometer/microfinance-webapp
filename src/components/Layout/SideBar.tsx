@@ -18,6 +18,7 @@ import profile from '../../assets/profile.png'
 import { FaCircleNodes } from 'react-icons/fa6';
 import { BsFillClipboard2DataFill } from 'react-icons/bs';
 import { PiChartPieSliceFill } from "react-icons/pi";
+import { RiPlayList2Fill } from 'react-icons/ri';
 // import {
 //   PATH_AUTH,
 //   PATH_DASHBOARD,
@@ -328,9 +329,46 @@ const items: MenuProps['items'] = [
   ),
 
   getItem(
-    <Link to="/dashboard/management">Management</Link>,
+    "Management",
     'management',
-    null
+    <RiPlayList2Fill/>,
+    [
+      getItem(
+        <Link to="/dashboard/management">Profile</Link>,
+        'profile',
+        null
+      ),
+      getItem(
+        <Link to="/dashboard/management/branch">Branch</Link>,
+        'batches',
+        null
+      ),
+      getItem(
+        <Link to="/dashboard/management/role">Role Management</Link>,
+        'Role Management',
+        null
+      ),
+      getItem(
+        <Link to="/dashboard/management/reset">Password Reset</Link>,
+        'Password Reset',
+        null
+      ),
+      getItem(
+        <Link to="/dashboard/transaction/ledger">Account</Link>,
+        'approval',
+        null
+      ),
+      getItem(
+        <Link to="/dashboard/management/product">Product</Link>,
+        'approval',
+        null
+      ),
+      getItem(
+        <Link to="/dashboard/transaction/cheque">Notification</Link>,
+        'approval',
+        null
+      ),
+    ]
   ),
   getItem(
     "Overview",
