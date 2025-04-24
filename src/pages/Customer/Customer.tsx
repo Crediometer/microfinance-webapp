@@ -6,6 +6,8 @@ import { MdTouchApp } from "react-icons/md";
 import PlainTable from "../../components/Table/PlainTable";
 import type { TableProps } from 'antd';
 import Filter from "../../components/Filter/Filter";
+import CustomerDetailsModal from "../../components/Modal/CustomerModal";
+import { useState } from "react";
 
 
 const { RangePicker } = DatePicker;
@@ -189,6 +191,16 @@ const options = [
     ]
 
 const CustomerPage = () => {
+    const [customerModal, setCustomerModal] = useState(true);
+    const handleCancel = () => {
+        setCustomerModal(false);
+      };
+    
+      const handleFinish = (values: any) => {
+        console.log('Form values:', values);
+        setCustomerModal(false);
+        // Process the form data here
+      };
     return (
         <>
             <Filter options={options} selectplaceholder="All Customer" name="Create New Customer" button="customer"/>
@@ -261,6 +273,13 @@ const CustomerPage = () => {
             >
                 <PlainTable<DataType> dataType="Customer" columns={columns} data={data}/>
             </Col>   
+            {customerModal && (
+                <CustomerDetailsModal 
+                    visible={customerModal}
+                    onCancel={handleCancel}
+                    onFinish={handleFinish}
+                />
+            )}
         </>
     );
 }
