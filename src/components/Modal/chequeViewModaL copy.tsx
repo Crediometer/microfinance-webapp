@@ -231,8 +231,7 @@ const ChequeViewModal = ({approveModal, setApproveModal, setViewModal, viewModal
                     }}
                     onClick={() => setViewModal(false)}
                 >
-                    Cancle
-                </Button> */}
+                    cancel                </Button> */}
                 <Button
                 style={{
                     width:"100%",

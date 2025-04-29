@@ -221,8 +221,7 @@ const DepositEditModal = ({editModal, setEditModal}: any) => {
                                 fontFamily:"500"
                             }}
                         >
-                            Cancle
-                        </Button>
+                            cancel                        </Button>
                         <Button
                         style={{
                             width:"50%",

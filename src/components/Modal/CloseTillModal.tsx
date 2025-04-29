@@ -87,8 +87,7 @@ const CloseTillModal = ({createModal, setCreateModal}: any) => {
                                 fontFamily:"500"
                             }}
                         >
-                            Cancle
-                        </Button>
+                            cancel                        </Button>
                         <Button
                         style={{
                             width:"50%",

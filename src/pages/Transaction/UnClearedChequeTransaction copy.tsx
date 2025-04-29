@@ -140,7 +140,7 @@ const UnClearedChequeTransaction = () => {
     ];
     return ( 
         <>
-            <DisbursementFilter options={options} selectplaceholder="Account State" name="New Loan" button="deposit" modal={depositModal} setModal={setDepositModal}/>
+            <DisbursementFilter options={options} selectplaceholder="Account State"  modal={depositModal} setModal={setDepositModal}/>
              <Col
                 style={{
                     marginTop: "28px"

@@ -215,8 +215,7 @@ const EditDisbursementModal = ({depositModal, setDepositModal}: any) => {
                             }}      
                             onClick={()=>{setConfirmModal(true);}}
                         >
-                            Cancle
-                        </Button>
+                            cancel                        </Button>
                         <Button
                             style={{
                                 marginTop:"6px",

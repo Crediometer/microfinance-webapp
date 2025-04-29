@@ -113,8 +113,7 @@ const CreateWhitelistModal = ({depositModal, setDepositModal}: any) => {
                                 fontFamily:"500"
                             }}
                         >
-                            Cancle
-                        </Button>
+                            cancel                        </Button>
                         <Button
                         style={{
                             width:"50%",

@@ -248,9 +248,7 @@ const CreateUserModal = ({createModal, setCreateModal}: any) => {
                                     fontFamily:"500"
                                 }}
                             >
-                                Cancle
-                            </Button>
-                            <Button
+                                cancel                            <Button
                             style={{
                                 width:"50%",
                                 height:"43px",
@@ -417,8 +415,7 @@ const CreateUserModal = ({createModal, setCreateModal}: any) => {
                                  fontFamily:"500"
                              }}
                          >
-                             Cancle
-                         </Button>
+                             cancel                         </Button>
                          <Button
                          style={{
                              width:"100%",
@@ -583,8 +580,7 @@ const CreateUserModal = ({createModal, setCreateModal}: any) => {
                                  fontFamily:"500"
                              }}
                          >
-                             Cancle
-                         </Button>
+                             cancel                         </Button>
                          <Button
                          style={{
                              width:"100%",

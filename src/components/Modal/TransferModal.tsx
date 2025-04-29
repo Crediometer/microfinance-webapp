@@ -128,8 +128,7 @@ const TransferModal = ({transferModal, setTransferModal}: any) => {
                                 fontFamily:"500"
                             }}
                         >
-                            Cancle
-                        </Button>
+                            cancel                        </Button>
                         <Button
                         style={{
                             width:"50%",

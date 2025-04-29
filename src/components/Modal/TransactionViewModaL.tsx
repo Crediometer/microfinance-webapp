@@ -175,8 +175,7 @@ const TransactionViewModal = ({approveModal, setApproveModal, setViewModal, view
                     }}
                     onClick={() => setViewModal(false)}
                 >
-                    Cancle
-                </Button>
+                    cancel                </Button>
                 <Button
                 style={{
                     width:"50%",
