@@ -410,23 +410,35 @@ const SideNav = ({ ...others }: SideNavProps) => {
     }
   };
 
+  // useEffect(() => {
+  //   const paths = pathname.split('/');
+  //   // For deeper paths, keep parent menus open
+  //   const parentKeys = [];
+    
+  //   // Build array of parent keys
+  //   for (let i = 1; i < paths.length; i++) {
+  //     const key = paths.slice(1, i + 1).join('/');
+  //     parentKeys.push(key);
+  //   }
+    
+  //   setOpenKeys(parentKeys);
+    
+  //   // Set current to the full path for better matching with menu items
+  //   setCurrent(pathname.substring(1)); // Remove leading slash
+  // }, [pathname]);
   useEffect(() => {
-    const paths = pathname.split('/');
-    // For deeper paths, keep parent menus open
-    const parentKeys = [];
-    
-    // Build array of parent keys
-    for (let i = 1; i < paths.length; i++) {
-      const key = paths.slice(1, i + 1).join('/');
-      parentKeys.push(key);
+    const paths = pathname.split('/').filter(Boolean); // remove empty
+    const keys: string[] = [];
+  
+    // Build keys progressively
+    for (let i = 0; i < paths.length; i++) {
+      const key = paths.slice(0, i + 1).join('/');
+      keys.push(key);
     }
-    
-    setOpenKeys(parentKeys);
-    
-    // Set current to the full path for better matching with menu items
-    setCurrent(pathname.substring(1)); // Remove leading slash
+  
+    setOpenKeys(keys.slice(0, -1)); // all except the last
+    setCurrent(keys[keys.length - 1]); // current leaf path
   }, [pathname]);
-
   return (
     <Sider ref={nodeRef} width="220px" className='sidebar'  style={siderStyle} breakpoint="lg" collapsedWidth="0" {...others}>
       {/* <Logo
@@ -483,7 +495,7 @@ const SideNav = ({ ...others }: SideNavProps) => {
           onClick={onClick}
           openKeys={openKeys}
           onOpenChange={onOpenChange}
-          selectedKeys={[current]}
+          selectedKeys={[...openKeys, current]}
           style={{ border: 'none', marginTop:"47px" }}
         />
       </ConfigProvider>

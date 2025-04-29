@@ -216,7 +216,9 @@ const DisbursementModal = ({depositModal, setDepositModal}: any) => {
                             }}      
                             onClick={()=>{setConfirmModal(true);}}
                         >
-                            cancel                        <Button
+                            cancel   
+                        </Button>                      
+                        <Button
                             style={{
                                 marginTop:"6px",
                                 width:"50%",

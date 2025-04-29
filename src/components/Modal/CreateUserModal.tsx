@@ -248,7 +248,9 @@ const CreateUserModal = ({createModal, setCreateModal}: any) => {
                                     fontFamily:"500"
                                 }}
                             >
-                                cancel                            <Button
+                                cancel   
+                            </Button>                         
+                            <Button
                             style={{
                                 width:"50%",
                                 height:"43px",
