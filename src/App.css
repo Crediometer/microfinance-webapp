@@ -199,6 +199,16 @@ body{
   margin-top: 5px;
   margin-right: 8px;
 }
+.ant-menu-item-selected,
+.ant-menu-submenu-selected,
+.ant-menu-item-active {
+  color: #234FE3 !important;
+}
+
+.ant-menu-item:hover,
+.ant-menu-submenu-title:hover {
+  color: #234FE3 !important;
+}
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
   .overflow-scroll {

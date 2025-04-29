@@ -2,6 +2,7 @@ import {
   DollarOutlined,
   FolderOpenOutlined,
   LineOutlined,
+  PieChartFilled,
   PieChartOutlined,
   RightOutlined,
   ShoppingCartOutlined,
@@ -19,6 +20,10 @@ import { FaCircleNodes } from 'react-icons/fa6';
 import { BsFillClipboard2DataFill } from 'react-icons/bs';
 import { PiChartPieSliceFill } from "react-icons/pi";
 import { RiPlayList2Fill } from 'react-icons/ri';
+import { MdDashboardCustomize } from 'react-icons/md';
+import { FaUserFriends } from 'react-icons/fa';
+import { TbGitBranch } from 'react-icons/tb';
+import { GrTransaction } from "react-icons/gr";
 // import {
 //   PATH_AUTH,
 //   PATH_DASHBOARD,
@@ -49,7 +54,7 @@ const getItem = (
 
 const items: MenuProps['items'] = [
 
-  getItem("Dashboard", 'default', <PieChartOutlined />,[
+  getItem("Dashboard", 'default', <MdDashboardCustomize/>,[
     getItem(
       <Link to="/dashboard/default">Home</Link>,
       'auth-verify',
@@ -64,9 +69,9 @@ const items: MenuProps['items'] = [
   getItem(
     <Link to="/dashboard/customer">Customer</Link>,
     'customer',
-    <ShoppingCartOutlined />
+    <FaUserFriends />
   ),
-  getItem("Account", 'account', <UsergroupAddOutlined />,[
+  getItem("Account", 'account', <PieChartFilled/>,[
     getItem(
       <Link to="/dashboard/account">Deposit Account</Link>,
       'deposit',
@@ -88,7 +93,7 @@ const items: MenuProps['items'] = [
       null
     ),
   ]),
-  getItem("Disbursement",'disbursement',<UsergroupAddOutlined />,[
+  getItem("Disbursement",'disbursement',<TbGitBranch />,[
     getItem(
       <Link to="/dashboard/disbursement">All Disbursements</Link>,
       'disbursement',
@@ -115,7 +120,7 @@ const items: MenuProps['items'] = [
       null
     ),
   ]),
-  getItem( "All Transaction", 'transactions', <UsergroupAddOutlined />, [
+  getItem( "All Transaction", 'transactions', <GrTransaction />, [
     getItem(
       <Link to="/dashboard/transaction">All</Link>,
       'disbursement',
@@ -313,16 +318,7 @@ const items: MenuProps['items'] = [
       ),
     ]
   ),
-  getItem(
-    "Mobile Channel",
-    'mobile',
-    <FolderOpenOutlined />
-  ),
-  getItem(
-    "Branches",
-    'branches',
-    <DollarOutlined />
-  ),
+
   getItem(<Link to="/dashboard/accounting">Accounting</Link>,
     'accounting',
     <PiChartPieSliceFill />

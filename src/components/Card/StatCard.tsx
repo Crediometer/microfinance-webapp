@@ -14,7 +14,9 @@ const StatCard: React.FC<StatCardProps> = (props) => {
     return ( 
         <Card
             style={{
-                backgroundColor: props.color
+                backgroundColor: props.color,
+                width:300,
+                borderRadius: "16px",
             }}
         >
             <Flex vertical gap="middle">
@@ -23,7 +25,9 @@ const StatCard: React.FC<StatCardProps> = (props) => {
                     fontSize:"14px",
                 }
             }>{props.name}</Typography.Text>
-            <Flex align="center" justify="space-between">
+            <Flex align="center" justify="space-between" style={{
+                marginTop: "10px",
+            }}>
                 <Typography.Title level={2} style={{ margin: 0 }}>
                     <CountUp end={props.value}/>
                 </Typography.Title>
