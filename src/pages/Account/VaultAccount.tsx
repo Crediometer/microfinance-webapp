@@ -1,405 +1,284 @@
-import { Button, Card, Col, Dropdown, Flex, TableColumnsType, Typography } from "antd";
-import Filter from "../../components/Filter/Filter";
-import NestedTable from "../../components/Table/NestedTable";
+import { Button, Card, Col, Dropdown, Statistic, Typography, type TableProps, type MenuProps, Tag } from "antd";
 import { useState } from "react";
-import DepositModal from "../../components/Modal/DepositModal";
-import LoanModal from "../../components/Modal/LoanModal";
-import LoanNestedTable from "../../components/Table/LoanNestedTable";
-import PlainTable from "../../components/Table/PlainTable";
-import VaultFilter from "../../components/Filter/VaultFilter";
-import type { TableProps, MenuProps  } from 'antd';
-import { FaCheck, FaRegEye, FaTrash } from "react-icons/fa6";
-import { CiEdit } from "react-icons/ci";
-import { FaTimesCircle } from "react-icons/fa";
-import { MdTouchApp } from "react-icons/md";
+import { FaRegEye, FaRegTrashAlt } from "react-icons/fa";
+import { HiOutlinePencilAlt, HiOutlineArrowsExpand } from "react-icons/hi";
+import { MdMoreVert } from "react-icons/md";
 import CountUp from "react-countup";
+
+// Components (assuming these exist)
+import VaultFilter from "../../components/Filter/VaultFilter";
+import PlainTable from "../../components/Table/PlainTable";
+import CreateVaultModal from "../../components/Modal/CreateVaultModal";
 import VaultModal from "../../components/Modal/VaultModal";
 import DeleteModal from "../../components/Modal/DeleteModal";
 import TransferModal from "../../components/Modal/TransferModal";
-import CreateVaultModal from "../../components/Modal/CreateVaultModal";
+import { MoreOutlined } from "@ant-design/icons";
 
 interface DataType {
-  key: React.Key;
-  id: string,
-  current: string;
-  currency: string;
-  branch: string;
-  accountType: string;
-  status: string[];
-  openDate: string;
+    key: React.Key;
+    id: string;
+    current: string;
+    currency: string;
+    branch: string;
+    accountType: string;
+    status: string[];
+    openDate: string;
 }
 
-const data: DataType[] = [
-    {
-        key: '1',
-        id:"#5089",
-        current: '50,000',
-        currency: "NGN",
-        branch:"Lekki",
-        accountType:"Savings",
-        status: ['1'],
-        openDate:"01/04/2024"
-    },
-    {
-        key: '2',
-        id:"#5089",
-        current: '50,000',
-        currency: "NGN",
-        branch:"Lekki",
-        accountType:"Savings",
-        status: ['0'],
-        openDate:"01/04/2024"
-    },
-    {
-        key: '3',
-        id:"#5089",
-        current: '50,000',
-        currency: "NGN",
-        branch:"Lekki",
-        accountType:"Savings",
-        status: ['1'],
-        openDate:"01/04/2024"
-    },
-    {
-        key: '4',
-        id:"#5089",
-        current: '50,000',
-        currency: "NGN",
-        branch:"Lekki",
-        accountType:"Savings",
-        status: ['0'],
-        openDate:"01/04/2024"
-    },
-    {
-        key: '5',
-        id:"#5089",
-        current: '50,000',
-        currency: "NGN",
-        branch:"Lekki",
-        accountType:"Savings",
-        status: ['1'],
-        openDate:"01/04/2024"
-    },
-    {
-        key: '6',
-        id:"#5089",
-        current: '50,000',
-        currency: "NGN",
-        branch:"Lekki",
-        accountType:"Savings",
-        status: ['0'],
-        openDate:"01/04/2024"
-    },
-    {
-        key: '7',
-        id:"#5089",
-        current: '50,000',
-        currency: "NGN",
-        branch:"Lekki",
-        accountType:"Savings",
-        status: ['1'],
-        openDate:"01/04/2024"
-    },
-    {
-        key: '8',
-        id:"#5089",
-        current: '50,000',
-        currency: "NGN",
-        branch:"Lekki",
-        accountType:"Savings",
-        status: ['1'],
-        openDate:"01/04/2024"
-    },
-    ];
-const currencyoptions = [
-    {
-        value: 'ngn',
-        label: 'NGN',
-    },
-    {
-        value: 'usd',
-        label: 'USD',
-    },
-    {
-        value: 'gbp',
-        label: 'GBP',
-    },
-]
-const statusoptions = [
-    {
-        value: 'approved',
-        label: 'Approved',
-    },
-    {
-        value: 'pending',
-        label: 'Pending',
-    },
-    {
-        value: 'Blacklist',
-        label: 'Blacklisted',
-    },
-]
-const branchoptions = [
-    {
-        value: 'akure',
-        label: 'Akure',
-    },
-    {
-        value: 'Ibadan',
-        label: 'Ibadan',
-    },
-    {
-        value: 'Abuja',
-        label: 'Abuja',
-    },
-]
+// Mock data
+const mockData: DataType[] = Array.from({ length: 8 }, (_, index) => ({
+    key: String(index + 1),
+    id: "#5089",
+    current: "50,000",
+    currency: "NGN",
+    branch: "Lekki",
+    accountType: "Savings",
+    status: [index % 2 === 0 ? "1" : "0"],
+    openDate: "01/04/2024",
+}));
 
-const VaultAccount = () => {
-    const [depositModal, setDepositModal] = useState(false)
-    const [fundModal, setFundModal] = useState(false)
-    const [deleteModal, setDeleteModal] = useState(false)
-    const [transferModal, setTransferModal] = useState(false)
-    const items: MenuProps['items'] = [
+// Configuration constants
+const FILTER_OPTIONS = {
+    currency: [
+        { value: "ngn", label: "NGN" },
+        { value: "usd", label: "USD" },
+        { value: "gbp", label: "GBP" },
+    ],
+    status: [
+        { value: "approved", label: "Approved" },
+        { value: "pending", label: "Pending" },
+        { value: "blacklist", label: "Blacklisted" },
+    ],
+    branch: [
+        { value: "akure", label: "Akure" },
+        { value: "ibadan", label: "Ibadan" },
+        { value: "abuja", label: "Abuja" },
+    ],
+};
+
+// Statistics configuration
+const STATISTICS_CONFIG = [
+    {
+        title: "Number of Open Vaults",
+        value: 7265,
+        bgColor: "bg-[#EDEEFC]",
+    },
+    {
+        title: "Total Opening Balance",
+        value: 97265,
+        suffix: " NGN",
+        bgColor: "bg-[#E6F1FD]",
+    },
+    {
+        title: "Total Current Balance",
+        value: 57265,
+        suffix: " NGN",
+        bgColor: "bg-[#EDEEFC]",
+    },
+];
+
+const VaultAccount: React.FC = () => {
+    // Modal states
+    const [modals, setModals] = useState({
+        create: false,
+        fund: false,
+        delete: false,
+        transfer: false,
+    });
+
+    const toggleModal = (modalType: keyof typeof modals) => {
+        setModals(prev => ({
+            ...prev,
+            [modalType]: !prev[modalType],
+        }));
+    };
+
+    // Action menu items
+    const actionMenuItems: MenuProps['items'] = [
         {
-        key: '1',
-        label: 'Delete',
-        icon: <FaTrash />,
-          onClick: ()=>{setDeleteModal(true)}
-        //extra: '⌘P',
+            key: 'view',
+            label: 'View Details',
+            icon: <FaRegEye className="text-blue-500" />,
+            onClick: () => console.log('View clicked'),
         },
         {
-        key: '2',
-        label: 'Fund Vault',
-        icon: <CiEdit />,
-        onClick: ()=>{setFundModal(true)}
-        //extra: '⌘B',
+            key: 'fund',
+            label: 'Fund Vault',
+            icon: <HiOutlinePencilAlt className="text-green-500" />,
+            onClick: () => toggleModal('fund'),
         },
         {
-        key: '3',
-        label: 'Transfer',
-        icon: <FaCheck />,
-        onClick: ()=>{setTransferModal(true)}
-        // extra: '⌘S',
+            key: 'transfer',
+            label: 'Transfer',
+            icon: <HiOutlineArrowsExpand className="text-orange-500" />,
+            onClick: () => toggleModal('transfer'),
         },
         {
-        key: '4',
-        label: 'Change Account',
-        icon: <FaTimesCircle/>,
-        //   onClick: ()=>{setRejectModal(true)}
-        // extra: '⌘S',
+            type: 'divider',
+        },
+        {
+            key: 'delete',
+            label: 'Delete',
+            icon: <FaRegTrashAlt className="text-red-500" />,
+            onClick: () => toggleModal('delete'),
+            danger: true,
         },
     ];
+
+    // Status renderer component
+    const StatusRenderer = ({ status }: { status: string[] }) => {
+        const isOpen = status[0] === "1";
+        return (
+            <Tag
+                color={isOpen ? "green" : "red"}
+
+            >
+                {isOpen ? "Open" : "Closed"}
+            </Tag>
+        );
+    };
+
+    // Table columns configuration
     const columns: TableProps<DataType>['columns'] = [
         {
             title: 'ID',
             dataIndex: 'id',
             key: 'id',
+            width: 100,
         },
         {
             title: 'Current Balance',
             dataIndex: 'current',
             key: 'current',
+            width: 150,
+            render: (value) => (
+                <span className="font-medium">₦{value}</span>
+            ),
         },
         {
             title: 'Currency',
             dataIndex: 'currency',
             key: 'currency',
+            width: 100,
         },
         {
             title: 'Branch',
             dataIndex: 'branch',
             key: 'branch',
+            width: 120,
         },
         {
             title: 'Account Type',
             dataIndex: 'accountType',
             key: 'accountType',
+            width: 130,
         },
         {
-        title: 'Status',
-        key: 'status',
-        dataIndex: 'status',
-        render: (_, { status }) => (
-            <>
-            {status.map((tag) => {
-                let color
-                if (tag === '1') {
-                color = '#058B42';
-                }else{
-                    color = "#B11226"
-                }
-                return (
-                    <Typography.Text
-                        color={color}
-                        style={{
-                            fontSize: "15px",
-                            fontWeight: "600",
-                            color: color,
-                            textTransform: "capitalize"
-                        }}
-                    >{tag === "1" ? "Open":"Close"}</Typography.Text>
-                );
-            })}
-            </>
-        ),
+            title: 'Status',
+            key: 'status',
+            dataIndex: 'status',
+            width: 100,
+            render: (status) => <StatusRenderer status={status} />,
         },
         {
             title: 'Opened Date',
             dataIndex: 'openDate',
             key: 'openDate',
+            width: 120,
         },
         {
-        title: 'Action',
-        key: 'action',
-        render: (_, record) => (
-            <Dropdown menu={{ items }}>
-            <Button style={{
-                backgroundColor: 'transparent',
-                border:"1px solid #C4C4C4",
-                fontSize: "13px",
-                fontWeight:"500",
-                color:"#9BA6BC"
-                }}
-                onClick={(e) => e.preventDefault()}
-            >
-                Action <MdTouchApp color="#000000" />
-            </Button>
-            </Dropdown>
-        ),
+            title: '',
+            key: 'action',
+            width: 100,
+            fixed: 'right',
+            render: () => (
+                <Dropdown
+                    menu={{ items: actionMenuItems }}
+                    trigger={['click']}
+                    placement="bottomRight"
+                >
+                    <MoreOutlined />
+                </Dropdown>
+            ),
         },
     ];
-    return ( 
-        <>
-            <Flex
-                justify="space-between"
-                style={{
-                    marginBottom: "30px"
-                }}
-            >
-                <Card  
-                    style={{
-                        backgroundColor:"#EDEEFC",
-                        width:"33%"
-                    }}
-                >
-                    <p
-                        style={{
-                            fontSize: "24px",
-                            color: "#000000",
-                            fontWeight: 400,
-                        }}
-                    >
-                        Number of Open Vaults
-                    </p>
-                    <Typography.Title
-                        style={{
-                            fontSize:"38px",
-                            marginTop:"18px",
-                            color: "#1C1C1C",
-                            fontWeight: 600,
-                        }}
-                    >
-                        <CountUp end={7265}/>
-                    </Typography.Title>
-                </Card>
+
+    // Statistics cards component
+    const StatisticsCards = () => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            {STATISTICS_CONFIG.map((stat, index) => (
                 <Card
-                    style={{
-                        backgroundColor:"#E6F1FD",
-                        width:"33%"
-                    }}
+                    key={index}
+                    className={`${stat.bgColor} border-0 shadow-sm`}
                 >
-                    <p
-                        style={{
-                            fontSize: "24px",
-                            color: "#000000",
-                            fontWeight: 400,
-                        }}
-                    >
-                        Total Opening Balance
-                    </p>
-                    <Typography.Title
-                        style={{
-                            fontSize:"38px",
-                            marginTop:"18px",
-                            color: "#1C1C1C",
-                            fontWeight: 600,
-                        }}
-                    >
-                        <CountUp end={97265}/>  NGN
-                    </Typography.Title>
+                    <Statistic
+                        title={
+                            <span className="text-lg text-gray-800 font-normal">
+                                {stat.title}
+                            </span>
+                        }
+                        value={stat.value}
+                        formatter={(value) => (
+                            <span className="text-3xl font-semibold text-gray-900">
+                                <CountUp end={Number(value)} />
+                                {stat.suffix}
+                            </span>
+                        )}
+                    />
                 </Card>
-                <Card
-                    style={{
-                        backgroundColor:"#EDEEFC",
-                        width:"33%"
-                    }}
-                >
-                    <p
-                        style={{
-                            fontSize: "24px",
-                            color: "#000000",
-                            fontWeight: 400,
-                        }}
-                    >
-                        Total Current Balance 
-                    </p>
-                    <Typography.Title
-                        style={{
-                            fontSize:"38px",
-                            marginTop:"18px",
-                            color: "#1C1C1C",
-                            fontWeight: 600,
-                        }}
-                    >
-                        <CountUp end={57265}/>  NGN
-                    </Typography.Title>
-                </Card>
-            </Flex>
-            <VaultFilter
-                currencyOption={currencyoptions} 
-                currencyPlaceholder="Filter By Currency"
-                statusOption={currencyoptions} 
-                statusPlaceholder="Filter By Status" 
-                branchOption={currencyoptions} 
-                branchPlaceholder="Filter By Branch"  
-                name="Vault Creation" 
-                button="deposit" 
-                modal={depositModal} 
-                setModal={setDepositModal}
-            />
-            <Col 
-                style={{
-                    marginTop: "28px"
-                }}
-            >
-                <PlainTable<DataType> dataType="Customer" columns={columns} data={data} />
-            </Col>
-            {depositModal && (
-                <CreateVaultModal
-                    createModal = {depositModal}
-                    setCreateModal ={setDepositModal}
-                />
-            )}
-            {fundModal && (
-                <VaultModal
-                    depositModal = {fundModal}
-                    setDepositModal ={setFundModal}
-                />
-            )}
-            {deleteModal && (
-                <DeleteModal
-                    deleteModal = {deleteModal}
-                    setDeleteModal ={setDeleteModal}
-                />
-            )}
-             {transferModal && (
-                <TransferModal
-                    transferModal = {transferModal}
-                    setTransferModal ={setTransferModal}
-                />
-            )}
-        </>
+            ))}
+        </div>
     );
-}
- 
+
+    return (
+        <div className="space-y-6">
+            {/* Statistics Cards */}
+            <StatisticsCards />
+
+            {/* Filter Component */}
+            <VaultFilter
+                currencyOption={FILTER_OPTIONS.currency}
+                currencyPlaceholder="Filter By Currency"
+                statusOption={FILTER_OPTIONS.status}
+                statusPlaceholder="Filter By Status"
+                branchOption={FILTER_OPTIONS.branch}
+                branchPlaceholder="Filter By Branch"
+                name="Vault Creation"
+                button="deposit"
+                setModal={() => toggleModal('create')}
+            />
+
+            {/* Table */}
+            <div className="mt-7">
+                <PlainTable<DataType>
+                    dataType="Vault Account"
+                    columns={columns}
+                    data={mockData}
+                />
+            </div>
+
+            {/* Modals */}
+            <CreateVaultModal
+                createModal={modals.create}
+                setCreateModal={() => toggleModal('create')}
+            />
+
+            <VaultModal
+                depositModal={modals.fund}
+                setDepositModal={() => toggleModal('fund')}
+            />
+
+            <DeleteModal
+                deleteModal={modals.delete}
+                setDeleteModal={() => toggleModal('delete')}
+            />
+
+            <TransferModal
+                transferModal={modals.transfer}
+                setTransferModal={() => toggleModal('transfer')}
+            />
+        </div>
+    );
+};
+
 export default VaultAccount;
