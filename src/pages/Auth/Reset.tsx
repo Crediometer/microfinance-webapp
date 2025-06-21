@@ -64,7 +64,7 @@ const ResetPassword = () => {
                             }}
                            >
                                 <Typography.Text>Username</Typography.Text>
-                                <Input size="large" placeholder="Enter your username"
+                                <Input // size="large" placeholder="Enter your username"
                                     style={{
                                        marginTop: "6px"
                                     }} 
@@ -76,7 +76,7 @@ const ResetPassword = () => {
                                 }}
                             >
                                 <Typography.Text>Email Address</Typography.Text>
-                                <Input size="large" placeholder="Enter your Email Address"
+                                <Input // size="large" placeholder="Enter your Email Address"
                                     style={{
                                         marginTop: "6px"
                                     }}  
@@ -112,11 +112,11 @@ const ResetPassword = () => {
                       <Typography.Title level={3} style={{textAlign:"center", marginBottom: "32px"}}>Welcome to BioBank</Typography.Title>
                       <Col>
                         <Typography.Text>Username</Typography.Text>
-                        <Input size="large" placeholder="Enter a username"/>
+                        <Input // size="large" placeholder="Enter a username"/>
                       </Col>
                       <Col>
                         <Typography.Text>Password</Typography.Text>
-                        <Input size="large" placeholder="Enter a username"/>
+                        <Input // size="large" placeholder="Enter a username"/>
                       </Col>
                     </Col> */}
                    </Flex>

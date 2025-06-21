@@ -111,7 +111,7 @@ const TellerInfo = () => {
                         paddingRight: 160
                     }}
                 >
-                    <Search placeholder="Search using Account Number, Name, Product Type " enterButton="Search" size="large" prefix={<CiSearch/>}/>
+                    <Search placeholder="Search using Account Number, Name, Product Type" enterButton="Search"  prefix={<CiSearch/>}/>
                 </Col>
                 <Col style={{marginTop: 48}}>
                     <Typography.Title 

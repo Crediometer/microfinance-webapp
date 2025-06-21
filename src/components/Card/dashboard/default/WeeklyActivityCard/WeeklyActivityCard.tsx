@@ -1,9 +1,17 @@
 import { Line } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Filler, Tooltip } from 'chart.js';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Filler,
+  Tooltip,
+} from 'chart.js';
 import { Card, CardProps, Flex, Select, Typography } from 'antd';
 import { useEffect, useRef, useState } from 'react';
 
-// Register required components for Chart.js
+// Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Filler, Tooltip);
 
 type Activity = {
@@ -16,7 +24,7 @@ type ChartProps = {
 };
 
 const AreaChart = ({ data }: ChartProps) => {
-  const chartRef = useRef(null);
+  const chartRef = useRef<HTMLCanvasElement | null>(null);
   const [gradient, setGradient] = useState<string | CanvasGradient>('rgba(0,0,0,0.1)');
 
   useEffect(() => {
@@ -38,16 +46,17 @@ const AreaChart = ({ data }: ChartProps) => {
       setGradient(gradientFill);
     }
   }, []);
+
   const chartData = {
     labels: data.map((item) => item.day),
     datasets: [
       {
         data: data.map((item) => item.value),
-        borderColor: '#000000', // Line color
-        backgroundColor: gradient, // Light fill effect
-        fill: true, // Enables the area effect
-        tension: 0.4, // Makes the line smooth
-        pointRadius: 0, 
+        borderColor: '#000000',
+        backgroundColor: gradient,
+        fill: true,
+        tension: 0.4,
+        pointRadius: 0,
       },
     ],
   };
@@ -56,24 +65,26 @@ const AreaChart = ({ data }: ChartProps) => {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
-      legend: { display: false }, // Removes the legend/title
+      legend: { display: false },
       tooltip: { enabled: true },
     },
     scales: {
-      x: {
-        grid: { display: false }, // Hide X-axis grid
-      },
+      x: { grid: { display: false } },
       y: {
-        grid: { display: false }, // Hide Y-axis grid
-        ticks: {
-          stepSize: 10000,
-          beginAtZero: true,
-        },
+        grid: { display: false },
+        ticks: { stepSize: 10000, beginAtZero: true },
       },
     },
   };
 
-  return <Line ref={chartRef} data={chartData} options={options} style={{ height: '100%', width: '100%' }} />;
+  return (
+    <Line
+      ref={chartRef as any}
+      data={chartData}
+      options={options}
+      style={{ height: '100%', width: '100%' }}
+    />
+  );
 };
 
 type Props = {
@@ -82,14 +93,14 @@ type Props = {
 
 export const WeeklyActivityCard = ({ data, ...others }: Props) => {
   return (
-    <Card {...others} style={{ height: '330px', overflow: 'hidden' }}>
-      <Flex align='center' gap={80}>
-        <Typography.Title level={4}>Gross Loan Portfolio</Typography.Title>
+    <Card {...others} style={{ height: 330, overflow: 'hidden' }}>
+      <Flex align="center" justify="space-between" style={{ marginBottom: 16 }}>
+        <Typography.Title level={4} style={{ margin: 0 }}>
+          Gross Loan Portfolio
+        </Typography.Title>
         <Select
-          size='small'
-          style={{ width: 130 }}
           showSearch
-          placeholder='This Year'
+          placeholder="This Year"
           filterOption={(input, option) =>
             (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
           }
@@ -100,7 +111,7 @@ export const WeeklyActivityCard = ({ data, ...others }: Props) => {
           ]}
         />
       </Flex>
-      <div style={{ height: '250px' }}>
+      <div style={{ height: 250 }}>
         <AreaChart data={data} />
       </div>
     </Card>

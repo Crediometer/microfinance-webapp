@@ -455,6 +455,7 @@ const SideNav = ({ ...others }: SideNavProps) => {
       >
         <Image
         width={130}
+        preview={false}
         src={logo}
         />
       </Flex>

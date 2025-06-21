@@ -97,7 +97,7 @@ const VaultFilter = ({
                 {(button === "deposit") && (
                     <Button 
                         type="primary"  
-                        size="large"
+                        // size="large"
                         style={{
                             fontSize: "13.14px",
                             fontWeight: "700"
@@ -112,7 +112,7 @@ const VaultFilter = ({
                 {(button === "customer") && (
                     <Button 
                         type="primary"  
-                        size="large"
+                        // size="large"
                         style={{
                             fontSize: "13.14px",
                             fontWeight: "700"

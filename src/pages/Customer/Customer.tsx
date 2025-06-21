@@ -256,7 +256,7 @@ const CustomerPage = () => {
                 <Flex>
                     <Button 
                         type="primary"  
-                        size="large"
+                        // size="large"
                         style={{
                             fontSize: "13.14px",
                             fontWeight: "700"

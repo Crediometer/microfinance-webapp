@@ -21,19 +21,19 @@ interface DataType {
 
 const columns: TableProps<DataType>['columns'] = [
     {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
+        title: 'Name',
+        dataIndex: 'name',
+        key: 'name',
     },
     {
-      title: 'Repayment Date',
-      dataIndex: 'repayDay',
-      key: 'repayDay',
+        title: 'Repayment Date',
+        dataIndex: 'repayDay',
+        key: 'repayDay',
     },
     {
-      title: 'Payment Id',
-      dataIndex: 'paymentId',
-      key: 'paymentId',
+        title: 'Payment Id',
+        dataIndex: 'paymentId',
+        key: 'paymentId',
     },
     {
         title: 'Amount',
@@ -41,72 +41,72 @@ const columns: TableProps<DataType>['columns'] = [
         key: 'amount',
     },
     {
-      title: 'Status',
-      key: 'status',
-      dataIndex: 'status',
-      render: (_, { status }) => (
-        <>
-          {status.map((tag) => {
-            let color;
-            if (tag === 'Successfull') {
-              color = '#068B6C';
-            }else{
-                color="#1C1C1C66"
-            }
-            return (
-              <Tag color={color} key={tag}>
-                {tag.toUpperCase()}
-              </Tag>
-            );
-          })}
-        </> 
-      )
+        title: 'Status',
+        key: 'status',
+        dataIndex: 'status',
+        render: (_, { status }) => (
+            <>
+                {status.map((tag) => {
+                    let color;
+                    if (tag === 'Successfull') {
+                        color = '#068B6C';
+                    } else {
+                        color = "#1C1C1C66"
+                    }
+                    return (
+                        <Tag color={color} key={tag}>
+                            {tag.toUpperCase()}
+                        </Tag>
+                    );
+                })}
+            </>
+        )
     },
     {
-      title: 'Balance',
-      dataIndex: 'balance',
-      key: 'Balance',
-     
+        title: 'Balance',
+        dataIndex: 'balance',
+        key: 'Balance',
+
     },
-  ];
-  
+];
+
 const data: DataType[] = [
-  {
-    key: '1',
-    name: 'John Brown',
-    repayDay: "May 15, 2022",
-    paymentId: 'EFTOOM1271',
-    amount: "N23,000.00",
-    status: ['Successfull'],
-    balance:"N203,000"
-  },
-  {
-   key: '2',
-   name: 'John Brown',
-   repayDay: "May 15, 2022",
-   paymentId: 'EFTOOM1271',
-   amount: "N23,000.00",
-   status: ['Pending'],
-   balance:"N203,000"
-  },
-  {
-   key: '3',
-   name: 'John Brown',
-   repayDay: "May 15, 2022",
-   paymentId: 'EFTOOM1271',
-   amount: "N23,000.00",
-   status: ['Pending'],
-   balance:"N203,000"
-  },
+    {
+        key: '1',
+        name: 'John Brown',
+        repayDay: "May 15, 2022",
+        paymentId: 'EFTOOM1271',
+        amount: "N23,000.00",
+        status: ['Successfull'],
+        balance: "N203,000"
+    },
+    {
+        key: '2',
+        name: 'John Brown',
+        repayDay: "May 15, 2022",
+        paymentId: 'EFTOOM1271',
+        amount: "N23,000.00",
+        status: ['Pending'],
+        balance: "N203,000"
+    },
+    {
+        key: '3',
+        name: 'John Brown',
+        repayDay: "May 15, 2022",
+        paymentId: 'EFTOOM1271',
+        amount: "N23,000.00",
+        status: ['Pending'],
+        balance: "N203,000"
+    },
 ];
 
 const Teller = () => {
     const { accountType } = useAccountType();
     // const [accountType, setAccountType] = useState("Deposit")
-    return ( 
+    return (
         <>
             {accountType === "Deposit" ? (
-                <Col style={{padding: 40}}>
+                <Col style={{ padding: 40 }}>
                     <Col>
                         <Typography.Title level={4}>Account Details</Typography.Title>
                         <Divider></Divider>
@@ -168,7 +168,7 @@ const Teller = () => {
                                     }} placeholder="01-12-2025"></Input>
                                 </Col>
                             </Flex>
-                            <Flex gap={16} style={{marginTop: 47}}>
+                            <Flex gap={16} style={{ marginTop: 47 }}>
                                 <Col>
                                     <Typography.Text
                                         style={{
@@ -216,7 +216,7 @@ const Teller = () => {
                             </Flex>
                         </Card>
                     </Col>
-                    <Col style={{marginTop: 24}}>
+                    <Col style={{ marginTop: 24 }}>
                         <Typography.Title level={4}>Customer information </Typography.Title>
                         <Divider></Divider>
                         <Card>
@@ -254,7 +254,7 @@ const Teller = () => {
                                         marginTop: 8
                                     }} placeholder="Lekki"></Input>
                                 </Col>
-                            
+
                                 <Col>
                                     <Typography.Text
                                         style={{
@@ -269,7 +269,7 @@ const Teller = () => {
                             </Flex>
                         </Card>
                     </Col>
-                    <Col style={{marginTop: 24}}>
+                    <Col style={{ marginTop: 24 }}>
                         <Typography.Title level={4}>Mandate information </Typography.Title>
                         <Divider></Divider>
                         <Card>
@@ -317,45 +317,41 @@ const Teller = () => {
                                     <Input style={{
                                         marginTop: 8
                                     }} placeholder="Ondo"
-                                        suffix={<TbFileSearch/>}
+                                        suffix={<TbFileSearch />}
                                     ></Input>
                                 </Col>
                                 <Col>
-                                    <Typography.Text    
+                                    <Typography.Text
                                         style={{
                                             fontSize: "16px",
                                             fontWeight: 400,
                                         }}
                                     >Signature</Typography.Text>
-                                    <Input 
+                                    <Input
                                         style={{
                                             marginTop: 8
-                                        }} 
+                                        }}
                                         placeholder="01-12-2025"
-                                        suffix={<TbFileSearch/>}
+                                        suffix={<TbFileSearch />}
                                     ></Input>
                                 </Col>
                             </Flex>
                         </Card>
                     </Col>
                 </Col>
-            ): (
+            ) : (
                 <Col
-                style={{
-                    paddingLeft: 80,
-                    paddingRight: 80
-                }}
+                    style={{
+                        paddingLeft: 80,
+                        paddingRight: 80
+                    }}
                 >
-                    <Col 
-                        style={{
-                            paddingLeft: 160,
-                            paddingRight: 160
-                        }}
-                    >
-                        <Search placeholder="Search using Account Number, Name, Product Type " enterButton="Search" size="large" prefix={<CiSearch/>}/>
-                    </Col>
-                    <Col style={{marginTop: 48}}>
-                        <Typography.Title 
+
+                    <Search placeholder="Search using Account Number, Name, Product Type " enterButton="Search"
+                        prefix={<CiSearch />} />
+
+                    <Col style={{ marginTop: 48 }}>
+                        <Typography.Title
                             style={{
                                 fontSize: 20,
                                 fontWeight: 400,
@@ -410,7 +406,7 @@ const Teller = () => {
                                     }} placeholder="01-12-2025"></Input>
                                 </Col>
                             </Flex>
-                            <Flex gap={16} style={{marginTop: 47}}>
+                            <Flex gap={16} style={{ marginTop: 47 }}>
                                 <Col>
                                     <Typography.Text
                                         style={{
@@ -459,11 +455,11 @@ const Teller = () => {
                         </Card>
                     </Col>
 
-                    <Col style={{marginTop: 24}} >
-                        <Typography.Title 
-                        style={{
-                            fontSize: 20,
-                            fontWeight: 400,
+                    <Col style={{ marginTop: 24 }} >
+                        <Typography.Title
+                            style={{
+                                fontSize: 20,
+                                fontWeight: 400,
 
                             }}
                         >Loan History</Typography.Title>
@@ -472,9 +468,9 @@ const Teller = () => {
                     </Col>
                 </Col>
             )}
-       
-        </>    
+
+        </>
     );
 }
- 
+
 export default Teller;

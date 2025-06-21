@@ -4,23 +4,21 @@ import { Input } from 'antd';
 
 const { Search } = Input;
 const SearchTeller = () => {
-    return ( 
+    return (
         <>
-                <Col style={{
-                    padding: 40
-                }}>
-                <Col 
-                    style={{
-                        padding: 40
-                    }}
-                >
-                    <Search placeholder="Search using Account Number, Name, Product Type " enterButton="Search" size="large" prefix={<CiSearch/>}/>
-                </Col>
+            <Col style={{
+                padding: 40
+            }}>
+                <Search
+                    placeholder="Search using Account Number, Name, Product Type"
+                    enterButton="Search"
+                    prefix={<CiSearch />}
+                />
                 <Card style={{
                     height: "60vh",
-                    display:"flex",
+                    display: "flex",
                     alignItems: "center",
-                    justifyContent:"center"
+                    justifyContent: "center"
                 }}>
                     <Typography.Title level={4}>
                         No date searched make a quick search
@@ -30,5 +28,5 @@ const SearchTeller = () => {
         </>
     );
 }
- 
+
 export default SearchTeller;

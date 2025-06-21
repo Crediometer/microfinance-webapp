@@ -60,7 +60,7 @@ const Filter = ({ options, selectplaceholder, name, button, modal, setModal }:an
                 {(button === "deposit") && (
                     <Button 
                         type="primary"  
-                        size="large"
+                        // size="large"
                         style={{
                             fontSize: "13.14px",
                             fontWeight: "700"
@@ -75,7 +75,7 @@ const Filter = ({ options, selectplaceholder, name, button, modal, setModal }:an
                 {(button === "customer") && (
                     <Button 
                         type="primary"  
-                        size="large"
+                        // size="large"
                         style={{
                             fontSize: "13.14px",
                             fontWeight: "700"

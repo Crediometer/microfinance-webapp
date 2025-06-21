@@ -64,7 +64,7 @@ const SignIn = () => {
                             }}
                            >
                                 <Typography.Text>Username</Typography.Text>
-                                <Input size="large" placeholder="Enter a username"
+                                <Input // size="large" placeholder="Enter a username"
                                     style={{
                                        marginTop: "6px"
                                     }} 
@@ -76,7 +76,7 @@ const SignIn = () => {
                                 }}
                             >
                                 <Typography.Text>Password</Typography.Text>
-                                <Input.Password size="large" placeholder="Enter a Password"
+                                <Input.Password // size="large" placeholder="Enter a Password"
                                     style={{
                                         marginTop: "6px"
                                     }}  
@@ -114,11 +114,11 @@ const SignIn = () => {
                       <Typography.Title level={3} style={{textAlign:"center", marginBottom: "32px"}}>Welcome to BioBank</Typography.Title>
                       <Col>
                         <Typography.Text>Username</Typography.Text>
-                        <Input size="large" placeholder="Enter a username"/>
+                        <Input // size="large" placeholder="Enter a username"/>
                       </Col>
                       <Col>
                         <Typography.Text>Password</Typography.Text>
-                        <Input size="large" placeholder="Enter a username"/>
+                        <Input // size="large" placeholder="Enter a username"/>
                       </Col>
                     </Col> */}
                    </Flex>
