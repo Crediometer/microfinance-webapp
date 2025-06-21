@@ -7,12 +7,11 @@ import {
   DatePicker, 
   Tabs, 
   Button,
-  Card,
   Tooltip,
-  Flex,
+  Row,
   Col
 } from 'antd';
-import { UserOutlined, HomeOutlined, ContactsOutlined, QuestionCircleOutlined, RightOutlined } from '@ant-design/icons';
+import { QuestionCircleOutlined, RightOutlined } from '@ant-design/icons';
 import { FaMapLocationDot } from 'react-icons/fa6';
 
 interface CustomerDetailsModalProps {
@@ -42,192 +41,157 @@ const CustomerDetailsModal: React.FC<CustomerDetailsModalProps> = ({
     }
   };
 
+  const renderTabTitle = (title: string, subtitle: string) => (
+    <div className="flex items-center gap-4">
+      <FaMapLocationDot className="text-2xl text-blue-600" />
+      <div className="ml-4">
+        <h4 className="text-base font-semibold text-gray-900">{title}</h4>
+        <p className="text-xs font-medium text-gray-600">{subtitle}</p>
+      </div>
+    </div>
+  );
+
   return (
     <Modal
-      visible={visible}
+      open={visible}
       onCancel={onCancel}
       footer={null}
-      width={1000}
-      className="customer-details-modal"
+      className="max-w-[95vw]"
       closable={true}
       maskClosable={false}
     >
-      <Tabs activeKey={activeTab} onChange={setActiveTab}>
+      <Tabs activeKey={activeTab} onChange={setActiveTab} className="w-full">
         <TabPane 
-          tab={
-            <Flex align="center" gap={4}>
-              <FaMapLocationDot style={{fontSize:"2rem", color:"#234FE3"}}/>
-              <Col style={{marginLeft:"15px"}}>
-                <h4 style={{fontSize: "16.67px", fontWeight:600, color:"#070707E5"}}>Personal Details</h4>
-                <div style={{fontSize: "11px", fontWeight:500, color:"#231F2099"}}>Address and work details</div>
-              </Col>
-            </Flex>
-          } 
+          tab={renderTabTitle("Personal Details", "Address and work details")} 
           key="1"
         >
-          <Form
-            form={form}
-            layout="vertical"
-            name="customer_details_form"
-            onFinish={onFinish}
-          >
-            <div className="form-row">
-              <Form.Item
-                name="firstName"
-                label="First Name"
-                className="form-item-half"
-              >
-                <Input placeholder="Enter First Name" />
-              </Form.Item>
-              <Form.Item
-                name="dateOfBirth"
-                label="Date of Birth"
-                className="form-item-half"
-              >
-                <DatePicker format="DD/MM/YYYY" style={{ width: '100%' }} />
-              </Form.Item>
-            </div>
+          <Form form={form} layout="vertical" onFinish={onFinish}>
+            <Row gutter={[24, 16]}>
+              <Col xs={24} sm={12}>
+                <Form.Item name="firstName" label="First Name">
+                  <Input placeholder="Enter First Name" />
+                </Form.Item>
+              </Col>
+              <Col xs={24} sm={12}>
+                <Form.Item name="dateOfBirth" label="Date of Birth">
+                  <DatePicker format="DD/MM/YYYY" className="w-full" />
+                </Form.Item>
+              </Col>
+            </Row>
 
-            <div className="form-row">
-              <Form.Item
-                name="lastName"
-                label="Last Name"
-                className="form-item-half"
-              >
-                <Input placeholder="Enter Last Name" />
-              </Form.Item>
-              <Form.Item
-                name="gender"
-                label="Gender"
-                className="form-item-half"
-              >
-                <Select placeholder="Select">
-                  <Option value="male">Male</Option>
-                  <Option value="female">Female</Option>
-                  <Option value="other">Other</Option>
-                </Select>
-              </Form.Item>
-            </div>
+            <Row gutter={[24, 16]}>
+              <Col xs={24} sm={12}>
+                <Form.Item name="lastName" label="Last Name">
+                  <Input placeholder="Enter Last Name" />
+                </Form.Item>
+              </Col>
+              <Col xs={24} sm={12}>
+                <Form.Item name="gender" label="Gender">
+                  <Select placeholder="Select">
+                    <Option value="male">Male</Option>
+                    <Option value="female">Female</Option>
+                    <Option value="other">Other</Option>
+                  </Select>
+                </Form.Item>
+              </Col>
+            </Row>
 
-            <div className="form-row">
-              <Form.Item
-                name="middleName"
-                label="Middle Name"
-                className="form-item-half"
-              >
-                <Input placeholder="Enter Middle Name" />
-              </Form.Item>
-              <Form.Item
-                name="nationality"
-                label="Nationality"
-                className="form-item-half"
-              >
-                <Input placeholder="Enter Nationality" />
-              </Form.Item>
-            </div>
+            <Row gutter={[24, 16]}>
+              <Col xs={24} sm={12}>
+                <Form.Item name="middleName" label="Middle Name">
+                  <Input placeholder="Enter Middle Name" />
+                </Form.Item>
+              </Col>
+              <Col xs={24} sm={12}>
+                <Form.Item name="nationality" label="Nationality">
+                  <Input placeholder="Enter Nationality" />
+                </Form.Item>
+              </Col>
+            </Row>
 
-            <div className="form-row">
-              <Form.Item
-                name="customerType"
-                label="Customer Type"
-                className="form-item-half"
-              >
-                <Select placeholder="Select">
-                  <Option value="individual">Individual</Option>
-                  <Option value="business">Business</Option>
-                </Select>
-              </Form.Item>
-              <Form.Item
-                name="customerBranch"
-                label="Customer Branch"
-                className="form-item-half"
-              >
-                <Select placeholder="Select">
-                  <Option value="main">Main Branch</Option>
-                  <Option value="north">North Branch</Option>
-                  <Option value="south">South Branch</Option>
-                </Select>
-              </Form.Item>
-            </div>
+            <Row gutter={[24, 16]}>
+              <Col xs={24} sm={12}>
+                <Form.Item name="customerType" label="Customer Type">
+                  <Select placeholder="Select">
+                    <Option value="individual">Individual</Option>
+                    <Option value="business">Business</Option>
+                  </Select>
+                </Form.Item>
+              </Col>
+              <Col xs={24} sm={12}>
+                <Form.Item name="customerBranch" label="Customer Branch">
+                  <Select placeholder="Select">
+                    <Option value="main">Main Branch</Option>
+                    <Option value="north">North Branch</Option>
+                    <Option value="south">South Branch</Option>
+                  </Select>
+                </Form.Item>
+              </Col>
+            </Row>
 
-            <div className="form-row">
-              <Form.Item
-                name="numericId"
-                label={
-                  <span>
-                    Numeric ID
-                    <Tooltip title="Unique identifier for the customer">
-                      <QuestionCircleOutlined style={{ marginLeft: 4 }} />
-                    </Tooltip>
-                  </span>
-                }
-                className="form-item-half"
-              >
-                <Select placeholder="Select">
-                  <Option value="id1">ID001</Option>
-                  <Option value="id2">ID002</Option>
-                </Select>
-              </Form.Item>
-              <Form.Item
-                name="accountOfficer"
-                label="Account Officer"
-                className="form-item-half"
-              >
-                <Select placeholder="Select">
-                  <Option value="officer1">John Smith</Option>
-                  <Option value="officer2">Jane Doe</Option>
-                </Select>
-              </Form.Item>
-            </div>
+            <Row gutter={[24, 16]}>
+              <Col xs={24} sm={12}>
+                <Form.Item 
+                  name="numericId" 
+                  label={
+                    <span className="flex items-center">
+                      Numeric ID
+                      <Tooltip title="Unique identifier for the customer">
+                        <QuestionCircleOutlined className="ml-1" />
+                      </Tooltip>
+                    </span>
+                  }
+                >
+                  <Select placeholder="Select">
+                    <Option value="id1">ID001</Option>
+                    <Option value="id2">ID002</Option>
+                  </Select>
+                </Form.Item>
+              </Col>
+              <Col xs={24} sm={12}>
+                <Form.Item name="accountOfficer" label="Account Officer">
+                  <Select placeholder="Select">
+                    <Option value="officer1">John Smith</Option>
+                    <Option value="officer2">Jane Doe</Option>
+                  </Select>
+                </Form.Item>
+              </Col>
+            </Row>
           </Form>
         </TabPane>
 
         <TabPane 
-          tab={
-            <Flex align="center" gap={4}>
-              <FaMapLocationDot style={{fontSize:"2rem", color:"#234FE3"}}/>
-              <Col style={{marginLeft:"15px"}}>
-                <h4 style={{fontSize: "16.67px", fontWeight:600, color:"#070707E5"}}>Address & Employment</h4>
-                <div style={{fontSize: "11px", fontWeight:500, color:"#231F2099"}}>Address and work details</div>
-              </Col>
-            </Flex>
-          } 
+          tab={renderTabTitle("Address & Employment", "Address and work details")} 
           key="2"
         >
-          <Form
-            form={form}
-            layout="vertical"
-            name="address_employment_form"
-          >
-            {/* Address & Employment form fields would go here */}
-            <div className="form-placeholder">Address & Employment details form fields</div>
+          <Form form={form} layout="vertical">
+            <Row gutter={[24, 16]}>
+              <Col span={24}>
+                <div className="p-8 text-center text-gray-500">
+                  Address & Employment details form fields
+                </div>
+              </Col>
+            </Row>
           </Form>
         </TabPane>
 
         <TabPane 
-          tab={
-            <Flex align="center" gap={10}>
-              <FaMapLocationDot style={{fontSize:"2rem", color:"#234FE3"}}/>
-              <Col style={{marginLeft:"15px"}}>
-                <h4 style={{fontSize: "16.67px", fontWeight:600, color:"#070707E5"}}>Contact & Next of Kin</h4>
-                <div style={{fontSize: "11px", fontWeight:500, color:"#231F2099"}}>Provide your details</div>
-              </Col>
-            </Flex>
-          } 
+          tab={renderTabTitle("Contact & Next of Kin", "Provide your details")} 
           key="3"
         >
-          <Form
-            form={form}
-            layout="vertical"
-            name="contact_kin_form"
-          >
-            {/* Contact & Next of Kin form fields would go here */}
-            <div className="form-placeholder">Contact & Next of Kin details form fields</div>
+          <Form form={form} layout="vertical">
+            <Row gutter={[24, 16]}>
+              <Col span={24}>
+                <div className="p-8 text-center text-gray-500">
+                  Contact & Next of Kin details form fields
+                </div>
+              </Col>
+            </Row>
           </Form>
         </TabPane>
       </Tabs>
 
-      <div className="modal-footer">
+      <div className="flex justify-end mt-6">
         <Button 
           type="primary" 
           onClick={handleNext}
@@ -241,55 +205,3 @@ const CustomerDetailsModal: React.FC<CustomerDetailsModalProps> = ({
 };
 
 export default CustomerDetailsModal;
-
-// Add this CSS to match the styling in the image
-const styles = `
-.customer-details-modal .ant-modal-content {
-  border-radius: 8px;
-}
-
-.customer-details-modal .ant-tabs-nav {
-  margin-bottom: 24px;
-}
-
-.customer-details-modal .ant-tabs-tab {
-  padding: 16px 24px !important;
-  margin: 0;
-}    
-
-.customer-details-modal .ant-tabs-tab-active {
-  background-color: #f0f5ff;
-  border-radius: 4px 4px 0 0;
-}
-
-.tab-description {
-  font-size: 12px;
-  color: #231F2099;
-  margin-top: 4px;
-}
-
-.form-row {
-  display: flex;
-  gap: 16px;
-}
-
-.form-item-half {
-  flex: 1;
-}
-
-.modal-footer {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 24px;
-}
-
-.form-placeholder {
-  height: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #bfbfbf;
-  border: 1px dashed #d9d9d9;
-  border-radius: 4px;
-}
-`;

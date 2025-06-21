@@ -1,118 +1,27 @@
 import React, { useState } from 'react';
-import { DownOutlined } from '@ant-design/icons';
+import {
+  Table,
+  Typography,
+  Button,
+  Dropdown,
+  Space,
+  Badge,
+  Tag
+} from 'antd';
 import type { TableColumnsType, MenuProps } from 'antd';
-import { Badge, Button, Dropdown, Space, Table, Typography} from 'antd';
-import { SettingOutlined } from '@ant-design/icons';
-import { MdTouchApp } from 'react-icons/md';
-import { FaTimes, FaTimesCircle } from "react-icons/fa";
-import { FaCheck, FaCircleCheck, FaRegEye } from "react-icons/fa6";
-import styled from 'styled-components';
+import {
+  DownOutlined,
+  MoreOutlined,
+  SettingOutlined
+} from '@ant-design/icons';
+
 import { CiEdit } from 'react-icons/ci';
 import DepositViewModal from '../Modal/DepositViewModal';
 import DepositEditModal from '../Modal/DepositEditModal';
 import ConfirmModal from '../Modal/ConfirmModal';
-import { COLOR } from '../../App';
-
-const StyledTable = styled(Table<DataType   >)`
-  .ant-table {
-    border: 1px solid #e0e0e0;
-    border-radius: 16px;
-  }
-
-  .ant-table-thead > tr > th {
-    background-color:#FFFFFF !important;
-    font-weight: 500;
-    font-size: 13px;
-    color: #8B909A;
-    text-transform: uppercase;
-    padding: 24px;
-  }
-
-  .ant-table-tbody > tr > td {
-    padding: 10px;
-    font-size: 14px;
-    border-bottom: 1px solid #f0f0f0;
-  }
-
-  .ant-table-row-expand-icon {
-    display: flex;
-    align-items: center;
-  }
-
-  .ant-table-row-level-1 {
-    background-color: #f9f9f9 !important;
-  }
-
-  .status-text {
-    font-weight: 600;
-    font-size: 14px;
-  }
-
-  .action-btn {
-    background-color: transparent;
-    border: 1px solid #c4c4c4;
-    font-size: 13px;
-    font-weight: 500;
-    color: #9ba6bc;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-
-   .ant-table-row-expand-icon-cell {
-    text-align: right !important;
-  }
-
-  .ant-table-row-expand-icon {
-    display: flex;
-    justify-content: flex-end; /* Moves the expand icon to the right */
-  }
-`;
-
-const StyledExpandableTable = styled(Table<ExpandedDataType>)`
-  .ant-table-expanded-row > td {
-    background-color: #fef4c5 !important; /* Light yellow background */
-    border: none;
-    padding: 12px;
-  }
-
-  .ant-table-thead > tr > th {
-    background-color: #FFFFFF !important;
-    font-weight: 500;
-    font-size: 13px;
-    color: #8B909A;
-    text-transform: uppercase;
-    padding: 12px;
-    border: none;
-  }
-
-  .ant-table-tbody > tr > td {
-    padding: 10px;
-    font-size: 14px;
-    border-bottom: 1px solid #f0f0f0;
-  }
-
-  .ant-table-row-expand-icon {
-    display: flex;
-    align-items: center;
-  }
-
-  .status-text {
-    font-weight: 600;
-    font-size: 14px;
-  }
-
-  .action-btn {
-    background-color: transparent;
-    border: 1px solid #c4c4c4;
-    font-size: 13px;
-    font-weight: 500;
-    color: #9ba6bc;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-`;
+import { FaCheck, FaRegEye } from 'react-icons/fa6';
+import { FaTimes, FaTimesCircle } from 'react-icons/fa';
+import { MdTouchApp } from 'react-icons/md';
 
 interface ExpandedDataType {
   key: React.Key;
@@ -124,7 +33,7 @@ interface ExpandedDataType {
 
 interface DataType {
   key: React.Key;
-  id: string,
+  id: string;
   customer: string;
   accountNumber: string;
   branch: string;
@@ -132,209 +41,224 @@ interface DataType {
   status: string[];
 }
 
-const expandDataSource = Array.from({ length: 1 }).map<ExpandedDataType>((_, i) => ({
-  key: i.toString(),
-  dateCreated: '6 April, 2023',
-  currency: 'NGN',
-  depositBalance: 'NGN 20,000',
-  availableBalance:"NGN 600,000"
-}));
+const STATUS_COLORS: Record<string, string> = {
+  'active': '#058B42',
+  'inactive': '#B11226',
+  'Pending Approval': '#CD9B35',
+  'default': '#000000'
+};
 
-const dataSource = Array.from({ length: 3 }).map<DataType>((_, i) => ({
-  key: i.toString(),
-  id:"#5089",
-  customer: 'John Brown',
-  accountNumber: "0098989098",
-  branch:"Lekki",
-  accountType:"Savings",
-  status: ['active']
-}));
-
-const expandColumns: TableColumnsType<ExpandedDataType> = [
-  { title: 'DATE CREATED', dataIndex: 'dateCreated', key: 'dateCreated' },
-  { title: 'CURRENCY', dataIndex: 'currency', key: 'currency' },
-  { title: 'Deposit Balance', dataIndex: 'depositBalance', key: 'depositBalance' },
-  { title: 'Available Balance', dataIndex: 'availableBalance', key: 'availableBalance' },
+const EXPAND_DATA_SOURCE: ExpandedDataType[] = [
+  {
+    key: '1',
+    dateCreated: '6 April, 2023',
+    currency: 'NGN',
+    depositBalance: 'NGN 20,000',
+    availableBalance: 'NGN 600,000'
+  }
 ];
 
+const DATA_SOURCE: DataType[] = [
+  {
+    key: '1',
+    id: "#5089",
+    customer: 'John Brown',
+    accountNumber: "0098989098",
+    branch: "Lekki",
+    accountType: "Savings",
+    status: ['active']
+  },
+  {
+    key: '2',
+    id: "#5090",
+    customer: 'Jane Smith',
+    accountNumber: "0098989099",
+    branch: "Victoria Island",
+    accountType: "Current",
+    status: ['Pending Approval']
+  }
+];
 
-const expandedRowRender = () => (
-  <StyledExpandableTable
-    columns={expandColumns}
-    dataSource={expandDataSource}
-    pagination={false}
-  />
-);
+const EXPAND_COLUMNS: TableColumnsType<ExpandedDataType> = [
+  {
+    title: 'DATE CREATED',
+    dataIndex: 'dateCreated',
+    key: 'dateCreated',
+    className: 'uppercase text-gray-500 text-xs font-medium'
+  },
+  {
+    title: 'CURRENCY',
+    dataIndex: 'currency',
+    key: 'currency',
+    className: 'uppercase text-gray-500 text-xs font-medium'
+  },
+  {
+    title: 'DEPOSIT BALANCE',
+    dataIndex: 'depositBalance',
+    key: 'depositBalance',
+    className: 'uppercase text-gray-500 text-xs font-medium'
+  },
+  {
+    title: 'AVAILABLE BALANCE',
+    dataIndex: 'availableBalance',
+    key: 'availableBalance',
+    className: 'uppercase text-gray-500 text-xs font-medium'
+  },
+];
 
 const NestedTable = () => {
-  const [viewModal, setViewModal] = useState(false)
-  const [editModal, setEditModal] = useState(false)
-  const [confirmModal, setConfirmModal] = useState(false)
-  const [rejectModal, setRejectModal] = useState(false)
-  const [acceptModal, setAcceptModal] = useState(false)
-  const items: MenuProps['items'] = [
+  const [modals, setModals] = useState({
+    view: false,
+    edit: false,
+    accept: false,
+    reject: false
+  });
 
+  const toggleModal = (modalName: keyof typeof modals, value: boolean) => {
+    setModals(prev => ({ ...prev, [modalName]: value }));
+  };
+
+  const ACTION_ITEMS: MenuProps['items'] = [
     {
-      key: '1',
+      key: 'view',
       label: 'View',
-      icon: <FaRegEye />,
-      onClick: ()=>{setViewModal(true)}
-      //extra: '⌘P',
+      icon: <FaRegEye className="mr-2" />,
+      onClick: () => toggleModal('view', true)
     },
     {
-      key: '2',
+      key: 'edit',
       label: 'Edit',
-      icon: <CiEdit />,
-      onClick: ()=>{setEditModal(true)}
-      //extra: '⌘B',
+      icon: <CiEdit className="mr-2" />,
+      onClick: () => toggleModal('edit', true)
     },
     {
-      key: '3',
+      key: 'accept',
       label: 'Accept',
-      icon: <FaCheck />,
-      onClick: ()=>{setAcceptModal(true)}
-      // extra: '⌘S',
+      icon: <FaCheck className="mr-2" />,
+      onClick: () => toggleModal('accept', true)
     },
     {
-      key: '4',
+      key: 'reject',
       label: 'Reject',
-      icon: <FaTimesCircle/>,
-      onClick: ()=>{setRejectModal(true)}
-      // extra: '⌘S',
+      icon: <FaTimesCircle className="mr-2" />,
+      danger: true,
+      onClick: () => toggleModal('reject', true)
     },
   ];
 
-  const columns: TableColumnsType<DataType> = [
+  const renderStatus = (status: string[]) => (
+    <Space size="small">
+      {status.map(tag => (
+        <Tag
+          key={tag}
+          color={STATUS_COLORS[tag] || STATUS_COLORS.default}
+        >
+          {tag}
+        </Tag>
+      ))}
+    </Space>
+  );
+
+  const COLUMNS: TableColumnsType<DataType> = [
     {
-        title: 'ID',
-        dataIndex: 'id',
-        key: 'id',
+      title: 'ID',
+      dataIndex: 'id',
+      key: 'id',
+      className: 'text-sm'
     },
     {
-        title: 'Customer',
-        dataIndex: 'customer',
-        key: 'customer',
+      title: 'CUSTOMER',
+      dataIndex: 'customer',
+      key: 'customer',
+      className: 'text-sm'
     },
     {
-        title: 'Account Number',
-        dataIndex: 'accountNumber',
-        key: 'accountNumber',
+      title: 'ACCOUNT NUMBER',
+      dataIndex: 'accountNumber',
+      key: 'accountNumber',
+      className: 'text-sm'
     },
     {
-        title: 'Branch',
-        dataIndex: 'branch',
-        key: 'branch',
+      title: 'BRANCH',
+      dataIndex: 'branch',
+      key: 'branch',
+      className: 'text-sm'
     },
     {
-        title: 'Account Type',
-        dataIndex: 'accountType',
-        key: 'accountType',
+      title: 'ACCOUNT TYPE',
+      dataIndex: 'accountType',
+      key: 'accountType',
+      className: 'text-sm'
     },
     {
-      title: 'Status',
+      title: 'STATUS',
       key: 'status',
       dataIndex: 'status',
-      render: (_, { status }) => (
-        <>
-          {status.map((tag) => {
-            let color
-            if (tag === 'active') {
-              color = '#058B42';
-            }else if(tag === "inactive"){
-                color = "#B11226"
-            }else if(tag === "Pending Approval"){
-                color =  '#CD9B35'
-            }else{
-                color = "#000000"
-            }
-            return (
-                <Typography.Text
-                    color={color}
-                    style={{
-                        fontSize: "15px",
-                        fontWeight: "600",
-                        color: color,
-                        textTransform: "capitalize"
-                    }}
-                >{tag}</Typography.Text>
-            );
-          })}
-        </>
-      ),
+      render: (_, { status }) => renderStatus(status),
+      className: 'text-sm'
     },
     {
-      title: 'Action',
       key: 'action',
-      render: (_, record) => (
-        <Dropdown menu={{ items }}>
-          <Button style={{
-              backgroundColor: 'transparent',
-              border:"1px solid #C4C4C4",
-              fontSize: "13px",
-              fontWeight:"500",
-              color:"#9BA6BC"
-            }}
-            onClick={(e) => e.preventDefault()}
-          >
-              Action <MdTouchApp color="#000000" />
-          </Button>
+      render: () => (
+        <Dropdown menu={{ items: ACTION_ITEMS }} trigger={['click']}>
+
+          <MoreOutlined className="cursor-pointer hover:text-blue-500" />
+
         </Dropdown>
       ),
+      className: 'text-sm'
     },
-];
+  ];
 
-  return(
-    <>
-      <StyledTable
-        columns={columns}
-        expandable={{ 
-          expandedRowRender,   
-      }}
-        dataSource={dataSource}
+  const expandedRowRender = () => (
+    <Table
+      columns={EXPAND_COLUMNS}
+      dataSource={EXPAND_DATA_SOURCE}
+      pagination={false}
+      className="[&_.ant-table-expanded-row]:bg-yellow-50"
+    />
+  );
+
+  return (
+    <div className="border border-gray-200 mt-12 rounded-2xl overflow-hidden">
+      <Table
+        columns={COLUMNS}
+        expandable={{ expandedRowRender }}
+        dataSource={DATA_SOURCE}
+        className="[&_.ant-table-thead_th]:bg-white [&_.ant-table-thead_th]:uppercase [&_.ant-table-thead_th]:text-gray-500 [&_.ant-table-thead_th]:text-xs [&_.ant-table-thead_th]:font-medium [&_.ant-table-tbody_td]:text-sm [&_.ant-table-row-expand-icon]:flex [&_.ant-table-row-expand-icon]:items-center [&_.ant-table-row-expand-icon]:justify-end"
       />
 
-      {viewModal && (
-        <DepositViewModal viewModal={viewModal} setViewModal={setViewModal}/>
-      )}
-      {editModal && (
-        <DepositEditModal editModal={editModal} setEditModal={setEditModal}/>
-      )}
-      {acceptModal && (
-        <ConfirmModal 
-            confirmModal={acceptModal} 
-            setConfirmModal={setAcceptModal} 
-            icon={
-              <FaCheck
-                    style={{
-                        fontSize: "3rem"
-                    }}
-                /> 
-            }
-            type="accept"
-            text="Approve User"
-            content="Are you sure you want to approve this user"
-            label="Yes Approve"
-        />  
-      )}
-       {rejectModal && (
-        <ConfirmModal 
-            confirmModal={rejectModal} 
-            setConfirmModal={setRejectModal} 
-            icon={
-              <FaTimes
-                    style={{  
-                        fontSize: "3rem"
-                    }}
-                /> 
-            }
-            type="reject"
-            text="Reject User"
-            content="Are you sure you want to Reject this user"
-            label="Yes Reject"
-        />  
-      )}
-    </>
-  )
+      <DepositViewModal
+        visible={modals.view}
+        onClose={() => toggleModal('view', false)}
+      />
+
+      <DepositEditModal
+        visible={modals.edit}
+        onClose={() => toggleModal('edit', false)}
+      />
+
+      <ConfirmModal
+        visible={modals.accept}
+        onClose={() => toggleModal('accept', false)}
+        icon={<FaCheck className="text-4xl" />}
+        type="accept"
+        text="Approve User"
+        content="Are you sure you want to approve this user?"
+        label="Yes Approve"
+      />
+
+      <ConfirmModal
+        visible={modals.reject}
+        onClose={() => toggleModal('reject', false)}
+        icon={<FaTimes className="text-4xl" />}
+        type="reject"
+        text="Reject User"
+        content="Are you sure you want to reject this user?"
+        label="Yes Reject"
+      />
+    </div>
+  );
 };
 
 export default NestedTable;

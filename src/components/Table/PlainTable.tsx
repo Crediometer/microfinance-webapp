@@ -11,7 +11,6 @@ interface CustomTableProps<T> {
 const PlainTable = <T extends object>({ dataType, columns, data }: CustomTableProps<T>) => {
     return (
         <div>
-            {/* <Typography.Title level={4}>{dataType} Table</Typography.Title> */}
             <Table<T> columns={columns} dataSource={data} />
         </div>
     );

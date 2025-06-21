@@ -22,28 +22,27 @@ const options = [
         value: '4',
         label: 'Active Customer',
     },
-    ]
+]
 
 const DepositAccount = () => {
     const [depositModal, setDepositModal] = useState(false)
-    return ( 
+    return (
         <>
-            <Filter options={options} selectplaceholder="Account State" name="Create Account" button="deposit" modal={depositModal} setModal={setDepositModal}/>
-            <Col 
-                style={{
-                    marginTop: "28px"
-                }}
-            >
-                <NestedTable/>
-            </Col>
-            {depositModal && (
-                <DepositModal
-                    depositModal = {depositModal}
-                    setDepositModal ={setDepositModal}
-                />
-            )}
+            <Filter options={options}
+                selectplaceholder="Account State"
+                name="Create Account" button="deposit"
+                onClick={() => setDepositModal(!depositModal)} />
+
+            <NestedTable />
+
+
+            <DepositModal
+                depositModal={depositModal}
+                setDepositModal={setDepositModal}
+            />
+
         </>
     );
 }
- 
+
 export default DepositAccount;
